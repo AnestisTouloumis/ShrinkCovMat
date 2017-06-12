@@ -1,0 +1,28 @@
+Version 1.1.2 [2016-05-22]
+ * Fixed a bug in the function shrinkcovmat.unequal 
+   (reported by Prof. Thomas A. Severini).
+ * Updated documentation.
+ * Updated R files.
+ * Updated CITATION file.
+
+Version 1.1.1 [2015-09-08]
+ * Updated email address of the maintainer.
+
+Version 1.1.0 [2015-01-08]
+ * Updated CITATION file.
+
+Version 1.0.3 [2014-11-02]
+ * Updated CITATION file.
+ * Updated documention.
+
+Version 1.0.2 [2014-10-20]
+ * Added function targetselection. 
+ * Updated CITATION file.
+ * Updated documention.
+
+Version 1.0.1 [2014-08-12]
+ * Updated documentation. 
+ * Created CITATION file. 
+
+Version 1.0.0 [2014-04-17]
+ * The first version of the R package ShrinkCovMat is released on CRAN.
