@@ -1,3 +1,6 @@
+Version 1.1.3 [2017-06-12]
+ * Updated DESCRIPTION to add link to the GitHub site.
+
 Version 1.1.2 [2016-05-22]
  * Fixed a bug in the function shrinkcovmat.unequal 
    (reported by Prof. Thomas A. Severini).
