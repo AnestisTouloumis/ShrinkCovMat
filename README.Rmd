@@ -1,0 +1,59 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include=FALSE}
+library("badger")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
+[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat)](https://cran.r-project.org/package=ShrinkCovMat)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat)
+
+## 1. Installation
+
+You can install the **ShrinkCovMat** package from CRAN.
+
+```{r eval=FALSE}
+install.packages("ShrinkCovMat")
+```
+
+
+You can also install the package from GitHub. 
+
+```{r eval=FALSE}
+install.packages("devtools") # if you have not installed "devtools" package
+devtools::install_github("AnestisTouloumis/ShrinkCovMat")
+```
+
+The source code for **ShrinkCovMat** package is available on GitHub at
+
+- https://github.com/AnestisTouloumis/ShrinkCovMat.
+
+## 2. Functions
+
+The **ShrinkCovMat** package provides three core function to estimate a covariance matrix.
+
+- `shrinkcovmat.equal` `r badge_devel("AnestisTouloumis/ShrinkCovMat", "blue")`
+- `shrinkcovmat.identity`
+- `shrinkcovmat.equal`
+
+The utility function 
+
+- `targetselection`
+
+helps users to choose the target matrix.
+
+To use these functions, first, you should load the package as follows.
+
+```{r}
+library(ShrinkCovMat)
+```
