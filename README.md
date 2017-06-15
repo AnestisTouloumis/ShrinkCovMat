@@ -2,16 +2,16 @@
 ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 ====================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat) [![develVersion](https://img.shields.io/badge/devel%20version-1.1.4-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/ShrinkCovMat) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--15-yellowgreen.svg)](/commits/master)
+[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat) [![develVersion](https://img.shields.io/badge/devel%20version-1.1.4-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/ShrinkCovMat) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--15-brightgreen.svg)](/commits/master)
 
-[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://cran.r-project.org/package=ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/ShrinkCovMat)](http://cran.rstudio.com/web/packages/ShrinkCovMat/index.html) [![minimal R version](https://img.shields.io/badge/R%3E%3D-2.11-6666ff.svg)](https://cran.r-project.org/)
+[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://cran.r-project.org/package=ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/ShrinkCovMat)](http://cran.rstudio.com/web/packages/ShrinkCovMat/index.html)
 
 Author
 ------
 
 Anestis Touloumis <https://brighton.academia.edu/AnestisTouloumis>
 
-School of Computing, Engineering and Mathematics, University of Brighton
+School of Computing, Engineering and Mathematics, University of Brighton.
 
 Installation
 ------------
