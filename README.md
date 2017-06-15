@@ -2,7 +2,9 @@
 ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 ====================================================
 
-[![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat) [![develVersion](https://img.shields.io/badge/devel%20version-1.1.3-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/ShrinkCovMat) [![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://cran.r-project.org/package=ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--15-yellowgreen.svg)](/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-2.11-6666ff.svg)](https://cran.r-project.org/)
+[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat) [![develVersion](https://img.shields.io/badge/devel%20version-1.1.4-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/ShrinkCovMat) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--15-yellowgreen.svg)](/commits/master)
+
+[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://cran.r-project.org/package=ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![minimal R version](https://img.shields.io/badge/R%3E%3D-2.11-6666ff.svg)](https://cran.r-project.org/)
 
 Author
 ------
@@ -48,7 +50,7 @@ Each of the implemented shrinkage covariance matrix estimators is a convex linea
 -   the scaled identity matrix (`shrinkcovmat.equal`)
 -   the diagonal matrix with diagonal elements the corresponding sample variances (`shrinkcovmat.unequal`)
 
-The utility function
+Estimation of the corresponding optimal shrinkage intensities is discussed in (Touloumis 2015). The utility function
 
 -   `targetselection`
 
@@ -158,6 +160,9 @@ Contact
 -------
 
 Want to help or have questions?
-Contact me directly, use an [issue](https://github.com/AnestisTouloumis/ShrinkCovMat/issues), fork me or submit a pull request.
+Contact me directly, use an [issue](https://github.com/AnestisTouloumis/ShrinkCovMat/issues), [fork me](http://githubbadges.com/fork.svg?user=AnestisTouloumis&repo=ShrinkCovMat&style=flat) or [submit a pull request](https://github.com/AnestisTouloumis/ShrinkCovMat/pulls).
 
-[![star this repo](http://githubbadges.com/star.svg?user=AnestisTouloumis&repo=ShrinkCovMat&style=flat)](https://github.com/AnestisTouloumis/ShrinkCovMat) [![fork this repo](http://githubbadges.com/fork.svg?user=AnestisTouloumis&repo=ShrinkCovMat&style=flat)](https://github.com/AnestisTouloumis/ShrinkCovMat/fork)
+References
+==========
+
+Touloumis, Anestis. 2015. “Nonparametric Stein-Type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings.” *Computational Statistics & Data Analysis* 83 (March): 251–61. doi:[10.1016/j.csda.2014.10.018](https://doi.org/10.1016/j.csda.2014.10.018).
