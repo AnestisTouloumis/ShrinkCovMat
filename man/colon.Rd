@@ -5,7 +5,7 @@
 Colon Cancer Dataset
 }
 \description{
-The dataset describes a colon cancer study (Alon et al., 1999) in which gene expression levels were measured on 40 normal tissues and on 22 tumor colon tissues. Note that a logarithmic (base 10) transformation has been applied to the gene expression levels.
+The dataset describes a colon cancer study (\cite{Alon et al., 1999}) in which gene expression levels were measured on 40 normal tissues and on 22 tumor colon tissues. Note that a logarithmic (base 10) transformation has been applied to the gene expression levels.
 }
 \usage{data(colon)}
 \format{
