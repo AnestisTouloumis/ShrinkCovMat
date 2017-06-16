@@ -60,7 +60,7 @@ You can install the release version of the **ShrinkCovMat** package:
 install.packages("ShrinkCovMat")
 ```
 
-The source code of the release version is available on CRAN at:
+The source code for the release version of **ShrinkCovMat** is available on CRAN at:
 
 - https://CRAN.R-project.org/package=ShrinkCovMat
 
@@ -71,7 +71,7 @@ install.packages("devtools") # if you have not installed "devtools" package
 devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 ```
 
-The source code for the development version is available on github at
+The source code for the development version of **ShrinkCovMat** is available on github at
 
 - https://github.com/AnestisTouloumis/ShrinkCovMat.
 
