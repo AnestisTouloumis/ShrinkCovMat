@@ -4,7 +4,7 @@
 Shrinking the Sample Covariance Matrix Towards a Diagonal Matrix with Diagonal Elements the Sample Variances.
 }
 \description{
-Provides a nonparametric Stein-type shrinkage estimator of the covariance matrix that is a linear combination of the sample covariance matrix and of the diagonal matrix with elements the corresponding sample variances on the diagonal and zeros elsewehere.
+Provides a nonparametric Stein-type shrinkage estimator of the covariance matrix that is a linear combination of the sample covariance matrix and of the diagonal matrix with elements the corresponding sample variances on the diagonal and zeros elsewhere.
 }
 \usage{
 shrinkcovmat.unequal(data, centered = FALSE)
