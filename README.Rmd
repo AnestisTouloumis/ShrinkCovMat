@@ -8,7 +8,7 @@ references:
   author:
   - family: Touloumis
     given: Anestis
-  container-title: Computational Statistics & Data Analysis
+  container-title: Computational Statistics \& Data Analysis
   volume: 83
   URL: 'https://doi.org/10.1016/j.csda.2014.10.018'
   DOI: 10.1016/j.csda.2014.10.018
@@ -19,30 +19,26 @@ references:
     month: March
 ---
 
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include=FALSE}
-library("badger")
 knitr::opts_chunk$set(
   tidy = TRUE,
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
-)
+  fig.path="README-")
 ```
 
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
-
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
-`r badge_devel("AnestisTouloumis/ShrinkCovMat", "brightgreen")`
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-brightgreen.svg)](/commits/master)
 
 
-[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://cran.r-project.org/package=ShrinkCovMat)
+[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/ShrinkCovMat)](http://cran.rstudio.com/web/packages/ShrinkCovMat/index.html)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
 
 
 ## Author
