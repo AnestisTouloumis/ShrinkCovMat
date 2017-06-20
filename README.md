@@ -33,7 +33,7 @@ install.packages("devtools")  # if you have not installed 'devtools' package
 devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 ```
 
-The source code for the development version of **ShrinkCovMat** is available on github at
+The source code for the development version of **ShrinkCovMat** is available on github at:
 
 -   <https://github.com/AnestisTouloumis/ShrinkCovMat>.
 
