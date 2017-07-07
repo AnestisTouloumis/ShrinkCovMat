@@ -49,7 +49,7 @@ School of Computing, Engineering and Mathematics, University of Brighton.
 
 ## Installation
 
-You can install the release version of the **ShrinkCovMat** package:
+You can install the release version of the **ShrinkCovMat**:
 
 ```{r eval=FALSE}
 install.packages("ShrinkCovMat")
@@ -59,7 +59,7 @@ The source code for the release version of **ShrinkCovMat** is available on CRAN
 
 - https://CRAN.R-project.org/package=ShrinkCovMat
 
-Or you can install the development version of the **ShrinkCovMat** package:
+Or you can install the development version of **ShrinkCovMat**:
 
 ```{r eval=FALSE}
 install.packages("devtools") # if you have not installed "devtools" package
@@ -68,9 +68,9 @@ devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 
 The source code for the development version of **ShrinkCovMat** is available on github at:
 
-- https://github.com/AnestisTouloumis/ShrinkCovMat.
+- https://github.com/AnestisTouloumis/ShrinkCovMat
 
-To use **ShrinkCovMat**, you should load the package as follows:
+To use **ShrinkCovMat**, you should first load the package as follows:
 
 ```{r}
 library(ShrinkCovMat)
@@ -78,7 +78,7 @@ library(ShrinkCovMat)
 
 ## Usage
 
-The **ShrinkCovMat** package provides nonparametric Stein-type shrinkage estimators of the covariance matrix that are suitable and statistically efficient when the number of variables is larger than the sample size. These estimators are non-singular and well-conditioned regardless of the dimensionality.
+This package provides nonparametric Stein-type shrinkage estimates of the covariance matrix that are suitable and statistically efficient when the number of variables is larger than the sample size. These estimators are non-singular and well-conditioned regardless of the dimensionality.
 
 Each of the implemented shrinkage covariance matrix estimators is a convex linear combination of the sample covariance matrix and of a target matrix. Three options are considered for the target matrix: 
 
@@ -86,34 +86,47 @@ Each of the implemented shrinkage covariance matrix estimators is a convex linea
 - the scaled identity matrix (`shrinkcovmat.equal`),
 - the diagonal matrix with diagonal elements the corresponding sample variances (`shrinkcovmat.unequal`).
 
-Estimation of the corresponding optimal shrinkage intensities is discussed in [@Touloumis2015]. The utility function 
+Estimation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015. The utility function 
 
 - `targetselection`
 
 is designed to ease the selection of the target matrix.
 
 ## Example
-
-The following R code illustrates how to use the core functions of **ShrinkCovMat**.
-
+Consider the colon cancer data example analyzed in @Touloumis2015. There are two groups: the normal group and the tumor group.
 ```{r}
+# load colon data 
 data(colon)
-normal.group <- colon[, 1:40]
-
-Sigmahat1 <- shrinkcovmat.equal(normal.group)
-Sigmahat1
-
-Sigmahat2 <- shrinkcovmat.identity(normal.group)
-Sigmahat2
-
-Sigmahat3 <- shrinkcovmat.unequal(normal.group)
-Sigmahat3
+normal <- colon[,1:40]
+tumor <- colon[,41:62]
 ```
+We can use the `targetselection` function to chose between the three target matrices in each group. First, for the normal group 
+```{r}
+targetselection(normal)
+```
+we can see that the estimated shrinkage intensity for the scaled identity matrix is slightly larger than the other two and that the sample variances are of similar magnitude. Therefore we can choose the scaled identity matrix as the target matrix.
+```{r}
+EstimatedCovarianceNormal <- shrinkcovmat.equal(normal)
+EstimatedCovarianceNormal
+```
+Next, we follow a similar procedure for the tumor group 
+```{r}
+targetselection(tumor)
+```
+Again, we should choose the scaled identity matrix as the target matrix since the estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances are of similar magnitude. 
+```{r}
+EstimatedCovarianceTumor <- shrinkcovmat.equal(tumor)
+EstimatedCovarianceTumor
+```
+
 
 ## How to cite
-
-```{r}
-citation("ShrinkCovMat")
+To cite *ShrinkCovMat* in publications, please use the following reference
+```{r,echo=FALSE}
+print(citation("ShrinkCovMat"),style="textVersion")
 ```
 
+```{r,echo=FALSE}
+print(citation("ShrinkCovMat"),style="Bibtex")
+```
 # References
