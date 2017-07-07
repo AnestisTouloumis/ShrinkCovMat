@@ -121,9 +121,9 @@ EstimatedCovarianceTumor
 
 
 ## How to cite
-To cite *ShrinkCovMat* in publications, please use the following reference
+To cite **ShrinkCovMat** in publications, please use the following reference
 ```{r,echo=FALSE}
-print(citation("ShrinkCovMat"),style="textVersion")
+print(citation("ShrinkCovMat"),style="text")
 ```
 
 ```{r,echo=FALSE}
