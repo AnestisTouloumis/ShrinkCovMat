@@ -157,18 +157,18 @@ How to cite
 
 To cite **ShrinkCovMat** in publications, please use the following reference
 
-    #> Anestis Touloumis (2015). "Nonparametric Stein-type Shrinkage
-    #> Covariance Matrix Estimators in High-Dimensional Settings."
-    #> _Computational Statistics & Data Analysis_, *83*, pp. 251-261.
+    Anestis Touloumis (2015). "Nonparametric Stein-type Shrinkage
+    Covariance Matrix Estimators in High-Dimensional Settings."
+    _Computational Statistics & Data Analysis_, *83*, pp. 251-261.
 
-    #> @Article{,
-    #>   title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
-    #>   author = {{Anestis Touloumis}},
-    #>   year = {2015},
-    #>   journal = {Computational Statistics & Data Analysis},
-    #>   volume = {83},
-    #>   pages = {251--261},
-    #> }
+    @Article{,
+      title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
+      author = {{Anestis Touloumis}},
+      year = {2015},
+      journal = {Computational Statistics & Data Analysis},
+      volume = {83},
+      pages = {251--261},
+    }
 
 References
 ==========
