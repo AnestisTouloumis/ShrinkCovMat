@@ -93,40 +93,36 @@ Estimation of the corresponding optimal shrinkage intensities is discussed in @T
 is designed to ease the selection of the target matrix.
 
 ## Example
-Consider the colon cancer data example analyzed in @Touloumis2015. There are two groups: the normal group and the tumor group.
+Consider the colon cancer data example analyzed in @Touloumis2015. The data consists of two tissue groups: the normal tissue group and the tumor tissue group.
 ```{r}
 # load colon data 
 data(colon)
-normal <- colon[,1:40]
-tumor <- colon[,41:62]
+NormalGroup <- colon[,1:40]
+TumorGroup <- colon[,41:62]
 ```
-We can use the `targetselection` function to chose between the three target matrices in each group. First, for the normal group 
+To decide on the target matrix for the normal and tumor group, We can use the `targetselection` function.
 ```{r}
-targetselection(normal)
+targetselection(NormalGroup)
 ```
-we can see that the estimated shrinkage intensity for the scaled identity matrix is slightly larger than the other two and that the sample variances are of similar magnitude. Therefore we can choose the scaled identity matrix as the target matrix.
+For the normal group, the estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances appear to be of similar magnitude. These suggest to choose the scaled identity matrix as the target matrix. The estimated covariance matrix is:
 ```{r}
-EstimatedCovarianceNormal <- shrinkcovmat.equal(normal)
+EstimatedCovarianceNormal <- shrinkcovmat.equal(NormalGroup)
 EstimatedCovarianceNormal
 ```
-Next, we follow a similar procedure for the tumor group 
+We follow a similar procedure for the tumor group: 
 ```{r}
-targetselection(tumor)
+targetselection(TumorGroup)
 ```
-Again, we should choose the scaled identity matrix as the target matrix since the estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances are of similar magnitude. 
+As with the normal group, we conclude that the scaled identity matrix seems to be the best target matrix. The estimated covariance matrix is:
 ```{r}
-EstimatedCovarianceTumor <- shrinkcovmat.equal(tumor)
+EstimatedCovarianceTumor <- shrinkcovmat.equal(TumorGroup)
 EstimatedCovarianceTumor
 ```
 
 
 ## How to cite
-To cite **ShrinkCovMat** in publications, please use the following reference
-```{r,echo=FALSE, comment="",out.format="markdown",comment=NA}
-print(citation("ShrinkCovMat"),style="text")
+```{r,echo=FALSE,comment=NA}
+citation("ShrinkCovMat")
 ```
 
-```{r,echo=FALSE, comment=""}
-print(citation("ShrinkCovMat"),style="Bibtex")
-```
 # References

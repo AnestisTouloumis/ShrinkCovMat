@@ -31,14 +31,14 @@ Anestis Touloumis
 }
 \examples{
 data(colon)
-normal.group <- colon[,1:40]
-targetselection(normal.group)
+NormalGroup <- colon[, 1:40]
+targetselection(NormalGroup)
 ## Similar intensities, the range of the sample variances is small 
 ## and the average is not close to one. The scaled identity matrix 
 ## seems to be the most suitable target matrix for the normal group
 
-colon.group <- colon[,41:62]
-targetselection(colon.group)
+TumorGroup <- colon[, 41:62]
+targetselection(TumorGroup)
 ## Similar intensities, the range of the sample variances is small 
 ## and the average is not close to one. The scaled identity matrix 
 ## seems to be the most suitable target matrix for the colon group

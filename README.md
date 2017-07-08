@@ -63,19 +63,19 @@ is designed to ease the selection of the target matrix.
 Example
 -------
 
-Consider the colon cancer data example analyzed in Touloumis (2015). There are two groups: the normal group and the tumor group.
+Consider the colon cancer data example analyzed in Touloumis (2015). The data consists of two tissue groups: the normal tissue group and the tumor tissue group.
 
 ``` r
 # load colon data
 data(colon)
-normal <- colon[, 1:40]
-tumor <- colon[, 41:62]
+NormalGroup <- colon[, 1:40]
+TumorGroup <- colon[, 41:62]
 ```
 
-We can use the `targetselection` function to chose between the three target matrices in each group. First, for the normal group
+To decide on the target matrix for the normal and tumor group, We can use the `targetselection` function.
 
 ``` r
-targetselection(normal)
+targetselection(NormalGroup)
 #> OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH 
 #> Equal variances   : 0.1401 
 #> Unit variances    : 0.1125 
@@ -86,10 +86,10 @@ targetselection(normal)
 #> Average : 0.0882
 ```
 
-we can see that the estimated shrinkage intensity for the scaled identity matrix is slightly larger than the other two and that the sample variances are of similar magnitude. Therefore we can choose the scaled identity matrix as the target matrix.
+For the normal group, the estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances appear to be of similar magnitude. These suggest to choose the scaled identity matrix as the target matrix. The estimated covariance matrix is:
 
 ``` r
-EstimatedCovarianceNormal <- shrinkcovmat.equal(normal)
+EstimatedCovarianceNormal <- shrinkcovmat.equal(NormalGroup)
 EstimatedCovarianceNormal
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
@@ -112,10 +112,10 @@ EstimatedCovarianceNormal
 #> [5,] 0.0000 0.0000 0.0000 0.0000 0.0882
 ```
 
-Next, we follow a similar procedure for the tumor group
+We follow a similar procedure for the tumor group:
 
 ``` r
-targetselection(tumor)
+targetselection(TumorGroup)
 #> OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH 
 #> Equal variances   : 0.1956 
 #> Unit variances    : 0.1705 
@@ -126,10 +126,10 @@ targetselection(tumor)
 #> Average : 0.0958
 ```
 
-Again, we should choose the scaled identity matrix as the target matrix since the estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances are of similar magnitude.
+As with the normal group, we conclude that the scaled identity matrix seems to be the best target matrix. The estimated covariance matrix is:
 
 ``` r
-EstimatedCovarianceTumor <- shrinkcovmat.equal(tumor)
+EstimatedCovarianceTumor <- shrinkcovmat.equal(TumorGroup)
 EstimatedCovarianceTumor
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
@@ -155,20 +155,23 @@ EstimatedCovarianceTumor
 How to cite
 -----------
 
-To cite **ShrinkCovMat** in publications, please use the following reference
 
-    Anestis Touloumis (2015). "Nonparametric Stein-type Shrinkage
-    Covariance Matrix Estimators in High-Dimensional Settings."
-    _Computational Statistics & Data Analysis_, *83*, pp. 251-261.
+    To cite the R package 'ShrinkCovMat' in publications, please use:
 
-    @Article{,
-      title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
-      author = {{Anestis Touloumis}},
-      year = {2015},
-      journal = {Computational Statistics & Data Analysis},
-      volume = {83},
-      pages = {251--261},
-    }
+      Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
+      Covariance Matrix Estimators in High-Dimensional Settings,
+      Computational Statistics & Data Analysis 83, 251-261.
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
+        author = {{Anestis Touloumis}},
+        year = {2015},
+        journal = {Computational Statistics & Data Analysis},
+        volume = {83},
+        pages = {251--261},
+      }
 
 References
 ==========

@@ -39,11 +39,11 @@ Anestis Touloumis
 }
 \examples{
 data(colon)
-normal.group <- colon[, 1:40]
-colon.group <- colon[, 41:62]
-Sigmahat.normal <- shrinkcovmat.identity(normal.group)
-Sigmahat.normal
-Sigmahat.colon <- shrinkcovmat.identity(colon.group)
-Sigmahat.colon
+NormalGroup <- colon[, 1:40]
+TumorGroup <- colon[, 41:62]
+Sigmahat.NormalGroup <- shrinkcovmat.identity(NormalGroup)
+Sigmahat.NormalGroup
+Sigmahat.TumorGroup <- shrinkcovmat.identity(TumorGroup)
+Sigmahat.TumorGroup
 }
 

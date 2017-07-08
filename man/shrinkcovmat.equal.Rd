@@ -39,10 +39,10 @@ Anestis Touloumis
 }
 \examples{
 data(colon)
-normal.group <- colon[, 1:40]
-colon.group <- colon[, 41:62]
-Sigmahat.normal <- shrinkcovmat.equal(normal.group)
-Sigmahat.normal
-Sigmahat.colon <- shrinkcovmat.equal(colon.group)
-Sigmahat.colon
+NormalGroup <- colon[, 1:40]
+TumorGroup <- colon[, 41:62]
+Sigmahat.NormalGroup <- shrinkcovmat.equal(NormalGroup)
+Sigmahat.NormalGroup
+Sigmahat.TumorGroup <- shrinkcovmat.equal(TumorGroup)
+Sigmahat.TumorGroup
 }

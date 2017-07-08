@@ -31,11 +31,11 @@ Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance Matrix Estima
 data(colon)
 ## Estimating the covariance matrix for the
 ## normal tissue group.
-normal.group <- colon[, 1:40]
-Sigmahat1 <- shrinkcovmat.equal(normal.group)
+NormalGroup <- colon[, 1:40]
+Sigmahat1 <- shrinkcovmat.equal(NormalGroup)
 Sigmahat1
-Sigmahat2 <- shrinkcovmat.identity(normal.group)
+Sigmahat2 <- shrinkcovmat.identity(NormalGroup)
 Sigmahat2
-Sigmahat3 <- shrinkcovmat.unequal(normal.group)
+Sigmahat3 <- shrinkcovmat.unequal(NormalGroup)
 Sigmahat3
 }
