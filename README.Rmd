@@ -49,7 +49,7 @@ School of Computing, Engineering and Mathematics, University of Brighton.
 
 ## Installation
 
-You can install the release version of the **ShrinkCovMat**:
+You can install the release version of **ShrinkCovMat**:
 
 ```{r eval=FALSE}
 install.packages("ShrinkCovMat")
@@ -62,7 +62,7 @@ The source code for the release version of **ShrinkCovMat** is available on CRAN
 Or you can install the development version of **ShrinkCovMat**:
 
 ```{r eval=FALSE}
-install.packages("devtools") # if you have not installed "devtools" package
+# install.packages("devtools")
 devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 ```
 
@@ -78,7 +78,7 @@ library(ShrinkCovMat)
 
 ## Usage
 
-This package provides nonparametric Stein-type shrinkage estimates of the covariance matrix that are suitable and statistically efficient when the number of variables is larger than the sample size. These estimators are non-singular and well-conditioned regardless of the dimensionality.
+This package provides the nonparametric Stein-type shrinkage estimates of the covariance matrix proposed by @Touloumis2015. These estimates are suitable and statistically efficient regardless of the dimensionality.
 
 Each of the implemented shrinkage covariance matrix estimators is a convex linear combination of the sample covariance matrix and of a target matrix. Three options are considered for the target matrix: 
 
@@ -86,11 +86,9 @@ Each of the implemented shrinkage covariance matrix estimators is a convex linea
 - the scaled identity matrix (`shrinkcovmat.equal`),
 - the diagonal matrix with diagonal elements the corresponding sample variances (`shrinkcovmat.unequal`).
 
-Estimation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015. The utility function 
+Estimation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015.
 
-- `targetselection`
-
-is designed to ease the selection of the target matrix.
+The utility function `targetselection` is designed to ease the selection of the target matrix.
 
 ## Example
 Consider the colon cancer data example analyzed in @Touloumis2015. The data consists of two tissue groups: the normal tissue group and the tumor tissue group.
