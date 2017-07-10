@@ -75,6 +75,6 @@ targetselection <- function(data, centered = FALSE) {
     cat("Unit variances    :", round(lambda2, 4), "\n")
     cat("Unequal variances :", round(lambda3, 4), "\n")
     cat("\nSAMPLE VARIANCES", "\n")
-    cat("Range   :", round(-diff(SigmaSampleVariances), 4), "\n")
+    cat("Range   :", round(abs(diff(range(SigmaSampleVariances))), 4), "\n")
     cat("Average :", round(mean(SigmaSampleVariances), 4), "\n")
 }
