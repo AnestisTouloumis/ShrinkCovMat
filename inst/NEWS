@@ -1,4 +1,8 @@
-Version 1.1.8 [2017-07-10]
+Version 1.2.0 [2017-07-11]
+ * Finalized READme.Rmd.
+ * Released on CRAN.
+ 
+Version 1.1.9 [2017-07-10]
  * Updated READme.Rmd.
 
 Version 1.1.8 [2017-07-08]
@@ -49,3 +53,4 @@ Version 1.0.1 [2014-08-12]
 
 Version 1.0.0 [2014-04-17]
  * The first version of the R package ShrinkCovMat is released on CRAN.
+ 
