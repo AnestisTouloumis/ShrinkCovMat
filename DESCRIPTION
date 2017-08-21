@@ -1,7 +1,9 @@
 Package: ShrinkCovMat
 Type: Package
 Title: Shrinkage Covariance Matrix Estimators
-Version: 1.2.0.9
+Version: 1.2.0.91
+Authors@R: person("Anestis", "Touloumis", role = c("aut", "cre"),
+                     email = "A.Touloumis@brighton.ac.uk")
 Author: Anestis Touloumis
 Maintainer: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
 Description: Provides nonparametric Steinian shrinkage estimators of the covariance matrix that are suitable in high dimensional settings, that is when the number of variables is larger than the sample size.
@@ -11,3 +13,4 @@ LazyLoad: yes
 NeedsCompilation: no
 URL: http://github.com/AnestisTouloumis/ShrinkCovMat
 BugReports: http://github.com/AnestisTouloumis/ShrinkCovMat/issues
+RoxygenNote: 6.0.1

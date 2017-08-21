@@ -1,9 +1,12 @@
+Version 1.2.0.91 [2017-08-21]
+ * Updated documentation using roxygen2.
+
 Version 1.2.0 [2017-07-11]
- * Finalized READme.Rmd.
+ * Finalized README.Rmd.
  * Released on CRAN.
  
 Version 1.1.9 [2017-07-10]
- * Updated READme.Rmd.
+ * Updated README.Rmd.
 
 Version 1.1.8 [2017-07-08]
  * Updated documentation.

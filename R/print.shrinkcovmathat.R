@@ -1,3 +1,4 @@
+#' @export
 print.shrinkcovmathat <- function(x, ...) {
     cat("SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX", "\n")
     cat("\nEstimated Optimal Shrinkage Intensity =", round(x$lambdahat, 

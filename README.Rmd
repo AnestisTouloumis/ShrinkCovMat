@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: rmarkdown::github_document
 references:
 - id: Touloumis2015
   title: Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings
@@ -43,7 +41,7 @@ knitr::opts_chunk$set(
 
 ## Author
 
-Anestis Touloumis: <https://brighton.academia.edu/AnestisTouloumis>
+Anestis Touloumis: <https://sites.google.com/view/atouloumis>
 
 School of Computing, Engineering and Mathematics, University of Brighton.
 

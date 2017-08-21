@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 ====================================================
@@ -9,7 +10,7 @@ ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 Author
 ------
 
-Anestis Touloumis: <https://brighton.academia.edu/AnestisTouloumis>
+Anestis Touloumis: <https://sites.google.com/view/atouloumis>
 
 School of Computing, Engineering and Mathematics, University of Brighton.
 
