@@ -5,7 +5,7 @@ ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-[![CRAN Version](http://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
+[![CRAN Version](https://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
 
 Author
 ------
