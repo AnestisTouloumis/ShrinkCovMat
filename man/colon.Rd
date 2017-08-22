@@ -8,11 +8,8 @@
 columns to 62 tissues. The first 40 columns belong to the normal tissue
 group while the last 22 columns to the tumor colon tissue group.}
 \source{
-\url{http://genomics-pubs.princeton.edu/oncology/affydatahttp://genomics-pubs.princeton.edu/oncology/affydata}
+\href{http://genomics-pubs.princeton.edu/oncology/affydata}{http://genomics-pubs.princeton.edu/oncology/affydata}
 [Last Assessed: 2016-05-21]
-}
-\usage{
-colon
 }
 \description{
 The dataset describes a colon cancer study (\cite{Alon et al., 1999}) in
