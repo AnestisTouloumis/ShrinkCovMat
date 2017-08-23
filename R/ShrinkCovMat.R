@@ -25,22 +25,9 @@
 #' @author Anestis Touloumis
 #' 
 #' Maintainer: Anestis Touloumis <A.Touloumis@@brighton.ac.uk>
-#' @seealso \code{\link{shrinkcovmat.equal}},
-#' \code{\link{shrinkcovmat.unequal}}, \code{\link{shrinkcovmat.identity}} and
-#' \code{\link{targetselection}}.
 #' @references Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @keywords package
-#' @examples
-#' data(colon)
-#' ## Estimating the covariance matrix for the normal tissue group.
-#' NormalGroup <- colon[, 1:40]
-#' Sigmahat1 <- shrinkcovmat.equal(NormalGroup)
-#' Sigmahat1
-#' Sigmahat2 <- shrinkcovmat.identity(NormalGroup)
-#' Sigmahat2
-#' Sigmahat3 <- shrinkcovmat.unequal(NormalGroup)
-#' Sigmahat3
 "_PACKAGE"
 #> [1] "_PACKAGE"

@@ -27,26 +27,18 @@ intensities is discussed in \cite{Touloumis (2015)}. The function
 \code{\link{targetselection}} is designed to ease the selection of the
 target matrix.
 }
-\examples{
-data(colon)
-## Estimating the covariance matrix for the normal tissue group.
-NormalGroup <- colon[, 1:40]
-Sigmahat1 <- shrinkcovmat.equal(NormalGroup)
-Sigmahat1
-Sigmahat2 <- shrinkcovmat.identity(NormalGroup)
-Sigmahat2
-Sigmahat3 <- shrinkcovmat.unequal(NormalGroup)
-Sigmahat3
-}
 \references{
 Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
 Covariance Matrix Estimators in High-Dimensional Settings.
 \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 }
 \seealso{
-\code{\link{shrinkcovmat.equal}},
-\code{\link{shrinkcovmat.unequal}}, \code{\link{shrinkcovmat.identity}} and
-\code{\link{targetselection}}.
+Useful links:
+\itemize{
+  \item \url{http://github.com/AnestisTouloumis/ShrinkCovMat}
+  \item Report bugs at \url{http://github.com/AnestisTouloumis/ShrinkCovMat/issues}
+}
+
 }
 \author{
 Anestis Touloumis
