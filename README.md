@@ -174,4 +174,4 @@ How to cite
 References
 ==========
 
-Touloumis, Anestis. 2015. “Nonparametric Stein-Type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings.” *Computational Statistics & Data Analysis* 83 (March): 251–61. doi:[10.1016/j.csda.2014.10.018](https://doi.org/10.1016/j.csda.2014.10.018).
+Touloumis, Anestis. 2015. “Nonparametric Stein-Type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings.” *Computational Statistics & Data Analysis* 83 (March): 251–61. <https://doi.org/10.1016/j.csda.2014.10.018>.
