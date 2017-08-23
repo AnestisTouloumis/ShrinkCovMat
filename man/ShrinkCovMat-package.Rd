@@ -24,7 +24,7 @@ elements the corresponding sample variances
 determines how much the sample covariance matrix will be shrunk towards the
 selected target matrix. Estimation of the corresponding optimal shrinkage
 intensities is discussed in \cite{Touloumis (2015)}. The function
-(\code{\link{targetselection}}) is designed to ease the selection of the
+\code{\link{targetselection}} is designed to ease the selection of the
 target matrix.
 }
 \examples{
