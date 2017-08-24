@@ -45,28 +45,28 @@ School of Computing, Engineering and Mathematics, University of Brighton.
 
 ## Installation
 
-You can install the release version of **ShrinkCovMat**:
+You can install the release version of `ShrinkCovMatRes`:
 
 ```{r eval=FALSE}
 install.packages("ShrinkCovMat")
 ```
 
-The source code for the release version of **ShrinkCovMat** is available on CRAN at:
+The source code for the release version of `ShrinkCovMatRes` is available on CRAN at:
 
 - https://CRAN.R-project.org/package=ShrinkCovMat
 
-Or you can install the development version of **ShrinkCovMat**:
+Or you can install the development version of `ShrinkCovMatRes`:
 
 ```{r eval=FALSE}
 # install.packages('devtools')
 devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 ```
 
-The source code for the development version of **ShrinkCovMat** is available on github at:
+The source code for the development version of `ShrinkCovMatRes` is available on github at:
 
 - https://github.com/AnestisTouloumis/ShrinkCovMat
 
-To use **ShrinkCovMat**, you should first load the package as follows:
+To use `ShrinkCovMatRes`, you should first load the package as follows:
 
 ```{r}
 library(ShrinkCovMat)
