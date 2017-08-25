@@ -7,13 +7,6 @@ ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
 [![CRAN Version](https://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
 
-Author
-------
-
-Anestis Touloumis: <https://sites.google.com/view/atouloumis>
-
-School of Computing, Engineering and Mathematics, University of Brighton.
-
 Installation
 ------------
 

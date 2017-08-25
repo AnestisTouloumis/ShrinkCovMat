@@ -37,12 +37,6 @@ knitr::opts_chunk$set(
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
 
 
-## Author
-
-Anestis Touloumis: <https://sites.google.com/view/atouloumis>
-
-School of Computing, Engineering and Mathematics, University of Brighton.
-
 ## Installation
 
 You can install the release version of `ShrinkCovMatRes`:
