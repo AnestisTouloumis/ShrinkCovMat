@@ -7,7 +7,7 @@ Authors@R: person("Anestis", "Touloumis", role = c("aut", "cre"),
 Description: Provides nonparametric Steinian shrinkage estimators of the covariance matrix that are suitable in high dimensional settings, that is when the number of variables is larger than the sample size.
 License: GPL-2 | GPL-3
 Depends: R (>= 2.10)
-LazyLoad: true
+LazyData: true
 NeedsCompilation: no
 URL: http://github.com/AnestisTouloumis/ShrinkCovMat
 BugReports: http://github.com/AnestisTouloumis/ShrinkCovMat/issues
