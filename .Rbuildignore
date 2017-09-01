@@ -4,3 +4,4 @@
 ^README\.Rmd$
 ^desktop.ini$
 ^\.travis\.yml$
+^biometrics\.csl$
