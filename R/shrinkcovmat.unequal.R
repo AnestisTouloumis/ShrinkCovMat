@@ -94,7 +94,7 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
     DiagonalSigmaSample <- diag(SigmaSample)
     if (LambdaHat < 1) {
         SigmaHat <- (1 - LambdaHat) * SigmaSample
-        diag(SigmaHat) <- LambdaHat * DiagonalSigmaSample
+        diag(SigmaHat) <- diag(SigmaHat) + LambdaHat * DiagonalSigmaSample
     } else SigmaHat <- diag(LambdaHat * DiagonalSigmaSample, p)
     Target <- diag(DiagonalSigmaSample, p)
     ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, 
