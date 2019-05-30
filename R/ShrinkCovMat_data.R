@@ -23,3 +23,6 @@
 #' data(colon)
 #' summary(colon)
 NULL
+70
+70
+70

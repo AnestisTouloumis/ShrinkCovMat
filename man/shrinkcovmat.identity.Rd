@@ -12,7 +12,7 @@ shrinkcovmat.identity(data, centered = FALSE)
 \item{centered}{a logical indicating if the mean vector is the zero vector.}
 }
 \value{
-Returns an object of the class "shrinkcovmathat" that has
+Returns an object of the class 'shrinkcovmathat' that has
 components: \item{Sigmahat}{The Stein-type shrinkage estimator of the
 covariance matrix.} \item{lambdahat}{The estimated optimal shrinkage
 intensity.} \item{Sigmasample}{The sample covariance matrix.}

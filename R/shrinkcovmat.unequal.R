@@ -12,7 +12,7 @@
 #' @param data a numeric matrix containing the data.
 #' @param centered a logical indicating if the vectors are centered around
 #' their mean vector.
-#' @return Returns an object of the class "shrinkcovmathat" that has
+#' @return Returns an object of the class 'shrinkcovmathat' that has
 #' components: \item{Sigmahat}{The Stein-type shrinkage estimator of the
 #' covariance matrix.} \item{lambdahat}{The estimated optimal shrinkage
 #' intensity.} \item{Sigmasample}{The sample covariance matrix.}
@@ -48,9 +48,9 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
         SigmaSample <- tcrossprod(DataCentered)/(N - 1)
         TraceSigmaHat <- sum(diag(SigmaSample))
         Q <- sum(colSums(DataCentered^2)^2)/(N - 1)
-        TraceSigmaSquaredHat <- (N - 1)/(N * (N - 2) * (N - 3)) * ((N - 
-            1) * (N - 2) * sum(SigmaSample^2) + (TraceSigmaHat)^2 - N * 
-            Q)
+        TraceSigmaSquaredHat <- (N - 1)/(N * (N - 2) * (N - 3)) * 
+            ((N - 1) * (N - 2) * sum(SigmaSample^2) + (TraceSigmaHat)^2 - 
+                N * Q)
         Sum1 <- Sum21 <- Sum22 <- Sum3 <- rep(0, p)
         for (i in 1:(N - 1)) {
             data2 <- matrix(data[, (i + 1):N], p, N - i)
@@ -65,10 +65,9 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
         Term2 <- Term2/N/(N - 1)/(N - 2)
         Term3 <- Term3/N/(N - 1)/(N - 2)/(N - 3)
         TraceDiagonalSigmaSquaredHat <- Term1 - 2 * Term2 + Term3
-        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat - 
-                        2 * TraceDiagonalSigmaSquaredHat)/
-          (N * TraceSigmaSquaredHat + TraceSigmaHat^2 - 
-             (N + 1) * TraceDiagonalSigmaSquaredHat)
+        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat - 2 * 
+            TraceDiagonalSigmaSquaredHat)/(N * TraceSigmaSquaredHat + 
+            TraceSigmaHat^2 - (N + 1) * TraceDiagonalSigmaSquaredHat)
         LambdaHat <- max(0, min(LambdaHat, 1))
     } else {
         if (N < 2) 
@@ -77,28 +76,30 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
         TraceSigmaHat <- sum(diag(SigmaSample))
         TraceSigmaSquaredHat <- TraceDiagonalSigmaSquaredHat <- 0
         for (i in 1:(N - 1)) {
-            TraceSigmaSquaredHat <- sum(crossprod(data[, i], data[, (i + 
-                1):N])^2) + TraceSigmaSquaredHat
-            TraceDiagonalSigmaSquaredHat <- sum((data[, i] * data[, (i + 
-                1):N])^2) + TraceDiagonalSigmaSquaredHat
+            TraceSigmaSquaredHat <- sum(crossprod(data[, i], data[, 
+                (i + 1):N])^2) + TraceSigmaSquaredHat
+            TraceDiagonalSigmaSquaredHat <- sum((data[, i] * data[, 
+                (i + 1):N])^2) + TraceDiagonalSigmaSquaredHat
         }
         TraceSigmaSquaredHat <- 2 * TraceSigmaSquaredHat/N/(N - 1)
-        TraceDiagonalSigmaSquaredHat <- 2 * TraceDiagonalSigmaSquaredHat/
-          (N*(N - 1))
-        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat - 
-                        2 * TraceDiagonalSigmaSquaredHat)/
-          ((N + 1) * TraceSigmaSquaredHat + TraceSigmaHat^2 - 
-             (N + 2) * TraceDiagonalSigmaSquaredHat)
+        TraceDiagonalSigmaSquaredHat <- 2 * TraceDiagonalSigmaSquaredHat/(N * 
+            (N - 1))
+        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat - 2 * 
+            TraceDiagonalSigmaSquaredHat)/((N + 1) * TraceSigmaSquaredHat + 
+            TraceSigmaHat^2 - (N + 2) * TraceDiagonalSigmaSquaredHat)
         LambdaHat <- max(0, min(LambdaHat, 1))
     }
     DiagonalSigmaSample <- diag(SigmaSample)
     if (LambdaHat < 1) {
-        SigmaHat <- (1 - LambdaHat) * SigmaSample
-        diag(SigmaHat) <- diag(SigmaHat) + LambdaHat * DiagonalSigmaSample
+        SigmaHat <- (1 - LambdaHat) * SigmaSample + diag(LambdaHat * 
+            DiagonalSigmaSample, p)
     } else SigmaHat <- diag(LambdaHat * DiagonalSigmaSample, p)
     Target <- diag(DiagonalSigmaSample, p)
-    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, 
-                Sigmasample = SigmaSample, Target = Target, centered = centered)
+    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, Sigmasample = SigmaSample, 
+        Target = Target, centered = centered)
     class(ans) <- "shrinkcovmathat"
     ans
 }
+70
+70
+70

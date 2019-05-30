@@ -11,7 +11,7 @@
 #' 
 #' @param data a numeric matrix containing the data.
 #' @param centered a logical indicating if the mean vector is the zero vector.
-#' @return Returns an object of the class "shrinkcovmathat" that has
+#' @return Returns an object of the class 'shrinkcovmathat' that has
 #' components: \item{Sigmahat}{The Stein-type shrinkage estimator of the
 #' covariance matrix.} \item{lambdahat}{The estimated optimal shrinkage
 #' intensity.} \item{Sigmasample}{The sample covariance matrix.}
@@ -48,11 +48,11 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
         TraceSigmaHat <- sum(diag(SigmaSample))
         NuHat <- TraceSigmaHat/p
         Q <- sum(colSums(DataCentered^2)^2)/(N - 1)
-        TraceSigmaSquaredHat <- (N - 1)/(N * (N - 2) * (N - 3)) * ((N - 
-            1) * (N - 2) * sum(SigmaSample^2) + (TraceSigmaHat)^2 - N * 
-            Q)
-        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/
-          (N * TraceSigmaSquaredHat + (p - N + 1)/p * TraceSigmaHat^2)
+        TraceSigmaSquaredHat <- (N - 1)/(N * (N - 2) * (N - 3)) * 
+            ((N - 1) * (N - 2) * sum(SigmaSample^2) + (TraceSigmaHat)^2 - 
+                N * Q)
+        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 
+            TraceSigmaSquaredHat + (p - N + 1)/p * TraceSigmaHat^2)
         LambdaHat <- min(LambdaHat, 1)
     } else {
         if (N < 2) 
@@ -64,17 +64,20 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
         for (i in 1:(N - 1)) TraceSigmaSquaredHat <- sum(crossprod(data[, 
             i], data[, (i + 1):N])^2) + TraceSigmaSquaredHat
         TraceSigmaSquaredHat <- 2 * TraceSigmaSquaredHat/N/(N - 1)
-        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/((N + 1) * 
-            TraceSigmaSquaredHat + (p - N)/p * TraceSigmaHat^2)
+        LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/((N + 
+            1) * TraceSigmaSquaredHat + (p - N)/p * TraceSigmaHat^2)
         LambdaHat <- min(LambdaHat, 1)
     }
     if (LambdaHat < 1) {
-        SigmaHat <- (1 - LambdaHat) * SigmaSample
-        diag(SigmaHat) <- NuHat * LambdaHat + diag(SigmaHat)
+        SigmaHat <- (1 - LambdaHat) * SigmaSample + diag(NuHat * 
+            LambdaHat, p)
     } else SigmaHat <- diag(LambdaHat * NuHat, p)
     Target <- diag(NuHat, p)
-    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, 
-                Sigmasample = SigmaSample, Target = Target, centered = centered)
+    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, Sigmasample = SigmaSample, 
+        Target = Target, centered = centered)
     class(ans) <- "shrinkcovmathat"
     ans
 }
+70
+70
+70

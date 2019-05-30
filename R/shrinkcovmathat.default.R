@@ -8,3 +8,6 @@ shrinkcovmathat.default <- function(x, ...) {
     class(object) <- "shrinkcovmathat"
     object
 }
+70
+70
+70

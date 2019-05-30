@@ -30,4 +30,7 @@
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @keywords package
 "_PACKAGE"
-#> [1] "_PACKAGE"
+# > [1] '_PACKAGE'
+70
+70
+70
