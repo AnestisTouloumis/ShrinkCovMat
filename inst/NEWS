@@ -1,3 +1,6 @@
+Version 1.2.3 [2019-05-30]
+ * Added code coverage.
+ 
 Version 1.2.2 [2019-05-29]
  * Fixed a bug thanks to Øyvind Bleka. 
  * Introduced unit testing.
