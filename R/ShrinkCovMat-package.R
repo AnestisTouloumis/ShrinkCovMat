@@ -31,6 +31,3 @@
 #' @keywords package
 "_PACKAGE"
 # > [1] '_PACKAGE'
-70
-70
-70

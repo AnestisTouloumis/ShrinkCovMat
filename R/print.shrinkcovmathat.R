@@ -10,6 +10,3 @@ print.shrinkcovmathat <- function(x, ...) {
     print(round(x$Target[1:min(5, nrow(x$Target)), 1:min(5, nrow(x$Target))], 
         4))
 }
-70
-70
-70

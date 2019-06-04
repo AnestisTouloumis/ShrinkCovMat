@@ -17,3 +17,5 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),
     covr
+Imports: Rcpp (>= 1.0.1)
+LinkingTo: Rcpp, RcppArmadillo

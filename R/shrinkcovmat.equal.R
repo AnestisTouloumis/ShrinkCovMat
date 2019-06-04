@@ -43,14 +43,11 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
     if (!centered) {
         if (N < 4) 
             stop("The number of columns should be greater than 3")
-        DataCentered <- data - rowMeans(data)
-        SigmaSample <- tcrossprod(DataCentered)/(N - 1)
-        TraceSigmaHat <- sum(diag(SigmaSample))
+        SigmaSample <- cov(t(data))
+        lambda_stats <- optimal_intensities_uncentered(data, SigmaSample)
+        TraceSigmaHat <- lambda_stats[1]
         NuHat <- TraceSigmaHat/p
-        Q <- sum(colSums(DataCentered^2)^2)/(N - 1)
-        TraceSigmaSquaredHat <- (N - 1)/(N * (N - 2) * (N - 3)) * 
-            ((N - 1) * (N - 2) * sum(SigmaSample^2) + (TraceSigmaHat)^2 - 
-                N * Q)
+        TraceSigmaSquaredHat <- lambda_stats[2]
         LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 
             TraceSigmaSquaredHat + (p - N + 1)/p * TraceSigmaHat^2)
         LambdaHat <- min(LambdaHat, 1)
@@ -58,12 +55,10 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
         if (N < 2) 
             stop("The number of columns should be greater than 1")
         SigmaSample <- tcrossprod(data)/N
-        TraceSigmaHat <- sum(diag(SigmaSample))
+        lambda_stats <- optimal_intensities_centered(data)
+        TraceSigmaHat <- lambda_stats[1]
         NuHat <- TraceSigmaHat/p
-        TraceSigmaSquaredHat <- 0
-        for (i in 1:(N - 1)) TraceSigmaSquaredHat <- sum(crossprod(data[, 
-            i], data[, (i + 1):N])^2) + TraceSigmaSquaredHat
-        TraceSigmaSquaredHat <- 2 * TraceSigmaSquaredHat/N/(N - 1)
+        TraceSigmaSquaredHat <- lambda_stats[2]
         LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/((N + 
             1) * TraceSigmaSquaredHat + (p - N)/p * TraceSigmaHat^2)
         LambdaHat <- min(LambdaHat, 1)
@@ -78,6 +73,4 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
     class(ans) <- "shrinkcovmathat"
     ans
 }
-70
-70
-70
+

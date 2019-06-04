@@ -2,4 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-.desktop.ini
+src/*.o
+src/*.so
+src/*.dll
