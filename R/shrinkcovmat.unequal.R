@@ -45,7 +45,8 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
         if (N < 4) 
             stop("the number of columns should be greater than 3")
         SigmaSample <- cov(t(data))
-        lambda_stats <- optimal_intensities_uncentered(data, SigmaSample)
+        DiagonalSigmaSample <- apply(data, 1, var)
+        lambda_stats <- trace_stats_uncentered(data, SigmaSample)
         TraceSigmaHat <-lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         TraceDiagonalSigmaSquaredHat <- lambda_stats[3]
@@ -57,7 +58,8 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
         if (N < 2) 
             stop("the number of columns should be greater than 1")
         SigmaSample <- tcrossprod(data)/N
-        lambda_stats <- optimal_intensities_centered(data)
+        DiagonalSigmaSample <- apply(data, 1, function(x) mean(x^2))
+        lambda_stats <- trace_stats_centered(data)
         TraceSigmaHat <-lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         TraceDiagonalSigmaSquaredHat <- lambda_stats[3]
@@ -66,7 +68,6 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
             TraceSigmaHat^2 - (N + 2) * TraceDiagonalSigmaSquaredHat)
         LambdaHat <- max(0, min(LambdaHat, 1))
     }
-    DiagonalSigmaSample <- diag(SigmaSample)
     if (LambdaHat < 1) {
         SigmaHat <- (1 - LambdaHat) * SigmaSample + diag(LambdaHat * 
             DiagonalSigmaSample, p)

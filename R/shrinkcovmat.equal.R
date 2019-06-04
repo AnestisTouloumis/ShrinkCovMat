@@ -1,5 +1,4 @@
-#' Shrinking the Sample Covariance Matrix Towards a Diagonal Matrix with Equal
-#' Diagonal Elements
+#' Shrinking the Sample Covariance Matrix Towards a Sphericity Matrix
 #' 
 #' Provides a nonparametric Stein-type shrinkage estimator of the covariance
 #' matrix that is a linear combination of the sample covariance matrix and of a
@@ -44,7 +43,7 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
         if (N < 4) 
             stop("The number of columns should be greater than 3")
         SigmaSample <- cov(t(data))
-        lambda_stats <- optimal_intensities_uncentered(data, SigmaSample)
+        lambda_stats <- trace_stats_uncentered(data, SigmaSample)
         TraceSigmaHat <- lambda_stats[1]
         NuHat <- TraceSigmaHat/p
         TraceSigmaSquaredHat <- lambda_stats[2]
@@ -55,7 +54,7 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
         if (N < 2) 
             stop("The number of columns should be greater than 1")
         SigmaSample <- tcrossprod(data)/N
-        lambda_stats <- optimal_intensities_centered(data)
+        lambda_stats <- trace_stats_centered(data)
         TraceSigmaHat <- lambda_stats[1]
         NuHat <- TraceSigmaHat/p
         TraceSigmaSquaredHat <- lambda_stats[2]

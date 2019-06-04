@@ -28,6 +28,9 @@
 #' @references Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
+#' @useDynLib ShrinkCovMat, .registration = TRUE  
+#' @import Rcpp
+#' @importFrom stats cov var
 #' @keywords package
 "_PACKAGE"
 # > [1] '_PACKAGE'

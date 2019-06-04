@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 centerdata <- function(X) {
-    .Call('_ShrinkCovMat_centerdata', PACKAGE = 'ShrinkCovMat', X)
+    .Call(`_ShrinkCovMat_centerdata`, X)
 }
 
-optimal_intensities_uncentered <- function(X, S_matrix) {
-    .Call('_ShrinkCovMat_optimal_intensities_uncentered', PACKAGE = 'ShrinkCovMat', X, S_matrix)
+trace_stats_uncentered <- function(X, S_matrix) {
+    .Call(`_ShrinkCovMat_trace_stats_uncentered`, X, S_matrix)
 }
 
-optimal_intensities_centered <- function(X) {
-    .Call('_ShrinkCovMat_optimal_intensities_centered', PACKAGE = 'ShrinkCovMat', X)
+trace_stats_centered <- function(X) {
+    .Call(`_ShrinkCovMat_trace_stats_centered`, X)
 }
 

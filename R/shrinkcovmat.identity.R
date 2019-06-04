@@ -42,7 +42,7 @@ shrinkcovmat.identity <- function(data, centered = FALSE) {
         if (N < 4) 
             stop("The number of columns should be greater than 3")
         SigmaSample <- cov(t(data))
-        lambda_stats <- optimal_intensities_uncentered(data, SigmaSample)
+        lambda_stats <- trace_stats_uncentered(data, SigmaSample)
         TraceSigmaHat <- lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 
@@ -53,7 +53,7 @@ shrinkcovmat.identity <- function(data, centered = FALSE) {
         if (N < 2) 
             stop("The number of columns should be greater than 1")
         SigmaSample <- tcrossprod(data)/N
-        lambda_stats <- optimal_intensities_centered(data)
+        lambda_stats <- trace_stats_centered(data)
         TraceSigmaHat <- lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/((N + 

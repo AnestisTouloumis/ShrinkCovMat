@@ -17,34 +17,34 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// optimal_intensities_uncentered
-arma::vec optimal_intensities_uncentered(arma::mat X, arma::mat S_matrix);
-RcppExport SEXP _ShrinkCovMat_optimal_intensities_uncentered(SEXP XSEXP, SEXP S_matrixSEXP) {
+// trace_stats_uncentered
+arma::vec trace_stats_uncentered(arma::mat X, arma::mat S_matrix);
+RcppExport SEXP _ShrinkCovMat_trace_stats_uncentered(SEXP XSEXP, SEXP S_matrixSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type S_matrix(S_matrixSEXP);
-    rcpp_result_gen = Rcpp::wrap(optimal_intensities_uncentered(X, S_matrix));
+    rcpp_result_gen = Rcpp::wrap(trace_stats_uncentered(X, S_matrix));
     return rcpp_result_gen;
 END_RCPP
 }
-// optimal_intensities_centered
-arma::vec optimal_intensities_centered(arma::mat X);
-RcppExport SEXP _ShrinkCovMat_optimal_intensities_centered(SEXP XSEXP) {
+// trace_stats_centered
+arma::vec trace_stats_centered(arma::mat X);
+RcppExport SEXP _ShrinkCovMat_trace_stats_centered(SEXP XSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(optimal_intensities_centered(X));
+    rcpp_result_gen = Rcpp::wrap(trace_stats_centered(X));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_ShrinkCovMat_centerdata", (DL_FUNC) &_ShrinkCovMat_centerdata, 1},
-    {"_ShrinkCovMat_optimal_intensities_uncentered", (DL_FUNC) &_ShrinkCovMat_optimal_intensities_uncentered, 2},
-    {"_ShrinkCovMat_optimal_intensities_centered", (DL_FUNC) &_ShrinkCovMat_optimal_intensities_centered, 1},
+    {"_ShrinkCovMat_trace_stats_uncentered", (DL_FUNC) &_ShrinkCovMat_trace_stats_uncentered, 2},
+    {"_ShrinkCovMat_trace_stats_centered", (DL_FUNC) &_ShrinkCovMat_trace_stats_centered, 1},
     {NULL, NULL, 0}
 };
 

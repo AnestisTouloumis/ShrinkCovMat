@@ -2,8 +2,7 @@
 % Please edit documentation in R/shrinkcovmat.equal.R
 \name{shrinkcovmat.equal}
 \alias{shrinkcovmat.equal}
-\title{Shrinking the Sample Covariance Matrix Towards a Diagonal Matrix with Equal
-Diagonal Elements}
+\title{Shrinking the Sample Covariance Matrix Towards a Sphericity Matrix}
 \usage{
 shrinkcovmat.equal(data, centered = FALSE)
 }

@@ -17,7 +17,7 @@ arma::mat centerdata(arma::mat X) {
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
-arma::vec optimal_intensities_uncentered(arma::mat X, arma::mat S_matrix) {
+arma::vec trace_stats_uncentered(arma::mat X, arma::mat S_matrix) {
   int p = X.n_rows;
   int N = X.n_cols;
   double T_1N = trace(S_matrix);
@@ -68,7 +68,7 @@ arma::vec optimal_intensities_uncentered(arma::mat X, arma::mat S_matrix) {
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
-arma::vec optimal_intensities_centered(arma::mat X) {
+arma::vec trace_stats_centered(arma::mat X) {
   int p = X.n_rows;
   int N = X.n_cols;
   arma::mat X_i = arma::zeros(p, 1);
