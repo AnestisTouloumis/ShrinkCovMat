@@ -42,7 +42,7 @@ shrinkcovmat.identity <- function(data, centered = FALSE) {
         if (N < 4) 
             stop("The number of columns should be greater than 3")
         SigmaSample <- cov(t(data))
-        lambda_stats <- trace_stats_uncentered(data, SigmaSample)
+        lambda_stats <- trace_stats_uncentered(data)
         TraceSigmaHat <- lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         LambdaHat <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 
@@ -66,9 +66,8 @@ shrinkcovmat.identity <- function(data, centered = FALSE) {
             p)
     } else SigmaHat <- diag(LambdaHat, p)
     Target <- diag(p)
-    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, Sigmasample = SigmaSample, 
-        Target = Target, centered = centered)
+    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, 
+                Sigmasample = SigmaSample, Target = Target, centered = centered)
     class(ans) <- "shrinkcovmathat"
     ans
 }
-

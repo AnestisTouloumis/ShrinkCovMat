@@ -5,8 +5,8 @@ centerdata <- function(X) {
     .Call(`_ShrinkCovMat_centerdata`, X)
 }
 
-trace_stats_uncentered <- function(X, S_matrix) {
-    .Call(`_ShrinkCovMat_trace_stats_uncentered`, X, S_matrix)
+trace_stats_uncentered <- function(X) {
+    .Call(`_ShrinkCovMat_trace_stats_uncentered`, X)
 }
 
 trace_stats_centered <- function(X) {

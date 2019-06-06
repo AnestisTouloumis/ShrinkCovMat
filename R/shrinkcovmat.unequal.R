@@ -46,7 +46,7 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
             stop("the number of columns should be greater than 3")
         SigmaSample <- cov(t(data))
         DiagonalSigmaSample <- apply(data, 1, var)
-        lambda_stats <- trace_stats_uncentered(data, SigmaSample)
+        lambda_stats <- trace_stats_uncentered(data)
         TraceSigmaHat <-lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         TraceDiagonalSigmaSquaredHat <- lambda_stats[3]
@@ -73,9 +73,8 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
             DiagonalSigmaSample, p)
     } else SigmaHat <- diag(LambdaHat * DiagonalSigmaSample, p)
     Target <- diag(DiagonalSigmaSample, p)
-    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, Sigmasample = SigmaSample, 
-        Target = Target, centered = centered)
+    ans <- list(Sigmahat = SigmaHat, lambdahat = LambdaHat, 
+                Sigmasample = SigmaSample, Target = Target, centered = centered)
     class(ans) <- "shrinkcovmathat"
     ans
 }
-

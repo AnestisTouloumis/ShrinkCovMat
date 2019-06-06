@@ -39,9 +39,8 @@ targetselection <- function(data, centered = FALSE) {
     if (!centered) {
         if (N < 4) 
             stop("The number of columns should be greater than 3")
-        SigmaSample <- cov(t(data))
         SigmaSampleVariances <- apply(data, 1, var)
-        lambda_stats <- trace_stats_uncentered(data, SigmaSample)
+        lambda_stats <- trace_stats_uncentered(data)
         TraceSigmaHat <- lambda_stats[1]
         TraceSigmaSquaredHat <- lambda_stats[2]
         lambda1 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 

@@ -10,8 +10,10 @@ test_that("uncentered data", {
   Y1N <- sum(diag(SampleCov))
   DataCentered <- datamat - rowMeans(datamat)
   Q <- sum(colSums(DataCentered^2)^2)/(N - 1)
-  Y2N <- (N - 1)/(N * (N - 2) * (N - 3)) * ((N - 1) * (N - 2) * sum(SampleCov^2) + (Y1N)^2 - N * Q)
-  lambdahat <-  (Y1N^2 + Y2N)/ (N * Y2N + Y1N^2 - 2 * Y1N * (N - 1) + p * (N - 1))
+  Y2N <- (N - 1)/(N * (N - 2) * (N - 3)) * 
+    ((N - 1) * (N - 2) * sum(SampleCov^2) + (Y1N)^2 - N * Q)
+  lambdahat <-  (Y1N^2 + Y2N)/ 
+    (N * Y2N + Y1N^2 - 2 * Y1N * (N - 1) + p * (N - 1))
   lambdahat <- max(0, min(lambdahat, 1))
   Target <- diag(p)
   x <- shrinkcovmat.identity(datamat)

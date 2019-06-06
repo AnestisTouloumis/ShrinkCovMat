@@ -13,7 +13,8 @@ test_that("uncentered data", {
   Y1N <- sum(SigmaSampleVariances)
   DataCentered <- datamat - rowMeans(datamat)
   Q <- sum(colSums(DataCentered^2)^2)/(N - 1)
-  Y2N <- (N - 1)/(N * (N - 2) * (N - 3)) * ((N - 1) * (N - 2) * sum(SampleCov^2) + (Y1N)^2 - N * Q)
+  Y2N <- (N - 1)/(N * (N - 2) * (N - 3)) * 
+    ((N - 1) * (N - 2) * sum(SampleCov^2) + (Y1N)^2 - N * Q)
   Sum1 <- Sum21 <- Sum22 <- Sum3 <- rep(0, p)
   for (i in 1:(N - 1)) {
     data2 <- matrix(datamat[, (i + 1):N], p, N - i)
