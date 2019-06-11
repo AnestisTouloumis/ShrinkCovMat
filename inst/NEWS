@@ -1,4 +1,7 @@
-Version 1.2.5 [2019-06-06]
+Version 1.2.6 [2019-06-11]
+ * Minor changes in the code.
+ 
+ersion 1.2.5 [2019-06-06]
  * Removing code dependencies with sample covariance matrix.
  
 Version 1.2.4 [2019-06-04]

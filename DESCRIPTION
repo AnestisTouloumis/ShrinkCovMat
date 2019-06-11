@@ -1,7 +1,7 @@
 Package: ShrinkCovMat
 Type: Package
 Title: Shrinkage Covariance Matrix Estimators
-Version: 1.2.5
+Version: 1.2.6
 Authors@R: person("Anestis", "Touloumis", role = c("aut", "cre"),
                       email = "A.Touloumis@brighton.ac.uk",
                       comment = c(ORCHID = "0000-0002-5965-1639"))
@@ -18,4 +18,6 @@ Suggests:
     testthat (>= 2.1.0),
     covr
 Imports: Rcpp (>= 1.0.1)
-LinkingTo: Rcpp, RcppArmadillo
+LinkingTo: 
+    Rcpp, 
+    RcppArmadillo
