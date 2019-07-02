@@ -1,4 +1,5 @@
 Version 1.2.7 [2019-07-02]
+ * Added lint unit-testing.
  * Moving to snake_case_style.
 
 Version 1.2.6 [2019-06-11]
