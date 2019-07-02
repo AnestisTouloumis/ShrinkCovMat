@@ -13,9 +13,9 @@ shrinkcovmat.equal(data, centered = FALSE)
 }
 \value{
 Returns an object of the class 'shrinkcovmathat' that has
-components: \item{Sigmahat}{The Stein-type shrinkage estimator of the
+components: \item{SigmaHat}{The Stein-type shrinkage estimator of the
 covariance matrix.} \item{lambdahat}{The estimated optimal shrinkage
-intensity.} \item{Sigmasample}{The sample covariance matrix.}
+intensity.} \item{sigmasample}{The sample covariance matrix.}
 \item{Target}{The target covariance matrix.} \item{centered}{If the data are
 centered around their mean vector.}
 }

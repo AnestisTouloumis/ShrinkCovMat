@@ -1,4 +1,4 @@
-library(testthat)
-library(ShrinkCovMat)
+library("testthat")
+library("ShrinkCovMat")
 
 test_check("ShrinkCovMat")

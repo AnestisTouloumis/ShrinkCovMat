@@ -1,3 +1,6 @@
+Version 1.2.7 [2019-07-02]
+ * Moving to snake_case_style.
+
 Version 1.2.6 [2019-06-11]
  * Minor changes in the code.
  

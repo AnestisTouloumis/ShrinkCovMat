@@ -32,56 +32,58 @@
 #' ## target matrix for the colon group
 #' @export
 targetselection <- function(data, centered = FALSE) {
-    if (!is.matrix(data)) 
+    if (!is.matrix(data))
         data <- as.matrix(data)
     p <- nrow(data)
-    N <- ncol(data)
+    N <- ncol(data) # nolintr
     if (!centered) {
-        if (N < 4) 
+        if (N < 4)
             stop("The number of columns should be greater than 3")
-        SigmaSampleVariances <- apply(data, 1, var)
-        lambda_stats <- trace_stats_uncentered(data)
-        TraceSigmaHat <- lambda_stats[1]
-        TraceSigmaSquaredHat <- lambda_stats[2]
-        lambda1 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 
-            TraceSigmaSquaredHat + (p - N + 1)/p * TraceSigmaHat^2)
+        sigma_sample_variances <- apply(data, 1, var)
+        lambda_stats <- trace_stats_uncentered(data) # nolintr
+        trace_sigma_hat <- lambda_stats[1]
+        trace_sigma_squared_hat <- lambda_stats[2]
+        lambda1 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
+            (N * trace_sigma_squared_hat +
+                 (p - N + 1) / p * trace_sigma_hat ^ 2)
         lambda1 <- min(lambda1, 1)
-        lambda2 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/(N * 
-            TraceSigmaSquaredHat + TraceSigmaHat^2 - 2 * TraceSigmaHat * 
-            (N - 1) + p * (N - 1))
+        lambda2 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
+            (N * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+                 2 * trace_sigma_hat * (N - 1) + p * (N - 1))
         lambda2 <- max(0, min(lambda2, 1))
-        TraceDiagonalSigmaSquaredHat <- lambda_stats[3]
-        lambda3 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat - 2 * 
-            TraceDiagonalSigmaSquaredHat)/(N * TraceSigmaSquaredHat + 
-            TraceSigmaHat^2 - (N + 1) * TraceDiagonalSigmaSquaredHat)
+        trace_diagonal_sigma_squared <- lambda_stats[3]
+        lambda3 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
+                        2 * trace_diagonal_sigma_squared) /
+            (N * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+                 (N + 1) * trace_diagonal_sigma_squared)
         lambda3 <- max(0, min(lambda3, 1))
     } else {
-        if (N < 2) 
+        if (N < 2)
             stop("The number of columns should be greater than 1")
-        SigmaSampleVariances <- apply(data, 1, var)
-        lambda_stats <- trace_stats_uncentered(data)
-        TraceSigmaHat <- lambda_stats[1]
-        TraceSigmaSquaredHat <- lambda_stats[2]
-        TraceDiagonalSigmaSquaredHat <- lambda_stats[3]
-        lambda1 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/((N + 
-            1) * TraceSigmaSquaredHat + (p - N)/p * TraceSigmaHat^2)
+        sigma_sample_variances <- apply(data, 1, var)
+        lambda_stats <- trace_stats_uncentered(data) # nolintr
+        trace_sigma_hat <- lambda_stats[1]
+        trace_sigma_squared_hat <- lambda_stats[2]
+        trace_diagonal_sigma_squared <- lambda_stats[3]
+        lambda1 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
+            ( (N + 1) * trace_sigma_squared_hat +
+                  (p - N) / p * trace_sigma_hat ^ 2)
         lambda1 <- min(lambda1, 1)
-        lambda2 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat)/((N + 
-            1) * TraceSigmaSquaredHat + TraceSigmaHat^2 - 2 * TraceSigmaHat * 
-            N + p * N)
+        lambda2 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
+            ( (N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+                  2 * trace_sigma_hat * N + p * N)
         lambda2 <- max(0, min(lambda2, 1))
-        lambda3 <- (TraceSigmaHat^2 + TraceSigmaSquaredHat - 2 * 
-            TraceDiagonalSigmaSquaredHat)/((N + 1) * TraceSigmaSquaredHat + 
-            TraceSigmaHat^2 - (N + 2) * TraceDiagonalSigmaSquaredHat)
+        lambda3 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
+                        2 * trace_diagonal_sigma_squared) /
+            ( (N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+                  (N + 2) * trace_diagonal_sigma_squared)
         lambda3 <- max(0, min(lambda3, 1))
     }
-    cat("OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH", 
-        "\n")
+    cat("OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH", "\n")
     cat("Equal variances   :", round(lambda1, 4), "\n")
     cat("Unit variances    :", round(lambda2, 4), "\n")
     cat("Unequal variances :", round(lambda3, 4), "\n")
     cat("\nSAMPLE VARIANCES", "\n")
-    cat("Range   :", round(abs(diff(range(SigmaSampleVariances))), 
-        4), "\n")
-    cat("Average :", round(mean(SigmaSampleVariances), 4), "\n")
+    cat("Range   :", round(abs(diff(range(sigma_sample_variances))), 4), "\n")
+    cat("Average :", round(mean(sigma_sample_variances), 4), "\n")
 }
