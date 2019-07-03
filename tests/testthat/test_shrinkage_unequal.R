@@ -53,7 +53,7 @@ test_that("centered data", {
   }
   Y2N <- 2 * Y2N / N / (N - 1)
   Y3N <- 2 * Y3N / N / (N - 1)
-  lambdahat <- (Y1N ^ 2 + Y2N -  2 * (1 - 1 / (N + 1)) * Y3N) /
+  lambdahat <- (Y1N ^ 2 + Y2N - 2 * (1 - 1 / (N + 1)) * Y3N) /
     ( (N + 1) * Y2N + Y1N ^ 2 - (N + 2 - 2 / (N + 1)) * Y3N)
   lambdahat <- max(0, min(lambdahat, 1))
   y <- shrinkcovmat.unequal(datamat, centered = TRUE)

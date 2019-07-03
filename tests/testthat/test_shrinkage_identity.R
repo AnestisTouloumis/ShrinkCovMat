@@ -12,7 +12,7 @@ test_that("uncentered data", {
   Q <- sum(colSums(data_centered ^ 2) ^ 2) / (N - 1)
   Y2N <- (N - 1) / (N * (N - 2) * (N - 3)) *
     ( (N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
-  lambda_hat <-  (Y1N ^ 2 + Y2N) /
+  lambda_hat <- (Y1N ^ 2 + Y2N) /
     (N * Y2N + Y1N ^ 2 - 2 * Y1N * (N - 1) + p * (N - 1))
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(p)

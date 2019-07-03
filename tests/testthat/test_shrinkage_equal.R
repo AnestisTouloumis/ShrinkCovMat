@@ -12,7 +12,7 @@ test_that("uncentered data", {
   Q <- sum(colSums(data_centered ^ 2) ^ 2) / (N - 1)
   Y2N <- (N - 1) / (N * (N - 2) * (N - 3)) *
     ( (N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
-  lambdahat <-  (Y1N ^ 2 + Y2N) / (N * Y2N + (p - N + 1) / p * Y1N ^ 2)
+  lambdahat <- (Y1N ^ 2 + Y2N) / (N * Y2N + (p - N + 1) / p * Y1N ^ 2)
   lambdahat <- max(0, min(lambdahat, 1))
   target <- diag(mean(diag(sample_cov)), p)
   x <- shrinkcovmat.equal(datamat)

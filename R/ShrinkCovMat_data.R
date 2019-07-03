@@ -1,5 +1,5 @@
 #' Colon Cancer Dataset
-#' 
+#'
 #' The dataset describes a colon cancer study (\cite{Alon et al., 1999}) in
 #' which gene expression levels were measured on 40 normal tissues and on 22
 #' tumor colon tissues. Note that a logarithmic (base 10) transformation has
