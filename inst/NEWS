@@ -1,6 +1,11 @@
+Version 1.2.8 [2019-07-02]
+ * Removed lintr dependency.
+ * Updated .travis.yml.
+ 
 Version 1.2.7 [2019-07-02]
  * Added lint unit-testing.
  * Moving to snake_case_style.
+ * Added lintr dependency.
 
 Version 1.2.6 [2019-06-11]
  * Minor changes in the code.
