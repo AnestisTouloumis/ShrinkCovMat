@@ -60,7 +60,7 @@ shrinkcovmat.equal <- function(data, centered = FALSE) {
     nu_hat <- trace_sigma_hat / p
     trace_sigma_squared_hat <- lambda_stats[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ( (N + 1) * trace_sigma_squared_hat + (p - N) /
+      ((N + 1) * trace_sigma_squared_hat + (p - N) /
         p * trace_sigma_hat ^ 2)
     lambda_hat <- min(lambda_hat, 1)
   }

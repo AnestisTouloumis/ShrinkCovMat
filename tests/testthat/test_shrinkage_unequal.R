@@ -14,7 +14,7 @@ test_that("uncentered data", {
   data_centered <- datamat - rowMeans(datamat)
   Q <- sum(colSums(data_centered ^ 2) ^ 2) / (N - 1)
   Y2N <- (N - 1) / (N * (N - 2) * (N - 3)) *
-    ( (N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
+    ((N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
   Sum1 <- Sum21 <- Sum22 <- Sum3 <- rep(0, p)
   for (i in 1:(N - 1)) {
     data2 <- matrix(datamat[, (i + 1):N], p, N - i)
@@ -49,12 +49,12 @@ test_that("centered data", {
   Y2N <- Y3N <- 0
   for (i in 1:(N - 1)) {
     Y2N <- sum(crossprod(datamat[, i], datamat[, (i + 1):N]) ^ 2) + Y2N
-    Y3N <- sum( (datamat[, i] * datamat[, (i + 1):N]) ^ 2) + Y3N
+    Y3N <- sum((datamat[, i] * datamat[, (i + 1):N]) ^ 2) + Y3N
   }
   Y2N <- 2 * Y2N / N / (N - 1)
   Y3N <- 2 * Y3N / N / (N - 1)
   lambdahat <- (Y1N ^ 2 + Y2N - 2 * (1 - 1 / (N + 1)) * Y3N) /
-    ( (N + 1) * Y2N + Y1N ^ 2 - (N + 2 - 2 / (N + 1)) * Y3N)
+    ((N + 1) * Y2N + Y1N ^ 2 - (N + 2 - 2 / (N + 1)) * Y3N)
   lambdahat <- max(0, min(lambdahat, 1))
   y <- shrinkcovmat.unequal(datamat, centered = TRUE)
   target <- diag(sigma_sample_variances, p)

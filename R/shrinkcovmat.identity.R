@@ -61,7 +61,7 @@ shrinkcovmat.identity <- function(data, centered = FALSE) {
     trace_sigma_hat <- lambda_stats[1]
     trace_sigma_squared_hat <- lambda_stats[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ( (N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+      ((N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         2 * trace_sigma_hat * N + p * N)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }

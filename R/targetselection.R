@@ -21,15 +21,15 @@
 #' data(colon)
 #' NormalGroup <- colon[, 1:40]
 #' targetselection(NormalGroup)
-#' ## Similar intensities, the range of the sample variances is small and the average
-#' ## is not close to one. The scaled identity matrix seems to be the most suitable
-#' ## target matrix for the normal group
+#' ## Similar intensities, the range of the sample variances is small and the
+#' ## average is not close to one. The scaled identity matrix seems to be the
+#' ## most suitable target matrix for the normal group.
 #'
 #' TumorGroup <- colon[, 41:62]
 #' targetselection(TumorGroup)
-#' ## Similar intensities, the range of the sample variances is small and the average
-#' ## is not close to one. The scaled identity matrix seems to be the most suitable
-#' ## target matrix for the colon group
+#' ## Similar intensities, the range of the sample variances is small and the
+#' ## average is not close to one. The scaled identity matrix seems to be the
+#' most suitable target matrix for the colon group.
 #' @export
 targetselection <- function(data, centered = FALSE) {
   if (!is.matrix(data)) {
@@ -69,16 +69,16 @@ targetselection <- function(data, centered = FALSE) {
     trace_sigma_squared_hat <- lambda_stats[2]
     trace_diagonal_sigma_squared <- lambda_stats[3]
     lambda1 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ( (N + 1) * trace_sigma_squared_hat +
+      ((N + 1) * trace_sigma_squared_hat +
         (p - N) / p * trace_sigma_hat ^ 2)
     lambda1 <- min(lambda1, 1)
     lambda2 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ( (N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+      ((N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         2 * trace_sigma_hat * N + p * N)
     lambda2 <- max(0, min(lambda2, 1))
     lambda3 <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
       2 * trace_diagonal_sigma_squared) /
-      ( (N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+      ((N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         (N + 2) * trace_diagonal_sigma_squared)
     lambda3 <- max(0, min(lambda3, 1))
   }

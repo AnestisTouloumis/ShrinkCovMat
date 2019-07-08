@@ -11,7 +11,7 @@ test_that("uncentered data", {
   data_centered <- datamat - rowMeans(datamat)
   Q <- sum(colSums(data_centered ^ 2) ^ 2) / (N - 1)
   Y2N <- (N - 1) / (N * (N - 2) * (N - 3)) *
-    ( (N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
+    ((N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
   lambda_hat <- (Y1N ^ 2 + Y2N) /
     (N * Y2N + Y1N ^ 2 - 2 * Y1N * (N - 1) + p * (N - 1))
   lambda_hat <- max(0, min(lambda_hat, 1))
@@ -33,7 +33,7 @@ test_that("centered data", {
   }
   Y2N <- 2 * Y2N / N / (N - 1)
   lambda_hat <- (Y1N ^ 2 + Y2N) /
-    ( (N + 1) * Y2N + Y1N ^ 2 - 2 * Y1N * N + p * N)
+    ((N + 1) * Y2N + Y1N ^ 2 - 2 * Y1N * N + p * N)
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(p)
   y <- shrinkcovmat.identity(datamat, centered = TRUE)
