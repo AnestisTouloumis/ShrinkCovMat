@@ -26,7 +26,6 @@ after_success:
   "R/shrinkcovmathat.default.R" = 1,
   "R/shrinkcovmathat.default.R" = 3,
   "R/shrinkcovmathat.default.R" = 5,
-  "R/shrinkcovmathat.default.R" = 7,
-
+  "R/shrinkcovmathat.default.R" = 7
   ))'
 
