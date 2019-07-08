@@ -14,18 +14,4 @@ r_github_packages:
 after_success:
   - R CMD INSTALL $PKG_TARBALL
   - Rscript -e 'covr::codecov()'
-  - Rscript -e 'lintr::lint_package(path = ".", 
-  exclusions = list("R/RcppExports.R",
-  "R/shrinkcovmat.equal.R" = 34,
-  "R/shrinkcovmat.equal.R" = 39,
-  "R/shrinkcovmat.identity.R" = 33,
-  "R/shrinkcovmat.identity.R" = 38,
-  "R/shrinkcovmat.unequal.R" = 36,
-  "R/shrinkcovmat.unequal.R" = 41,
-  "R/ShrinkCovMat_data.R" = 19,
-  "R/shrinkcovmathat.default.R" = 1,
-  "R/shrinkcovmathat.default.R" = 3,
-  "R/shrinkcovmathat.default.R" = 5,
-  "R/shrinkcovmathat.default.R" = 7
-  ))'
-
+  - Rscript -e 'lintr::lint_package(path = ".", exclusions = list("R/RcppExports.R"))'
