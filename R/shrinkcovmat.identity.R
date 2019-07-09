@@ -23,12 +23,12 @@
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @examples
 #' data(colon)
-#' normalGroup <- colon[, 1:40]
-#' TumorGroup <- colon[, 41:62]
-#' Sigmahat.normalGroup <- shrinkcovmat.identity(normalGroup)
-#' Sigmahat.normalGroup
-#' Sigmahat.TumorGroup <- shrinkcovmat.identity(TumorGroup)
-#' Sigmahat.TumorGroup
+#' normal_group <- colon[, 1:40]
+#' tumor_group <- colon[, 41:62]
+#' sigma_hat_normal_group <- shrinkcovmat.identity(normal_group)
+#' sigma_hat_normal_group
+#' sigma_hat_tumor_group <- shrinkcovmat.identity(tumor_group)
+#' sigma_hat_tumor_group
 #' @export
 shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
   if (!is.matrix(data)) {

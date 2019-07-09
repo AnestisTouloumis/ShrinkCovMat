@@ -19,17 +19,17 @@
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @examples
 #' data(colon)
-#' NormalGroup <- colon[, 1:40]
-#' targetselection(NormalGroup)
+#' normal_group <- colon[, 1:40]
+#' targetselection(normal_group)
 #' ## Similar intensities, the range of the sample variances is small and the
 #' ## average is not close to one. The scaled identity matrix seems to be the
 #' ## most suitable target matrix for the normal group.
 #'
-#' TumorGroup <- colon[, 41:62]
-#' targetselection(TumorGroup)
+#' tumor_group <- colon[, 41:62]
+#' targetselection(tumor_group)
 #' ## Similar intensities, the range of the sample variances is small and the
 #' ## average is not close to one. The scaled identity matrix seems to be the
-#' most suitable target matrix for the colon group.
+#' ## most suitable target matrix for the colon group.
 #' @export
 targetselection <- function(data, centered = FALSE) {
   if (!is.matrix(data)) {

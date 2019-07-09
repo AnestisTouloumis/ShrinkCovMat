@@ -80,15 +80,15 @@ tumor tissue group.
 
 ``` r
 data(colon)
-NormalGroup <- colon[, 1:40]
-TumorGroup <- colon[, 41:62]
+normal_group <- colon[, 1:40]
+tumor_group <- colon[, 41:62]
 ```
 
 To decide the target matrix for covariance matrix of the normal group,
 inspect the output of the function `targetselection`:
 
 ``` r
-targetselection(NormalGroup)
+targetselection(normal_group)
 #> OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH 
 #> Equal variances   : 0.1401 
 #> Unit variances    : 0.1125 
@@ -106,8 +106,8 @@ the most appropriate target for the covariance estimated. The resulting
 covariance matrix estimator is:
 
 ``` r
-EstimatedCovarianceNormal <- shrinkcovmat.equal(NormalGroup)
-EstimatedCovarianceNormal
+estimated_covariance_normal <- shrinkcovmat.equal(normal_group)
+estimated_covariance_normal
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
 #> Estimated Optimal Shrinkage Intensity = 0.1401 
@@ -132,7 +132,7 @@ EstimatedCovarianceNormal
 We follow a similar procedure for the tumor group:
 
 ``` r
-targetselection(TumorGroup)
+targetselection(tumor_group)
 #> OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH 
 #> Equal variances   : 0.1956 
 #> Unit variances    : 0.1705 
@@ -148,8 +148,8 @@ the most suitable target matrix. The resulting covariance matrix
 estimate for the tumor group is:
 
 ``` r
-EstimatedCovarianceTumor <- shrinkcovmat.equal(TumorGroup)
-EstimatedCovarianceTumor
+estimated_covariance_tumor <- shrinkcovmat.equal(tumor_group)
+estimated_covariance_tumor
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
 #> Estimated Optimal Shrinkage Intensity = 0.1956 

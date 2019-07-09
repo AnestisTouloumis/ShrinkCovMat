@@ -86,26 +86,26 @@ The utility function `targetselection` is designed to ease the selection of the 
 Consider the colon cancer data example analyzed in @Touloumis2015. The data consists of two tissue groups: the normal tissue group and the tumor tissue group.
 ```{r}
 data(colon)
-NormalGroup <- colon[,1:40]
-TumorGroup <- colon[,41:62]
+normal_group <- colon[, 1:40]
+tumor_group <- colon[, 41:62]
 ```
 To decide the target matrix for covariance matrix of the normal group, inspect the output of the function `targetselection`:
 ```{r}
-targetselection(NormalGroup)
+targetselection(normal_group)
 ```
 The estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances appear to be of similar magnitude. Thus, the scaled identity matrix seems to be the most appropriate target for the covariance estimated. The resulting covariance matrix estimator is:
 ```{r}
-EstimatedCovarianceNormal <- shrinkcovmat.equal(NormalGroup)
-EstimatedCovarianceNormal
+estimated_covariance_normal <- shrinkcovmat.equal(normal_group)
+estimated_covariance_normal
 ```
 We follow a similar procedure for the tumor group: 
 ```{r}
-targetselection(TumorGroup)
+targetselection(tumor_group)
 ```
 As before, we may conclude that the scaled identity matrix seems to be the most suitable target matrix. The resulting covariance matrix estimate for the tumor group is:
 ```{r}
-EstimatedCovarianceTumor <- shrinkcovmat.equal(TumorGroup)
-EstimatedCovarianceTumor
+estimated_covariance_tumor <- shrinkcovmat.equal(tumor_group)
+estimated_covariance_tumor
 ```
 
 

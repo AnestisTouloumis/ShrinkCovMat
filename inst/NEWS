@@ -1,5 +1,6 @@
-Version 1.2.8 [2019-07-09]
+Version 1.2.9 [2019-07-09]
  * Cleared lintr issues.
+ * Cosmetic changes of the examples and README.Rmd.
 
 Version 1.2.8 [2019-07-02]
  * Removed lintr dependency.

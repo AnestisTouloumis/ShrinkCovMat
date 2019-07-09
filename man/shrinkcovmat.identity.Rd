@@ -30,15 +30,15 @@ columns to subjects.
 }
 \examples{
 data(colon)
-NormalGroup <- colon[, 1:40]
-TumorGroup <- colon[, 41:62]
-Sigmahat.NormalGroup <- shrinkcovmat.identity(NormalGroup)
-Sigmahat.NormalGroup
-Sigmahat.TumorGroup <- shrinkcovmat.identity(TumorGroup)
-Sigmahat.TumorGroup
+normal_group <- colon[, 1:40]
+tumor_group <- colon[, 41:62]
+sigma_hat_normal_group <- shrinkcovmat.identity(normal_group)
+sigma_hat_normal_group
+sigma_hat_tumor_group <- shrinkcovmat.identity(tumor_group)
+sigma_hat_tumor_group
 }
 \references{
-Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
+Touloumis, A. (2015) nonparametric Stein-type Shrinkage
 Covariance Matrix Estimators in High-Dimensional Settings.
 \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 }

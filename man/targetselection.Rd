@@ -28,17 +28,17 @@ columns to subjects.
 }
 \examples{
 data(colon)
-NormalGroup <- colon[, 1:40]
-targetselection(NormalGroup)
-## Similar intensities, the range of the sample variances is small and the average
-## is not close to one. The scaled identity matrix seems to be the most suitable
-## target matrix for the normal group
+normal_group <- colon[, 1:40]
+targetselection(normal_group)
+## Similar intensities, the range of the sample variances is small and the
+## average is not close to one. The scaled identity matrix seems to be the
+## most suitable target matrix for the normal group.
 
-TumorGroup <- colon[, 41:62]
-targetselection(TumorGroup)
-## Similar intensities, the range of the sample variances is small and the average
-## is not close to one. The scaled identity matrix seems to be the most suitable
-## target matrix for the colon group
+tumor_group <- colon[, 41:62]
+targetselection(tumor_group)
+## Similar intensities, the range of the sample variances is small and the
+## average is not close to one. The scaled identity matrix seems to be the
+## most suitable target matrix for the colon group.
 }
 \references{
 Touloumis, A. (2015) Nonparametric Stein-type Shrinkage

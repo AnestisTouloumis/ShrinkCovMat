@@ -24,12 +24,12 @@
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @examples
 #' data(colon)
-#' normalGroup <- colon[, 1:40]
-#' TumorGroup <- colon[, 41:62]
-#' Sigmahat.normalGroup <- shrinkcovmat.equal(normalGroup)
-#' Sigmahat.normalGroup
-#' Sigmahat.TumorGroup <- shrinkcovmat.equal(TumorGroup)
-#' Sigmahat.TumorGroup
+#' normal_group <- colon[, 1:40]
+#' tumor_group <- colon[, 41:62]
+#' sigma_hat_normal_group <- shrinkcovmat.equal(normal_group)
+#' sigma_hat_normal_group
+#' sigma_hat_tumor_group <- shrinkcovmat.equal(tumor_group)
+#' sigma_hat_tumor_group
 #' @export
 shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
   if (!is.matrix(data)) {
