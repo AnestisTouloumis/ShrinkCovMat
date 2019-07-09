@@ -18,30 +18,30 @@
 #' @author Anestis Touloumis
 #' @seealso \code{\link{shrinkcovmat.equal}} and
 #' \code{\link{shrinkcovmat.unequal}}.
-#' @references Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
+#' @references Touloumis, A. (2015) nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @examples
 #' data(colon)
-#' NormalGroup <- colon[, 1:40]
+#' normalGroup <- colon[, 1:40]
 #' TumorGroup <- colon[, 41:62]
-#' Sigmahat.NormalGroup <- shrinkcovmat.identity(NormalGroup)
-#' Sigmahat.NormalGroup
+#' Sigmahat.normalGroup <- shrinkcovmat.identity(normalGroup)
+#' Sigmahat.normalGroup
 #' Sigmahat.TumorGroup <- shrinkcovmat.identity(TumorGroup)
 #' Sigmahat.TumorGroup
 #' @export
-shrinkcovmat.identity <- function(data, centered = FALSE) {
+shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
   if (!is.matrix(data)) {
     data <- as.matrix(data)
   }
   p <- nrow(data)
-  N <- ncol(data)
+  n <- ncol(data)
   centered <- as.logical(centered)
   if (centered != TRUE && centered != FALSE) {
     stop("'centered' must be either 'TRUE' or 'FALSE'")
   }
   if (!centered) {
-    if (N < 4) {
+    if (n < 4) {
       stop("The number of columns should be greater than 3")
     }
     sigma_sample <- cov(t(data))
@@ -49,20 +49,20 @@ shrinkcovmat.identity <- function(data, centered = FALSE) {
     trace_sigma_hat <- lambda_stats[1]
     trace_sigma_squared_hat <- lambda_stats[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      (N * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        2 * trace_sigma_hat * (N - 1) + p * (N - 1))
+      (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+        2 * trace_sigma_hat * (n - 1) + p * (n - 1))
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
-    if (N < 2) {
+    if (n < 2) {
       stop("The number of columns should be greater than 1")
     }
-    sigma_sample <- tcrossprod(data) / N
+    sigma_sample <- tcrossprod(data) / n
     lambda_stats <- trace_stats_centered(data) # nolintr
     trace_sigma_hat <- lambda_stats[1]
     trace_sigma_squared_hat <- lambda_stats[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ((N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        2 * trace_sigma_hat * N + p * N)
+      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+        2 * trace_sigma_hat * n + p * n)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }
   if (lambda_hat < 1) {

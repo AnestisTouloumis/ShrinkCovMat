@@ -1,14 +1,26 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-ShrinkCovMat: Shrinkage Covariance Matrix Estimators
-====================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Codecov test coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat?branch=master)
+# ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
-[![CRAN Version](https://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
+[![Github
+version](https://img.shields.io/badge/GitHub%20-1.2.9-orange.svg)](%22commits/master%22)
+[![Travis-CI Build
+Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
+[![Project Status: Active The project has reached a stable, usable state
+and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Codecov test
+coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat?branch=master)
 
-Installation
-------------
+[![CRAN
+Version](https://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-project.org/package=ShrinkCovMat)
+
+## Installation
 
 You can install the release version of `ShrinkCovMatRes`:
 
@@ -16,9 +28,10 @@ You can install the release version of `ShrinkCovMatRes`:
 install.packages("ShrinkCovMat")
 ```
 
-The source code for the release version of `ShrinkCovMatRes` is available on CRAN at:
+The source code for the release version of `ShrinkCovMatRes` is
+available on CRAN at:
 
--   <https://CRAN.R-project.org/package=ShrinkCovMat>
+  - <https://CRAN.R-project.org/package=ShrinkCovMat>
 
 Or you can install the development version of `ShrinkCovMatRes`:
 
@@ -27,9 +40,10 @@ Or you can install the development version of `ShrinkCovMatRes`:
 devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 ```
 
-The source code for the development version of `ShrinkCovMatRes` is available on github at:
+The source code for the development version of `ShrinkCovMatRes` is
+available on github at:
 
--   <https://github.com/AnestisTouloumis/ShrinkCovMat>
+  - <https://github.com/AnestisTouloumis/ShrinkCovMat>
 
 To use `ShrinkCovMatRes`, you should first load the package as follows:
 
@@ -37,25 +51,32 @@ To use `ShrinkCovMatRes`, you should first load the package as follows:
 library(ShrinkCovMat)
 ```
 
-Usage
------
+## Usage
 
-This package provides the nonparametric Stein-type shrinkage covariance matrix estimators proposed by Touloumis (2015). These estimators are suitable and statistically efficient regardless of the dimensionality.
+This package provides the nonparametric Stein-type shrinkage covariance
+matrix estimators proposed by Touloumis (2015). These estimators are
+suitable and statistically efficient regardless of the dimensionality.
 
-Each of the implemented shrinkage covariance matrix estimators is a convex linear combination of the sample covariance matrix and of a target matrix. Three options are considered for the target matrix:
+Each of the implemented shrinkage covariance matrix estimators is a
+convex linear combination of the sample covariance matrix and of a
+target matrix. Three options are considered for the target matrix:
 
--   the identity matrix (`shrinkcovmat.identity`),
--   the scaled identity matrix (`shrinkcovmat.equal`),
--   the diagonal matrix with diagonal elements the corresponding sample variances (`shrinkcovmat.unequal`).
+  - the identity matrix (`shrinkcovmat.identity`),
+  - the scaled identity matrix (`shrinkcovmat.equal`),
+  - the diagonal matrix with diagonal elements the corresponding sample
+    variances (`shrinkcovmat.unequal`).
 
-Estimation of the corresponding optimal shrinkage intensities is discussed in Touloumis (2015).
+Estimation of the corresponding optimal shrinkage intensities is
+discussed in Touloumis (2015).
 
-The utility function `targetselection` is designed to ease the selection of the target matrix.
+The utility function `targetselection` is designed to ease the selection
+of the target matrix.
 
-Example
--------
+## Example
 
-Consider the colon cancer data example analyzed in Touloumis (2015). The data consists of two tissue groups: the normal tissue group and the tumor tissue group.
+Consider the colon cancer data example analyzed in Touloumis (2015). The
+data consists of two tissue groups: the normal tissue group and the
+tumor tissue group.
 
 ``` r
 data(colon)
@@ -63,7 +84,8 @@ NormalGroup <- colon[, 1:40]
 TumorGroup <- colon[, 41:62]
 ```
 
-To decide the target matrix for covariance matrix of the normal group, inspect the output of the function `targetselection`:
+To decide the target matrix for covariance matrix of the normal group,
+inspect the output of the function `targetselection`:
 
 ``` r
 targetselection(NormalGroup)
@@ -77,7 +99,11 @@ targetselection(NormalGroup)
 #> Average : 0.0882
 ```
 
-The estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two and the sample variances appear to be of similar magnitude. Thus, the scaled identity matrix seems to be the most appropriate target for the covariance estimated. The resulting covariance matrix estimator is:
+The estimated optimal shrinkage intensity for the scaled identity matrix
+is slightly larger than the other two and the sample variances appear to
+be of similar magnitude. Thus, the scaled identity matrix seems to be
+the most appropriate target for the covariance estimated. The resulting
+covariance matrix estimator is:
 
 ``` r
 EstimatedCovarianceNormal <- shrinkcovmat.equal(NormalGroup)
@@ -117,7 +143,9 @@ targetselection(TumorGroup)
 #> Average : 0.0958
 ```
 
-As before, we may conclude that the scaled identity matrix seems to be the most suitable target matrix. The resulting covariance matrix estimate for the tumor group is:
+As before, we may conclude that the scaled identity matrix seems to be
+the most suitable target matrix. The resulting covariance matrix
+estimate for the tumor group is:
 
 ``` r
 EstimatedCovarianceTumor <- shrinkcovmat.equal(TumorGroup)
@@ -143,28 +171,38 @@ EstimatedCovarianceTumor
 #> [5,] 0.0000 0.0000 0.0000 0.0000 0.0958
 ```
 
-How to cite
------------
+## How to cite
 
+``` 
 
-    To cite the R package 'ShrinkCovMat' in publications, please use:
+To cite the R package 'ShrinkCovMat' in publications, please use:
 
-      Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
-      Covariance Matrix Estimators in High-Dimensional Settings,
-      Computational Statistics & Data Analysis 83, 251-261.
+  Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
+  Covariance Matrix Estimators in High-Dimensional Settings,
+  Computational Statistics & Data Analysis 83, 251-261.
 
-    A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is
 
-      @Article{,
-        title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
-        author = {{Anestis Touloumis}},
-        year = {2015},
-        journal = {Computational Statistics & Data Analysis},
-        volume = {83},
-        pages = {251--261},
-      }
+  @Article{,
+    title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
+    author = {{Anestis Touloumis}},
+    year = {2015},
+    journal = {Computational Statistics & Data Analysis},
+    volume = {83},
+    pages = {251--261},
+  }
+```
 
-References
-==========
+# References
 
-Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings. *Computational Statistics & Data Analysis*, **83**, 251–261.
+<div id="refs" class="references">
+
+<div id="ref-Touloumis2015">
+
+Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
+Matrix Estimators in High-Dimensional Settings. *Computational
+Statistics & Data Analysis*, **83**, 251–261.
+
+</div>
+
+</div>

@@ -13,7 +13,6 @@ references:
   type: article-journal
   issued:
     year: 2015
-    month: March
 csl: biometrics.csl    
 ---
 
@@ -21,17 +20,16 @@ csl: biometrics.csl
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include=FALSE}
-library(badger)
 knitr::opts_chunk$set(
   tidy = TRUE,
   collapse = TRUE,
   comment = "#>",
-  fig.path="README-")
+  fig.path = "README-")
 ```
 
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
-`r badger::badge_github_version("AnestisTouloumis/ShrinkCovMat","blue")`
+[![Github version](`r paste0("https://img.shields.io/badge/GitHub%20-", as.vector(read.dcf('DESCRIPTION')[, 'Version']),"-orange.svg")`)]("commits/master")
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
 [![Codecov test coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat?branch=master)

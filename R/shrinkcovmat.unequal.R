@@ -21,30 +21,30 @@
 #' @author Anestis Touloumis
 #' @seealso \code{\link{shrinkcovmat.equal}} and
 #' \code{\link{shrinkcovmat.identity}}.
-#' @references Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
+#' @references Touloumis, A. (2015) nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @examples
 #' data(colon)
-#' NormalGroup <- colon[, 1:40]
+#' normalGroup <- colon[, 1:40]
 #' TumorGroup <- colon[, 41:62]
-#' Sigmahat.NormalGroup <- shrinkcovmat.unequal(NormalGroup)
-#' Sigmahat.NormalGroup
+#' Sigmahat.normalGroup <- shrinkcovmat.unequal(normalGroup)
+#' Sigmahat.normalGroup
 #' Sigmahat.TumorGroup <- shrinkcovmat.unequal(TumorGroup)
 #' Sigmahat.TumorGroup
 #' @export
-shrinkcovmat.unequal <- function(data, centered = FALSE) {
+shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
   if (!is.matrix(data)) {
     data <- as.matrix(data)
   }
   p <- nrow(data)
-  N <- ncol(data)
+  n <- ncol(data)
   centered <- as.logical(centered)
   if (centered != TRUE && centered != FALSE) {
     stop("'centered' must be either 'TRUE' or 'FALSE'")
   }
   if (!centered) {
-    if (N < 4) stop("the number of columns should be greater than 3")
+    if (n < 4) stop("the number of columns should be greater than 3")
     sigma_sample <- cov(t(data))
     diagonal_sigma_sample <- apply(data, 1, var)
     lambda_stats <- trace_stats_uncentered(data) # nolintr
@@ -52,22 +52,22 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) {
     trace_sigma_squared_hat <- lambda_stats[2]
     trace_diagonal_sigma_squared <- lambda_stats[3]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
-      (2 - 2 / N) * trace_diagonal_sigma_squared) /
-      (N * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        (N + 1 - 2 / N) * trace_diagonal_sigma_squared)
+      (2 - 2 / n) * trace_diagonal_sigma_squared) /
+      (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+        (n + 1 - 2 / n) * trace_diagonal_sigma_squared)
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
-    if (N < 2) stop("the number of columns should be greater than 1")
-    sigma_sample <- tcrossprod(data) / N
+    if (n < 2) stop("the number of columns should be greater than 1")
+    sigma_sample <- tcrossprod(data) / n
     diagonal_sigma_sample <- apply(data, 1, function(x) mean(x ^ 2))
     lambda_stats <- trace_stats_centered(data) # nolintr
     trace_sigma_hat <- lambda_stats[1]
     trace_sigma_squared_hat <- lambda_stats[2]
     trace_diagonal_sigma_squared <- lambda_stats[3]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
-      (2 - 2 / (N + 1)) * trace_diagonal_sigma_squared) /
-      ((N + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        (N + 2 - 2 / (N + 1)) * trace_diagonal_sigma_squared)
+      (2 - 2 / (n + 1)) * trace_diagonal_sigma_squared) /
+      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+        (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_squared)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }
   if (lambda_hat < 1) {

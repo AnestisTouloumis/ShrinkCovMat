@@ -2,35 +2,35 @@ context("shrinkage towards the diagonal matrix")
 
 set.seed(3)
 p <- 10
-N <- 4
-datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * N), p, N)
+n <- 4
+datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * n), p, n)
 
 
 test_that("uncentered data", {
   sample_cov <- cov(t(datamat))
   data_centered <- datamat - rowMeans(datamat)
   sigma_sample_variances <- diag(sample_cov)
-  Y1N <- sum(sigma_sample_variances)
+  y_1n <- sum(sigma_sample_variances)
   data_centered <- datamat - rowMeans(datamat)
-  Q <- sum(colSums(data_centered ^ 2) ^ 2) / (N - 1)
-  Y2N <- (N - 1) / (N * (N - 2) * (N - 3)) *
-    ((N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
-  Sum1 <- Sum21 <- Sum22 <- Sum3 <- rep(0, p)
-  for (i in 1:(N - 1)) {
-    data2 <- matrix(datamat[, (i + 1):N], p, N - i)
-    Sum1 <- rowSums(datamat[, i] * data2) + Sum1
-    Sum21 <- rowSums(datamat[, i] ^ 3 * data2) + Sum21
-    Sum22 <- rowSums(data2 ^ 3 * datamat[, i]) + Sum22
-    Sum3 <- rowSums(datamat[, i] ^ 2 * data2 ^ 2) + Sum3
+  q <- sum(colSums(data_centered ^ 2) ^ 2) / (n - 1)
+  y_2n <- (n - 1) / (n * (n - 2) * (n - 3)) *
+    ((n - 1) * (n - 2) * sum(sample_cov ^ 2) + y_1n ^ 2 - n * q)
+  sum_1 <- sum_21 <- sum_22 <- sum_3 <- rep(0, p)
+  for (i in 1:(n - 1)) {
+    data2 <- matrix(datamat[, (i + 1):n], p, n - i)
+    sum_1 <- rowSums(datamat[, i] * data2) + sum_1
+    sum_21 <- rowSums(datamat[, i] ^ 3 * data2) + sum_21
+    sum_22 <- rowSums(data2 ^ 3 * datamat[, i]) + sum_22
+    sum_3 <- rowSums(datamat[, i] ^ 2 * data2 ^ 2) + sum_3
   }
-  Term1 <- 2 * sum(Sum3) / N / (N - 1)
-  Term2 <- 2 * (sum(Sum1 * rowSums(datamat ^ 2)) - sum(Sum21 + Sum22))
-  Term3 <- 4 * (sum(Sum1 ^ 2) - sum(Sum3) - Term2)
-  Term2 <- Term2 / N / (N - 1) / (N - 2)
-  Term3 <- Term3 / N / (N - 1) / (N - 2) / (N - 3)
-  Y3N <- Term1 - 2 * Term2 + Term3
-  lambdahat <- (Y1N ^ 2 + Y2N - 2 * (1 - 1 / N) * Y3N) /
-    (N * Y2N + Y1N ^ 2 - (N + 1 - 2 / N) * Y3N)
+  term_1 <- 2 * sum(sum_3) / n / (n - 1)
+  term_2 <- 2 * (sum(sum_1 * rowSums(datamat ^ 2)) - sum(sum_21 + sum_22))
+  term_3 <- 4 * (sum(sum_1 ^ 2) - sum(sum_3) - term_2)
+  term_2 <- term_2 / n / (n - 1) / (n - 2)
+  term_3 <- term_3 / n / (n - 1) / (n - 2) / (n - 3)
+  y_3n <- term_1 - 2 * term_2 + term_3
+  lambdahat <- (y_1n ^ 2 + y_2n - 2 * (1 - 1 / n) * y_3n) /
+    (n * y_2n + y_1n ^ 2 - (n + 1 - 2 / n) * y_3n)
   lambdahat <- max(0, min(lambdahat, 1))
   x <- shrinkcovmat.unequal(datamat)
   target <- diag(sigma_sample_variances, p)
@@ -43,18 +43,18 @@ test_that("uncentered data", {
 
 
 test_that("centered data", {
-  sample_cov <- tcrossprod(datamat) / N
+  sample_cov <- tcrossprod(datamat) / n
   sigma_sample_variances <- diag(sample_cov)
-  Y1N <- sum(sigma_sample_variances)
-  Y2N <- Y3N <- 0
-  for (i in 1:(N - 1)) {
-    Y2N <- sum(crossprod(datamat[, i], datamat[, (i + 1):N]) ^ 2) + Y2N
-    Y3N <- sum((datamat[, i] * datamat[, (i + 1):N]) ^ 2) + Y3N
+  y_1n <- sum(sigma_sample_variances)
+  y_2n <- y_3n <- 0
+  for (i in 1:(n - 1)) {
+    y_2n <- sum(crossprod(datamat[, i], datamat[, (i + 1):n]) ^ 2) + y_2n
+    y_3n <- sum((datamat[, i] * datamat[, (i + 1):n]) ^ 2) + y_3n
   }
-  Y2N <- 2 * Y2N / N / (N - 1)
-  Y3N <- 2 * Y3N / N / (N - 1)
-  lambdahat <- (Y1N ^ 2 + Y2N - 2 * (1 - 1 / (N + 1)) * Y3N) /
-    ((N + 1) * Y2N + Y1N ^ 2 - (N + 2 - 2 / (N + 1)) * Y3N)
+  y_2n <- 2 * y_2n / n / (n - 1)
+  y_3n <- 2 * y_3n / n / (n - 1)
+  lambdahat <- (y_1n ^ 2 + y_2n - 2 * (1 - 1 / (n + 1)) * y_3n) /
+    ((n + 1) * y_2n + y_1n ^ 2 - (n + 2 - 2 / (n + 1)) * y_3n)
   lambdahat <- max(0, min(lambdahat, 1))
   y <- shrinkcovmat.unequal(datamat, centered = TRUE)
   target <- diag(sigma_sample_variances, p)

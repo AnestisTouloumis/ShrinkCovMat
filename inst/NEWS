@@ -1,3 +1,6 @@
+Version 1.2.8 [2019-07-09]
+ * Cleared lintr issues.
+
 Version 1.2.8 [2019-07-02]
  * Removed lintr dependency.
  * Updated .travis.yml.

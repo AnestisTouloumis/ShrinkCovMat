@@ -2,18 +2,18 @@ context("shrinkage towards the identity matrix")
 
 set.seed(2)
 p <- 20
-N <- 5
-datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * N), p, N)
+n <- 5
+datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * n), p, n)
 
 test_that("uncentered data", {
   sample_cov <- cov(t(datamat))
-  Y1N <- sum(diag(sample_cov))
+  y_1n <- sum(diag(sample_cov))
   data_centered <- datamat - rowMeans(datamat)
-  Q <- sum(colSums(data_centered ^ 2) ^ 2) / (N - 1)
-  Y2N <- (N - 1) / (N * (N - 2) * (N - 3)) *
-    ((N - 1) * (N - 2) * sum(sample_cov ^ 2) + Y1N ^ 2 - N * Q)
-  lambda_hat <- (Y1N ^ 2 + Y2N) /
-    (N * Y2N + Y1N ^ 2 - 2 * Y1N * (N - 1) + p * (N - 1))
+  q <- sum(colSums(data_centered ^ 2) ^ 2) / (n - 1)
+  y_2n <- (n - 1) / (n * (n - 2) * (n - 3)) *
+    ((n - 1) * (n - 2) * sum(sample_cov ^ 2) + y_1n ^ 2 - n * q)
+  lambda_hat <- (y_1n ^ 2 + y_2n) /
+    (n * y_2n + y_1n ^ 2 - 2 * y_1n * (n - 1) + p * (n - 1))
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(p)
   x <- shrinkcovmat.identity(datamat)
@@ -25,15 +25,15 @@ test_that("uncentered data", {
 
 
 test_that("centered data", {
-  sample_cov <- tcrossprod(datamat) / N
-  Y1N <- sum(diag(sample_cov))
-  Y2N <- 0
-  for (i in 1:(N - 1)) {
-    Y2N <- sum(crossprod(datamat[, i], datamat[, (i + 1):N]) ^ 2) + Y2N
+  sample_cov <- tcrossprod(datamat) / n
+  y_1n <- sum(diag(sample_cov))
+  y_2n <- 0
+  for (i in 1:(n - 1)) {
+    y_2n <- sum(crossprod(datamat[, i], datamat[, (i + 1):n]) ^ 2) + y_2n
   }
-  Y2N <- 2 * Y2N / N / (N - 1)
-  lambda_hat <- (Y1N ^ 2 + Y2N) /
-    ((N + 1) * Y2N + Y1N ^ 2 - 2 * Y1N * N + p * N)
+  y_2n <- 2 * y_2n / n / (n - 1)
+  lambda_hat <- (y_1n ^ 2 + y_2n) /
+    ((n + 1) * y_2n + y_1n ^ 2 - 2 * y_1n * n + p * n)
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(p)
   y <- shrinkcovmat.identity(datamat, centered = TRUE)
