@@ -63,3 +63,19 @@ test_that("centered data", {
   expect_equal(y$Sigmasample, sample_cov)
   expect_equal(y$Target, target)
 })
+
+
+test_that("centered argument", {
+  expect_equal(shrinkcovmat.unequal(datamat, "TRUE"),
+               shrinkcovmat.unequal(datamat, TRUE))
+  expect_equal(shrinkcovmat.unequal(datamat, "FALSE"),
+               shrinkcovmat.unequal(datamat, FALSE))
+  expect_error(shrinkcovmat.unequal(datamat, "iraklis"))
+})
+
+test_that("sample size", {
+  expect_error(shrinkcovmat.unequal(datamat[, 1:3], FALSE))
+  expect_error(shrinkcovmat.unequal(datamat[, 1:2], FALSE))
+  expect_error(shrinkcovmat.unequal(datamat[, 1], FALSE))
+  expect_error(shrinkcovmat.unequal(datamat[, 1], TRUE))
+})

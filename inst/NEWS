@@ -1,3 +1,6 @@
+Version 1.2.10 [2019-07-10]
+ * Added more unit-test.
+ 
 Version 1.2.9 [2019-07-09]
  * Cleared lintr issues.
  * Cosmetic changes of the examples and README.Rmd.

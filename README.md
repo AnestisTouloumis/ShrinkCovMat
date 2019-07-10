@@ -4,7 +4,7 @@
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.2.9-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.2.10-green.svg)](%22commits/master%22)
 [![Travis-CI Build
 Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
 [![Project Status: Active The project has reached a stable, usable state
