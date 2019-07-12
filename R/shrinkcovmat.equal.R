@@ -43,29 +43,29 @@ shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
   }
   if (!centered) {
     if (n < 4) stop("The number of columns should be greater than 3")
-    sigma_sample <- cov(t(data))
-    lambda_stats <- trace_stats_uncentered(data) # nolintr
-    trace_sigma_hat <- lambda_stats[1]
+    sample_covariance_matrix <- cov(t(data))
+    trace_statistics <- trace_stats_uncentered(data) # nolintr
+    trace_sigma_hat <- trace_statistics[1]
     nu_hat <- trace_sigma_hat / p
-    trace_sigma_squared_hat <- lambda_stats[2]
+    trace_sigma_squared_hat <- trace_statistics[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       (n * trace_sigma_squared_hat + (p - n + 1) /
         p * trace_sigma_hat ^ 2)
     lambda_hat <- min(lambda_hat, 1)
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
-    sigma_sample <- tcrossprod(data) / n
-    lambda_stats <- trace_stats_centered(data) # nolintr
-    trace_sigma_hat <- lambda_stats[1]
+    sample_covariance_matrix <- tcrossprod(data) / n
+    trace_statistics <- trace_stats_centered(data) # nolintr
+    trace_sigma_hat <- trace_statistics[1]
     nu_hat <- trace_sigma_hat / p
-    trace_sigma_squared_hat <- lambda_stats[2]
+    trace_sigma_squared_hat <- trace_statistics[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       ((n + 1) * trace_sigma_squared_hat + (p - n) /
         p * trace_sigma_hat ^ 2)
     lambda_hat <- min(lambda_hat, 1)
   }
   if (lambda_hat < 1) {
-    sigmahat <- (1 - lambda_hat) * sigma_sample +
+    sigmahat <- (1 - lambda_hat) * sample_covariance_matrix +
       diag(nu_hat * lambda_hat, p)
   } else {
     sigmahat <- diag(lambda_hat * nu_hat, p)
@@ -73,7 +73,7 @@ shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
   target <- diag(nu_hat, p)
   ans <- list(
     Sigmahat = sigmahat, lambdahat = lambda_hat,
-    Sigmasample = sigma_sample, Target = target,
+    Sigmasample = sample_covariance_matrix, Target = target,
     centered = centered
   )
   class(ans) <- "shrinkcovmathat"

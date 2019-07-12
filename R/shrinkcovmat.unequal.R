@@ -45,41 +45,41 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
   }
   if (!centered) {
     if (n < 4) stop("the number of columns should be greater than 3")
-    sigma_sample <- cov(t(data))
-    diagonal_sigma_sample <- apply(data, 1, var)
-    lambda_stats <- trace_stats_uncentered(data) # nolintr
-    trace_sigma_hat <- lambda_stats[1]
-    trace_sigma_squared_hat <- lambda_stats[2]
-    trace_diagonal_sigma_squared <- lambda_stats[3]
+    sample_covariance_matrix <- cov(t(data))
+    sample_variances <- apply(data, 1, var)
+    trace_statistics <- trace_stats_uncentered(data) # nolint
+    trace_sigma_hat <- trace_statistics[1]
+    trace_sigma_squared_hat <- trace_statistics[2]
+    trace_diagonal_sigma_sq_hat <- trace_statistics[3]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
-      (2 - 2 / n) * trace_diagonal_sigma_squared) /
+      (2 - 2 / n) * trace_diagonal_sigma_sq_hat) /
       (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        (n + 1 - 2 / n) * trace_diagonal_sigma_squared)
+        (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
     if (n < 2) stop("the number of columns should be greater than 1")
-    sigma_sample <- tcrossprod(data) / n
-    diagonal_sigma_sample <- apply(data, 1, function(x) mean(x ^ 2))
-    lambda_stats <- trace_stats_centered(data) # nolintr
-    trace_sigma_hat <- lambda_stats[1]
-    trace_sigma_squared_hat <- lambda_stats[2]
-    trace_diagonal_sigma_squared <- lambda_stats[3]
+    sample_covariance_matrix <- tcrossprod(data) / n
+    sample_variances <- apply(data, 1, function(x) mean(x ^ 2))
+    trace_statistics <- trace_stats_centered(data) # nolintr
+    trace_sigma_hat <- trace_statistics[1]
+    trace_sigma_squared_hat <- trace_statistics[2]
+    trace_diagonal_sigma_sq_hat <- trace_statistics[3]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
-      (2 - 2 / (n + 1)) * trace_diagonal_sigma_squared) /
+      (2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat) /
       ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_squared)
+        (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }
   if (lambda_hat < 1) {
-    sigma_hat <- (1 - lambda_hat) * sigma_sample +
-      diag(lambda_hat * diagonal_sigma_sample, p)
+    sigma_hat <- (1 - lambda_hat) * sample_covariance_matrix +
+      diag(lambda_hat * sample_variances, p)
   } else {
-    sigma_hat <- diag(lambda_hat * diagonal_sigma_sample, p)
+    sigma_hat <- diag(lambda_hat * sample_variances, p)
   }
-  target <- diag(diagonal_sigma_sample, p)
+  target <- diag(sample_variances, p)
   ans <- list(
     Sigmahat = sigma_hat, lambdahat = lambda_hat,
-    Sigmasample = sigma_sample, Target = target,
+    Sigmasample = sample_covariance_matrix, Target = target,
     centered = centered
   )
   class(ans) <- "shrinkcovmathat"

@@ -41,39 +41,36 @@ shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
     stop("'centered' must be either 'TRUE' or 'FALSE'")
   }
   if (!centered) {
-    if (n < 4) {
-      stop("The number of columns should be greater than 3")
-    }
-    sigma_sample <- cov(t(data))
-    lambda_stats <- trace_stats_uncentered(data) # nolintr
-    trace_sigma_hat <- lambda_stats[1]
-    trace_sigma_squared_hat <- lambda_stats[2]
+    if (n < 4) stop("The number of columns should be greater than 3")
+    sample_covariance_matrix <- cov(t(data))
+    trace_statistics <- trace_stats_uncentered(data) # nolintr
+    trace_sigma_hat <- trace_statistics[1]
+    trace_sigma_squared_hat <- trace_statistics[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         2 * trace_sigma_hat * (n - 1) + p * (n - 1))
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
-    if (n < 2) {
-      stop("The number of columns should be greater than 1")
-    }
-    sigma_sample <- tcrossprod(data) / n
-    lambda_stats <- trace_stats_centered(data) # nolintr
-    trace_sigma_hat <- lambda_stats[1]
-    trace_sigma_squared_hat <- lambda_stats[2]
+    if (n < 2) stop("The number of columns should be greater than 1")
+    sample_covariance_matrix <- tcrossprod(data) / n
+    trace_statistics <- trace_stats_centered(data) # nolintr
+    trace_sigma_hat <- trace_statistics[1]
+    trace_sigma_squared_hat <- trace_statistics[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         2 * trace_sigma_hat * n + p * n)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }
   if (lambda_hat < 1) {
-    sigma_hat <- (1 - lambda_hat) * sigma_sample + diag(lambda_hat, p)
+    sigma_hat <- (1 - lambda_hat) * sample_covariance_matrix +
+      diag(lambda_hat, p)
   } else {
     sigma_hat <- diag(lambda_hat, p)
   }
   target <- diag(p)
   ans <- list(
     Sigmahat = sigma_hat, lambdahat = lambda_hat,
-    Sigmasample = sigma_sample, Target = target,
+    Sigmasample = sample_covariance_matrix, Target = target,
     centered = centered
   )
   class(ans) <- "shrinkcovmathat"
