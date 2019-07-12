@@ -20,12 +20,12 @@ test_that("shrinkage diagonal uncentered data", {
     for (j in 1:n) {
       if (i != j) sum_1 <- sum_1 + sum(datamat[, i]^2 * datamat[, j]^2)
       for (k in 1:n) {
-        if (i != j & i != k & j != k) 
+        if (i != j & i != k & j != k)
           sum_2 <- sum_2 + sum(datamat[, i]^2 * datamat[, j] * datamat[, k])
         for (l in 1:n) {
           if (i != j & i != k & i != l & j != k & j != l & k != l)
             sum_3 <- sum_3 + sum(datamat[, i] * datamat[, j] * datamat[, k] *
-                                  datamat[, l])
+                                   datamat[, l])
         }
       }
     }
