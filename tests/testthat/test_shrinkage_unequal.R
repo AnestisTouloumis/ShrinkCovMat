@@ -10,11 +10,12 @@ test_that("shrinkage diagonal uncentered data", {
   sample_covariance_matrix <- cov(t(datamat))
   data_centered <- datamat - rowMeans(datamat)
   sigma_sample_variances <- diag(sample_covariance_matrix)
-  y_1n <- sum(sigma_sample_variances)
+  trace_sigma_hat <- sum(sigma_sample_variances)
   data_centered <- datamat - rowMeans(datamat)
   q <- sum(colSums(data_centered ^ 2) ^ 2) / (n - 1)
-  y_2n <- (n - 1) / (n * (n - 2) * (n - 3)) *
-    ((n - 1) * (n - 2) * sum(sample_covariance_matrix ^ 2) + y_1n ^ 2 - n * q)
+  trace_sigma_squared_hat <- (n - 1) / (n * (n - 2) * (n - 3)) *
+    ((n - 1) * (n - 2) * sum(sample_covariance_matrix ^ 2) +
+       trace_sigma_hat ^ 2 - n * q)
   sum_1 <- sum_2 <- sum_3 <- 0
   for (i in 1:n) {
     for (j in 1:n) {
@@ -33,17 +34,19 @@ test_that("shrinkage diagonal uncentered data", {
   sum_1 <- sum_1 / n / (n - 1)
   sum_2 <- sum_2 / n / (n - 1) / (n - 2)
   sum_3 <- sum_3 / n / (n - 1) / (n - 2) / (n - 3)
-  y_3n <- sum_1 - 2 * sum_2 + sum_3
-  lambda_hat <- (y_1n ^ 2 + y_2n - 2 * (1 - 1 / n) * y_3n) /
-    (n * y_2n + y_1n ^ 2 - (n + 1 - 2 / n) * y_3n)
+  trace_diagonal_sigma_sq_hat <- sum_1 - 2 * sum_2 + sum_3
+  lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
+                   2 * (1 - 1 / n) * trace_diagonal_sigma_sq_hat) /
+    (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+       (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
   lambda_hat <- max(0, min(lambda_hat, 1))
-  x <- shrinkcovmat.unequal(datamat)
+  ans <- shrinkcovmat.unequal(datamat)
   target <- diag(sigma_sample_variances, p)
-  expect_equal(x$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
+  expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
                  lambda_hat * target)
-  expect_equal(x$lambdahat, lambda_hat)
-  expect_equal(x$Sigmasample, sample_covariance_matrix)
-  expect_equal(x$Target, target)
+  expect_equal(ans$lambdahat, lambda_hat)
+  expect_equal(ans$Sigmasample, sample_covariance_matrix)
+  expect_equal(ans$Target, target)
 })
 
 
@@ -51,24 +54,30 @@ test_that("shrinkage diagonal uncentered data", {
 test_that("shrinkage diagonal centered data", {
   sample_covariance_matrix <- tcrossprod(datamat) / n
   sigma_sample_variances <- diag(sample_covariance_matrix)
-  y_1n <- sum(sigma_sample_variances)
-  y_2n <- y_3n <- 0
+  trace_sigma_hat <- sum(sigma_sample_variances)
+  trace_sigma_squared_hat <- trace_diagonal_sigma_sq_hat <- 0
   for (i in 1:(n - 1)) {
-    y_2n <- sum(crossprod(datamat[, i], datamat[, (i + 1):n]) ^ 2) + y_2n
-    y_3n <- sum((datamat[, i] * datamat[, (i + 1):n]) ^ 2) + y_3n
+    trace_sigma_squared_hat <- sum(crossprod(datamat[, i],
+                                             datamat[, (i + 1):n]) ^ 2) +
+      trace_sigma_squared_hat
+    trace_diagonal_sigma_sq_hat <- sum((datamat[, i] *
+                                          datamat[, (i + 1):n]) ^ 2) +
+      trace_diagonal_sigma_sq_hat
   }
-  y_2n <- 2 * y_2n / n / (n - 1)
-  y_3n <- 2 * y_3n / n / (n - 1)
-  lambda_hat <- (y_1n ^ 2 + y_2n - 2 * (1 - 1 / (n + 1)) * y_3n) /
-    ((n + 1) * y_2n + y_1n ^ 2 - (n + 2 - 2 / (n + 1)) * y_3n)
+  trace_sigma_squared_hat <- 2 * trace_sigma_squared_hat / n / (n - 1)
+  trace_diagonal_sigma_sq_hat <- 2 * trace_diagonal_sigma_sq_hat / n / (n - 1)
+  lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
+                   2 * (1 - 1 / (n + 1)) * trace_diagonal_sigma_sq_hat) /
+    ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+       (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat)
   lambda_hat <- max(0, min(lambda_hat, 1))
-  y <- shrinkcovmat.unequal(datamat, centered = TRUE)
+  ans <- shrinkcovmat.unequal(datamat, centered = TRUE)
   target <- diag(sigma_sample_variances, p)
-  expect_equal(y$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
+  expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
                  lambda_hat * target)
-  expect_equal(y$lambdahat, lambda_hat)
-  expect_equal(y$Sigmasample, sample_covariance_matrix)
-  expect_equal(y$Target, target)
+  expect_equal(ans$lambdahat, lambda_hat)
+  expect_equal(ans$Sigmasample, sample_covariance_matrix)
+  expect_equal(ans$Target, target)
 })
 
 
