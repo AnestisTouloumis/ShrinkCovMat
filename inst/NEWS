@@ -1,3 +1,7 @@
+Version 1.2.13 [2019-07-22]
+ * Adding a unit test for target selection.
+ * Create an S3 class for target selection.
+ 
 Version 1.2.12 [2019-07-14]
  * Improving readibility of R code.
  

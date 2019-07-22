@@ -49,8 +49,7 @@ shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
     nu_hat <- trace_sigma_hat / p
     trace_sigma_squared_hat <- trace_statistics[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      (n * trace_sigma_squared_hat + (p - n + 1) /
-        p * trace_sigma_hat ^ 2)
+      (n * trace_sigma_squared_hat + (p - n + 1) / p * trace_sigma_hat ^ 2)
     lambda_hat <- min(lambda_hat, 1)
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
@@ -60,8 +59,7 @@ shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
     nu_hat <- trace_sigma_hat / p
     trace_sigma_squared_hat <- trace_statistics[2]
     lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ((n + 1) * trace_sigma_squared_hat + (p - n) /
-        p * trace_sigma_hat ^ 2)
+      ((n + 1) * trace_sigma_squared_hat + (p - n) / p * trace_sigma_hat ^ 2)
     lambda_hat <- min(lambda_hat, 1)
   }
   if (lambda_hat < 1) {

@@ -43,44 +43,44 @@ targetselection <- function(data, centered = FALSE) {
     trace_statistics <- trace_stats_uncentered(data) # nolintr
     trace_sigma_hat <- trace_statistics[1]
     trace_sigma_squared_hat <- trace_statistics[2]
-    lambda_hat_shericity <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
+    lambda_hat_sphericity <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       (n * trace_sigma_squared_hat + (p - n + 1) / p * trace_sigma_hat ^ 2)
-    lambda_hat_shericity <- min(lambda_hat_shericity, 1)
+    lambda_hat_sphericity <- min(lambda_hat_sphericity, 1)
     lambda_hat_identity <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         2 * trace_sigma_hat * (n - 1) + p * (n - 1))
     lambda_hat_identity <- max(0, min(lambda_hat_identity, 1))
     trace_diagonal_sigma_sq_hat <- trace_statistics[3]
     lambda_hat_diagonal <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
-      2 * trace_diagonal_sigma_sq_hat) /
+                              (2 - 2 / n) * trace_diagonal_sigma_sq_hat) /
       (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        (n + 1) * trace_diagonal_sigma_sq_hat)
+         (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
     lambda_hat_diagonal <- max(0, min(lambda_hat_diagonal, 1))
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
-    sample_variances <- apply(data, 1, var)
-    trace_statistics <- trace_stats_uncentered(data) # nolintr
+    sample_variances <- apply(data, 1, function(x) mean(x ^ 2))
+    trace_statistics <- trace_stats_centered(data) # nolintr
     trace_sigma_hat <- trace_statistics[1]
     trace_sigma_squared_hat <- trace_statistics[2]
     trace_diagonal_sigma_sq_hat <- trace_statistics[3]
-    lambda_hat_shericity <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
+    lambda_hat_sphericity <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       ((n + 1) * trace_sigma_squared_hat + (p - n) / p * trace_sigma_hat ^ 2)
-    lambda_hat_shericity <- min(lambda_hat_shericity, 1)
+    lambda_hat_sphericity <- min(lambda_hat_sphericity, 1)
     lambda_hat_identity <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
       ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
         2 * trace_sigma_hat * n + p * n)
     lambda_hat_identity <- max(0, min(lambda_hat_identity, 1))
     lambda_hat_diagonal <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
-      2 * trace_diagonal_sigma_sq_hat) /
+                              (2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat) /
       ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
-        (n + 2) * trace_diagonal_sigma_sq_hat)
+         (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat)
     lambda_hat_diagonal <- max(0, min(lambda_hat_diagonal, 1))
   }
-  cat("OPTIMAL SHRInKAGE InTEnSITIES FOR THE TARGET MATRIX WITH", "\n")
-  cat("Equal variances   :", round(lambda_hat_shericity, 4), "\n")
-  cat("Unit variances    :", round(lambda_hat_identity, 4), "\n")
-  cat("Unequal variances :", round(lambda_hat_diagonal, 4), "\n")
-  cat("\nSAMPLE VARIAnCES", "\n")
-  cat("Range   :", round(abs(diff(range(sample_variances))), 4), "\n")
-  cat("Average :", round(mean(sample_variances), 4), "\n")
+  ans <- list(optimal_sphericity = lambda_hat_sphericity,
+              optimal_identity = lambda_hat_identity,
+              optimal_diagonal = lambda_hat_diagonal,
+              range = abs(diff(range(sample_variances))),
+              average = mean(sample_variances))
+  class(ans) <- "targetsel"
+  ans
 }

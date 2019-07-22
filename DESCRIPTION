@@ -1,7 +1,7 @@
 Package: ShrinkCovMat
 Type: Package
 Title: Shrinkage Covariance Matrix Estimators
-Version: 1.2.12
+Version: 1.2.13
 Authors@R: person("Anestis", "Touloumis", role = c("aut", "cre"),
                       email = "A.Touloumis@brighton.ac.uk",
                       comment = c(ORCHID = "0000-0002-5965-1639"))
