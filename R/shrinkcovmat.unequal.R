@@ -44,7 +44,7 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
     stop("'centered' must be either 'TRUE' or 'FALSE'")
   }
   if (!centered) {
-    if (n < 4) stop("the number of columns should be greater than 3")
+    if (n < 4) stop("The number of columns should be greater than 3")
     sample_covariance_matrix <- cov(t(data))
     sample_variances <- apply(data, 1, var)
     trace_statistics <- trace_stats_uncentered(data) # nolint
@@ -57,7 +57,7 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
         (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
-    if (n < 2) stop("the number of columns should be greater than 1")
+    if (n < 2) stop("The number of columns should be greater than 1")
     sample_covariance_matrix <- tcrossprod(data) / n
     sample_variances <- apply(data, 1, function(x) mean(x ^ 2))
     trace_statistics <- trace_stats_centered(data) # nolintr

@@ -87,11 +87,11 @@ test_that("checking centered argument", {
 
 test_that("testing sample size requirements", {
   expect_error(shrinkcovmat.unequal(datamat[, 1:3], FALSE),
-               "the number of columns should be greater than 3")
+               "The number of columns should be greater than 3")
   expect_error(shrinkcovmat.unequal(datamat[, 1:2], FALSE),
-               "the number of columns should be greater than 3")
+               "The number of columns should be greater than 3")
   expect_error(shrinkcovmat.unequal(datamat[, 1], FALSE),
-               "the number of columns should be greater than 3")
+               "The number of columns should be greater than 3")
   expect_error(shrinkcovmat.unequal(datamat[, 1], TRUE),
-               "the number of columns should be greater than 1")
+               "The number of columns should be greater than 1")
 })
