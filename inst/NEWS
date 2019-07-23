@@ -1,12 +1,15 @@
+Version 1.2.14 [2019-07-23]
+ * Cosmetic changes in unit test files.
+
 Version 1.2.13 [2019-07-22]
- * Adding a unit test for target selection.
- * Create an S3 class for target selection.
+ * Added a unit test for target selection.
+ * Created an S3 class for target selection.
  
 Version 1.2.12 [2019-07-14]
- * Improving readibility of R code.
+ * Improving readability of R code.
  
 Version 1.2.11 [2019-07-13]
- * Improving readibility of R code.
+ * Improving readability of R code.
  
 Version 1.2.10 [2019-07-10]
  * Added more unit-test.

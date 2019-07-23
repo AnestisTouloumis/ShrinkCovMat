@@ -1,12 +1,8 @@
-context("shrinkage towards the diagonal matrix")
-
-set.seed(3)
 p <- 10
-n <- 4
-datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * n), p, n)
+n <- 5
+datamat <- matrix(rnorm(p * n), p, n)
 
-
-test_that("shrinkage diagonal uncentered data", {
+test_that("checking output with uncentered data", {
   sample_covariance_matrix <- cov(t(datamat))
   data_centered <- datamat - rowMeans(datamat)
   sigma_sample_variances <- diag(sample_covariance_matrix)
@@ -50,8 +46,7 @@ test_that("shrinkage diagonal uncentered data", {
 })
 
 
-
-test_that("shrinkage diagonal centered data", {
+test_that("checking output with centered data", {
   sample_covariance_matrix <- tcrossprod(datamat) / n
   sigma_sample_variances <- diag(sample_covariance_matrix)
   trace_sigma_hat <- sum(sigma_sample_variances)
@@ -81,7 +76,7 @@ test_that("shrinkage diagonal centered data", {
 })
 
 
-test_that("shrinkage diagonal centered argument", {
+test_that("checking centered argument", {
   expect_equal(shrinkcovmat.unequal(datamat, "TRUE"),
                shrinkcovmat.unequal(datamat, TRUE))
   expect_equal(shrinkcovmat.unequal(datamat, "FALSE"),
@@ -89,9 +84,14 @@ test_that("shrinkage diagonal centered argument", {
   expect_error(shrinkcovmat.unequal(datamat, "iraklis"))
 })
 
-test_that("shrinkage diagonal sample size", {
-  expect_error(shrinkcovmat.unequal(datamat[, 1:3], FALSE))
-  expect_error(shrinkcovmat.unequal(datamat[, 1:2], FALSE))
-  expect_error(shrinkcovmat.unequal(datamat[, 1], FALSE))
-  expect_error(shrinkcovmat.unequal(datamat[, 1], TRUE))
+
+test_that("testing sample size requirements", {
+  expect_error(shrinkcovmat.unequal(datamat[, 1:3], FALSE),
+               "the number of columns should be greater than 3")
+  expect_error(shrinkcovmat.unequal(datamat[, 1:2], FALSE),
+               "the number of columns should be greater than 3")
+  expect_error(shrinkcovmat.unequal(datamat[, 1], FALSE),
+               "the number of columns should be greater than 3")
+  expect_error(shrinkcovmat.unequal(datamat[, 1], TRUE),
+               "the number of columns should be greater than 1")
 })

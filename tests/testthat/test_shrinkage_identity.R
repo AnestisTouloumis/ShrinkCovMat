@@ -1,11 +1,8 @@
-context("shrinkage towards the identity matrix")
-
-set.seed(2)
 p <- 20
 n <- 5
-datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * n), p, n)
+datamat <- matrix(rnorm(p * n), p, n)
 
-test_that("shrinkage identity uncentered data", {
+test_that("checking output with uncentered data", {
   sample_covariance_matrix <- cov(t(datamat))
   trace_sigma_hat <- sum(diag(sample_covariance_matrix))
   data_centered <- datamat - rowMeans(datamat)
@@ -27,7 +24,7 @@ test_that("shrinkage identity uncentered data", {
 })
 
 
-test_that("shrinkage identity centered data", {
+test_that("checking output with centered data", {
   sample_covariance_matrix <- tcrossprod(datamat) / n
   trace_sigma_hat <- sum(diag(sample_covariance_matrix))
   trace_sigma_squared_hat <- 0
@@ -51,7 +48,7 @@ test_that("shrinkage identity centered data", {
 })
 
 
-test_that("shrinkage identity centered argument", {
+test_that("checking centered argument", {
   expect_equal(shrinkcovmat.identity(datamat, centered = "TRUE"),
                shrinkcovmat.identity(datamat, centered = TRUE))
   expect_equal(shrinkcovmat.identity(datamat, centered = "FALSE"),
@@ -60,9 +57,13 @@ test_that("shrinkage identity centered argument", {
 })
 
 
-test_that("shrinkage identity sample size", {
-  expect_error(shrinkcovmat.identity(datamat[, 1:3], FALSE))
-  expect_error(shrinkcovmat.identity(datamat[, 1:2], FALSE))
-  expect_error(shrinkcovmat.identity(datamat[, 1], FALSE))
-  expect_error(shrinkcovmat.identity(datamat[, 1], TRUE))
+test_that("checking sample size requirements", {
+  expect_error(shrinkcovmat.identity(datamat[, 1:3], FALSE),
+               "the number of columns should be greater than 3")
+  expect_error(shrinkcovmat.identity(datamat[, 1:2], FALSE),
+               "the number of columns should be greater than 3")
+  expect_error(shrinkcovmat.identity(datamat[, 1], FALSE),
+               "the number of columns should be greater than 3")
+  expect_error(shrinkcovmat.identity(datamat[, 1], TRUE),
+               "the number of columns should be greater than 1")
 })

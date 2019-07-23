@@ -1,13 +1,9 @@
-context("selection of target matrices")
-
-
-set.seed(3)
 p <- 20
 n <- 10
-datamat <- toeplitz(0.85 ^ seq(0, p - 1)) %*% matrix(rnorm(p * n), p, n)
+datamat <- matrix(rnorm(p * n), p, n)
 
 
-test_that("targetselection uncentered data", {
+test_that("checking output with uncentered data", {
   optimal_hat_sphericity <- shrinkcovmat.equal(datamat)$lambdahat
   optimal_hat_identity <- shrinkcovmat.identity(datamat)$lambdahat
   optimal_hat_diagonal <- shrinkcovmat.unequal(datamat)$lambdahat
@@ -23,7 +19,7 @@ test_that("targetselection uncentered data", {
 })
 
 
-test_that("targetselection centered data", {
+test_that("checking output with centered data", {
   optimal_hat_sphericity <- shrinkcovmat.equal(datamat, TRUE)$lambdahat
   optimal_hat_identity <- shrinkcovmat.identity(datamat, TRUE)$lambdahat
   optimal_hat_diagonal <- shrinkcovmat.unequal(datamat, TRUE)$lambdahat

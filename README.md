@@ -4,7 +4,7 @@
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.2.13-green.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.2.14-green.svg)](%22commits/master%22)
 [![Travis-CI Build
 Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
 [![Project Status: Active The project has reached a stable, usable state
@@ -22,30 +22,30 @@ Downloads](https://cranlogs.r-pkg.org/badges/ShrinkCovMat)](https://CRAN.R-proje
 
 ## Installation
 
-You can install the release version of `ShrinkCovMatRes`:
+You can install the release version of `ShrinkCovMat`:
 
 ``` r
 install.packages("ShrinkCovMat")
 ```
 
-The source code for the release version of `ShrinkCovMatRes` is
-available on CRAN at:
+The source code for the release version of `ShrinkCovMat` is available
+on CRAN at:
 
   - <https://CRAN.R-project.org/package=ShrinkCovMat>
 
-Or you can install the development version of `ShrinkCovMatRes`:
+Or you can install the development version of `ShrinkCovMat`:
 
 ``` r
 # install.packages('devtools')
 devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 ```
 
-The source code for the development version of `ShrinkCovMatRes` is
+The source code for the development version of `ShrinkCovMat` is
 available on github at:
 
   - <https://github.com/AnestisTouloumis/ShrinkCovMat>
 
-To use `ShrinkCovMatRes`, you should first load the package as follows:
+To use `ShrinkCovMat`, you should first load the package as follows:
 
 ``` r
 library(ShrinkCovMat)
