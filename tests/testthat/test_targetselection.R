@@ -23,7 +23,7 @@ test_that("checking output with centered data", {
   optimal_hat_sphericity <- shrinkcovmat.equal(datamat, TRUE)$lambdahat
   optimal_hat_identity <- shrinkcovmat.identity(datamat, TRUE)$lambdahat
   optimal_hat_diagonal <- shrinkcovmat.unequal(datamat, TRUE)$lambdahat
-  sample_variances <- apply(datamat, 1, function(x) mean(x ^ 2))
+  sample_variances <- apply(datamat, 1, function(x) mean(x^2))
   range_variances <- diff(range(sample_variances))
   average_variances <- mean(sample_variances)
   select_target <- targetselection(datamat, TRUE)

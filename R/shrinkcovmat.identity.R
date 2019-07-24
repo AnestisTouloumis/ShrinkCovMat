@@ -31,9 +31,7 @@
 #' sigma_hat_tumor_group
 #' @export
 shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
-  if (!is.matrix(data)) {
-    data <- as.matrix(data)
-  }
+  if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)
   centered <- as.logical(centered)
@@ -46,8 +44,8 @@ shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
     trace_statistics <- trace_stats_uncentered(data) # nolintr
     trace_sigma_hat <- trace_statistics[1]
     trace_sigma_squared_hat <- trace_statistics[2]
-    lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+    lambda_hat <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
+      (n * trace_sigma_squared_hat + trace_sigma_hat^2 -
         2 * trace_sigma_hat * (n - 1) + p * (n - 1))
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
@@ -56,8 +54,8 @@ shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
     trace_statistics <- trace_stats_centered(data) # nolintr
     trace_sigma_hat <- trace_statistics[1]
     trace_sigma_squared_hat <- trace_statistics[2]
-    lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat) /
-      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+    lambda_hat <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
+      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat^2 -
         2 * trace_sigma_hat * n + p * n)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }

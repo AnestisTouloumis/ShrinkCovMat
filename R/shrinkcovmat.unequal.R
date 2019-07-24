@@ -34,9 +34,7 @@
 #' sigma_hat_tumor_group
 #' @export
 shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
-  if (!is.matrix(data)) {
-    data <- as.matrix(data)
-  }
+  if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)
   centered <- as.logical(centered)
@@ -51,22 +49,22 @@ shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
     trace_sigma_hat <- trace_statistics[1]
     trace_sigma_squared_hat <- trace_statistics[2]
     trace_diagonal_sigma_sq_hat <- trace_statistics[3]
-    lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
+    lambda_hat <- (trace_sigma_hat^2 + trace_sigma_squared_hat -
       (2 - 2 / n) * trace_diagonal_sigma_sq_hat) /
-      (n * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+      (n * trace_sigma_squared_hat + trace_sigma_hat^2 -
         (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
     lambda_hat <- max(0, min(lambda_hat, 1))
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
     sample_covariance_matrix <- tcrossprod(data) / n
-    sample_variances <- apply(data, 1, function(x) mean(x ^ 2))
+    sample_variances <- apply(data, 1, function(x) mean(x^2))
     trace_statistics <- trace_stats_centered(data) # nolintr
     trace_sigma_hat <- trace_statistics[1]
     trace_sigma_squared_hat <- trace_statistics[2]
     trace_diagonal_sigma_sq_hat <- trace_statistics[3]
-    lambda_hat <- (trace_sigma_hat ^ 2 + trace_sigma_squared_hat -
+    lambda_hat <- (trace_sigma_hat^2 + trace_sigma_squared_hat -
       (2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat) /
-      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat ^ 2 -
+      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat^2 -
         (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat)
     lambda_hat <- max(0, min(lambda_hat, 1))
   }

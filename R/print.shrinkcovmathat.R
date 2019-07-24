@@ -9,10 +9,10 @@ print.shrinkcovmathat <- function(x, ...) {
   print(round(x$Sigmahat[
     1:min(5, nrow(x$Sigmahat)),
     1:min(5, nrow(x$Sigmahat))
-    ], 4))
+  ], 4))
   cat("\nTarget Matrix [1:5,1:5] =\n")
   print(round(x$Target[
     1:min(5, nrow(x$Target)),
     1:min(5, nrow(x$Target))
-    ], 4))
+  ], 4))
 }
