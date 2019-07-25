@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^\.travis\.yml
 ^README\.Rmd$
+^README\.md$
 ^desktop.ini$
 ^\.travis\.yml$
 ^biometrics\.csl$
