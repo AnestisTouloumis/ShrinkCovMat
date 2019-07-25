@@ -11,8 +11,15 @@
 #'
 #' @param data a numeric matrix containing the data.
 #' @param centered a logical indicating if the mean vector is the zero vector.
-#' @return Prints the estimated optimal shrinkage intensities and the range and
-#' the average of the sample variances.
+#' @return Prints the estimated optimal shrinkage intensities, the range and
+#' average of the sample variances and returns an object of the class
+#' 'targetsel' that has components: \item{optimal_sphericity}{The estimated
+#' optimal intensity for a target matrix with equal variances.}
+#' \item{optimal_identity}{The estimated optimal shrinkage
+#' intensity for the identity target matrix.} \item{optimal_diagonal}{The
+#' estimated optimal intensity for a target matrix with unequal variances.}
+#' \item{range}{The range of the sample variances.} \item{average}{The average
+#' of the sample variances.}
 #' @author Anestis Touloumis
 #' @references Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
