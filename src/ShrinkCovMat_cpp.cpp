@@ -36,7 +36,7 @@ arma::vec trace_stats_uncentered(arma::mat X) {
   double Y_2N = 0;
   double trace_S2_1 = accu(pow(sum(X_square, 0),2));
   double trace_S2_3 = 0;
-  double trace_S2_4 = pow(N, 2) * pow(accu(square(X_mean)),2);
+  double trace_S2_4 = N * N * pow(accu(square(X_mean)),2);
   double Q = accu(pow(sum(square(centerdata(X))), 2)) / (N - 1);
   double Y_3N = 0;
   arma::mat Sum1 = arma::zeros(p, 1);
@@ -64,7 +64,7 @@ arma::vec trace_stats_uncentered(arma::mat X) {
   double T_1N = Y_1N - Y_4N;
   double trace_S2_2 = 2 * Y_2N;
   trace_S2_3 = -2 * N * trace_S2_3;
-  double trace_S2 = (trace_S2_1 + trace_S2_2 + trace_S2_3 + trace_S2_4)/pow(N-1, 2);
+  double trace_S2 = (trace_S2_1 + trace_S2_2 + trace_S2_3 + trace_S2_4)/(N-1)/(N-1);
   double T_2N = (N-1)*((N-1)*(N-2)*trace_S2 + pow(T_1N, 2) - N*Q)/(N*(N-2)*(N-3));
   double Y_7N = 2 * (accu(Sum1 % X_square_sum) - accu(Sum21 + Sum22));
   double Y_8N = 4 * (accu(square(Sum1)) - Y_3N - Y_7N);
