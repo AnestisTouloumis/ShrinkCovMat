@@ -1,5 +1,6 @@
-Version 1.3.1 [2019-07-27]
+Version 1.3.0 [2019-07-29]
  * Complied with CRAN Solaris requirements.
+ * Rel-submitted to CRAN.
  
 Version 1.3.0 [2019-07-25]
  * Released on CRAN.
@@ -15,17 +16,17 @@ Version 1.2.13 [2019-07-22]
  * Created an S3 class for target selection.
  
 Version 1.2.12 [2019-07-14]
- * Improving readability of R code.
+ * Improved readability of R code.
  
 Version 1.2.11 [2019-07-13]
- * Improving readability of R code.
+ * Improved readability of R code.
  
 Version 1.2.10 [2019-07-10]
- * Added more unit-test.
+ * Added more unit-tests.
  
 Version 1.2.9 [2019-07-09]
  * Cleared lintr issues.
- * Cosmetic changes of the examples and README.Rmd.
+ * Cosmetic changes in the examples and README.Rmd.
 
 Version 1.2.8 [2019-07-02]
  * Removed lintr dependency.
@@ -39,8 +40,8 @@ Version 1.2.7 [2019-07-02]
 Version 1.2.6 [2019-06-11]
  * Minor changes in the code.
  
-ersion 1.2.5 [2019-06-06]
- * Removing code dependencies with sample covariance matrix.
+Version 1.2.5 [2019-06-06]
+ * Removed code dependencies with sample covariance matrix.
  
 Version 1.2.4 [2019-06-04]
  * Added Rcpp functionality.
