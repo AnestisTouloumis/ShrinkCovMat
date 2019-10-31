@@ -2,6 +2,7 @@ p <- 10
 n <- 5
 datamat <- matrix(rnorm(p * n), p, n)
 
+# nolint start
 test_that("checking output with uncentered data", {
   sample_covariance_matrix <- cov(t(datamat))
   data_centered <- datamat - rowMeans(datamat)
@@ -46,7 +47,7 @@ test_that("checking output with uncentered data", {
   expect_equal(ans$Sigmasample, sample_covariance_matrix)
   expect_equal(ans$Target, target)
 })
-
+# nolint end
 
 test_that("checking output with centered data", {
   sample_covariance_matrix <- tcrossprod(datamat) / n
