@@ -1,8 +1,8 @@
 
 \name{NEWS}
-\title{NEWS file for the ShrinkCovMat package}
+\title{NEWS file for the \pkg{ShrinkCovMat} package}
 
-\section{Changes in Version 1.4.1 (2019-10-31)}{
+\section{Changes in Version 1.4.2 (2019-11-02)}{
   \itemize{
     \item{Created NEWS.Rd.}
     \item{Fixed ORCID in DESCRIPTION.}
@@ -61,15 +61,15 @@
 \section{Changes in Version 1.0.3 (2014-11-02)}{
   \itemize{
     \item{Updated CITATION.}
-    \item{Updated documention.}
+    \item{Updated documentation.}
     }
     }
 
 \section{Changes in Version 1.0.2 (2014-10-20)}{
   \itemize{
-    \item{Added function targetselection.}
+    \item{Added function \code{targetselection}.}
     \item{Updated CITATION.}
-    \item{Updated documention.}
+    \item{Updated documentation.}
     }
     }
 
