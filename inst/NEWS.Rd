@@ -2,10 +2,12 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
-\section{Changes in Version 1.4.2 (2019-11-02)}{
+\section{Changes in Version 1.4.3 (2020-01-16)}{
   \itemize{
     \item{Created NEWS.Rd.}
+    \item{Compressed dataset to its optimal value.}
     \item{Fixed ORCID in DESCRIPTION.}
+    \item{Updated documentation.}
     }
     }
 

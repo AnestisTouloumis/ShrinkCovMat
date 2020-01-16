@@ -11,6 +11,9 @@ group while the last 22 columns to the tumor colon tissue group.}
 \href{http://genomics-pubs.princeton.edu/oncology/affydata}{http://genomics-pubs.princeton.edu/oncology/affydata} # nolint
 [Last Assessed: 2016-05-21]
 }
+\usage{
+colon
+}
 \description{
 The dataset describes a colon cancer study (\cite{Alon et al., 1999}) in
 which gene expression levels were measured on 40 normal tissues and on 22

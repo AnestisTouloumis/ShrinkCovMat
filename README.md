@@ -4,7 +4,7 @@
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.4.2-green.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.4.3-green.svg)](%22commits/master%22)
 [![Travis-CI Build
 Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
 [![Project Status: Active The project has reached a stable, usable state
@@ -177,9 +177,9 @@ estimated_covariance_tumor
 
 To cite the R package 'ShrinkCovMat' in publications, please use:
 
-  Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
-  Covariance Matrix Estimators in High-Dimensional Settings,
-  Computational Statistics & Data Analysis 83, 251-261.
+  Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
+  Matrix Estimators in High-Dimensional Settings, Computational
+  Statistics & Data Analysis 83, 251-261.
 
 A BibTeX entry for LaTeX users is
 
