@@ -16,7 +16,7 @@ NeedsCompilation: no
 Encoding: UTF-8
 URL: http://github.com/AnestisTouloumis/ShrinkCovMat
 BugReports: http://github.com/AnestisTouloumis/ShrinkCovMat/issues
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Suggests: 
     testthat (>= 2.1.0),
     covr
