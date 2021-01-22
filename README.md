@@ -3,10 +3,9 @@
 
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
+[![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions)
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.4.3-green.svg)](%22commits/master%22)
-[![Travis-CI Build
-Status](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/ShrinkCovMat)
+version](https://img.shields.io/badge/GitHub%20-1.4.4-green.svg)](%22commits/master%22)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -31,7 +30,7 @@ install.packages("ShrinkCovMat")
 The source code for the release version of `ShrinkCovMat` is available
 on CRAN at:
 
-  - <https://CRAN.R-project.org/package=ShrinkCovMat>
+-   <https://CRAN.R-project.org/package=ShrinkCovMat>
 
 Or you can install the development version of `ShrinkCovMat`:
 
@@ -43,7 +42,7 @@ devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 The source code for the development version of `ShrinkCovMat` is
 available on github at:
 
-  - <https://github.com/AnestisTouloumis/ShrinkCovMat>
+-   <https://github.com/AnestisTouloumis/ShrinkCovMat>
 
 To use `ShrinkCovMat`, you should first load the package as follows:
 
@@ -61,9 +60,9 @@ Each of the implemented shrinkage covariance matrix estimators is a
 convex linear combination of the sample covariance matrix and of a
 target matrix. Three options are considered for the target matrix:
 
-  - the identity matrix (`shrinkcovmat.identity`),
-  - the scaled identity matrix (`shrinkcovmat.equal`),
-  - the diagonal matrix with diagonal elements the corresponding sample
+-   the identity matrix (`shrinkcovmat.identity`),
+-   the scaled identity matrix (`shrinkcovmat.equal`),
+-   the diagonal matrix with diagonal elements the corresponding sample
     variances (`shrinkcovmat.unequal`).
 
 Estimation of the corresponding optimal shrinkage intensities is
@@ -173,31 +172,29 @@ estimated_covariance_tumor
 
 ## How to cite
 
-``` 
 
-To cite the R package 'ShrinkCovMat' in publications, please use:
+    To cite the R package 'ShrinkCovMat' in publications, please use:
 
-  Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
-  Matrix Estimators in High-Dimensional Settings, Computational
-  Statistics & Data Analysis 83, 251-261.
+      Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
+      Matrix Estimators in High-Dimensional Settings, Computational
+      Statistics & Data Analysis 83, 251-261.
 
-A BibTeX entry for LaTeX users is
+    A BibTeX entry for LaTeX users is
 
-  @Article{,
-    title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
-    author = {{Anestis Touloumis}},
-    year = {2015},
-    journal = {Computational Statistics & Data Analysis},
-    volume = {83},
-    pages = {251--261},
-  }
-```
+      @Article{,
+        title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
+        author = {{Anestis Touloumis}},
+        year = {2015},
+        journal = {Computational Statistics & Data Analysis},
+        volume = {83},
+        pages = {251--261},
+      }
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Touloumis2015">
+<div id="ref-Touloumis2015" class="csl-entry">
 
 Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
 Matrix Estimators in High-Dimensional Settings. *Computational

@@ -2,8 +2,9 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
-\section{Changes in Version 1.4.3 (2020-01-16)}{
+\section{Changes in Version 1.4.4 (2021-01-22)}{
   \itemize{
+    \item{Mitigating from travis ci to github actions}
     \item{Created NEWS.Rd.}
     \item{Compressed dataset to its optimal value.}
     \item{Fixed ORCID in DESCRIPTION.}
