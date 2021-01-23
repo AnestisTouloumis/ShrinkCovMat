@@ -4,7 +4,7 @@
 
 \section{Changes in Version 1.4.4 (2021-01-22)}{
   \itemize{
-    \item{Mitigating from travis ci to github actions}
+    \item{Mitigating from Travis CI to GitHub Actions.}
     \item{Created NEWS.Rd.}
     \item{Compressed dataset to its optimal value.}
     \item{Fixed ORCID in DESCRIPTION.}
