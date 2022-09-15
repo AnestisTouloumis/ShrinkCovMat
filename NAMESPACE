@@ -2,6 +2,7 @@
 
 S3method(print,shrinkcovmathat)
 S3method(print,targetsel)
+export(shrinkcovmat)
 export(shrinkcovmat.equal)
 export(shrinkcovmat.identity)
 export(shrinkcovmat.unequal)

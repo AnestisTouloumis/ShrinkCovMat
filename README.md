@@ -47,7 +47,7 @@ available on github at:
 To use `ShrinkCovMat`, you should first load the package as follows:
 
 ``` r
-library(ShrinkCovMat)
+library("ShrinkCovMat")
 ```
 
 ## Usage
@@ -99,8 +99,8 @@ targetselection(normal_group)
 ```
 
 The estimated optimal shrinkage intensity for the scaled identity matrix
-is slightly larger than the other two and the sample variances appear to
-be of similar magnitude. Thus, the scaled identity matrix seems to be
+is slightly larger than the other two, and the sample variances appear
+to be of similar magnitude. Thus, the scaled identity matrix seems to be
 the most appropriate target for the covariance estimated. The resulting
 covariance matrix estimator is:
 
@@ -196,8 +196,9 @@ estimated_covariance_tumor
 
 <div id="ref-Touloumis2015" class="csl-entry">
 
-Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
-Matrix Estimators in High-Dimensional Settings. *Computational
+Touloumis, A. (2015) [Nonparametric Stein-type Shrinkage Covariance
+Matrix Estimators in High-Dimensional
+Settings](https://doi.org/10.1016/j.csda.2014.10.018). *Computational
 Statistics & Data Analysis*, **83**, 251–261.
 
 </div>

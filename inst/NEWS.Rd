@@ -2,12 +2,14 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
-\section{Changes in Version 1.4.4 (2021-01-22)}{
+\section{Changes in Version 1.4.5 (2022-09-15)}{
   \itemize{
-    \item{Mitigating from Travis CI to GitHub Actions.}
+    \item{Added a generic function to obtain the shrinkage estimate of the 
+    covariance matrix.}
     \item{Created NEWS.Rd.}
     \item{Compressed dataset to its optimal value.}
     \item{Fixed ORCID in DESCRIPTION.}
+    \item{Mitigating from Travis CI to GitHub Actions.}
     \item{Updated documentation.}
     }
     }
