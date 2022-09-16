@@ -4,7 +4,7 @@
 \alias{shrinkcovmat}
 \title{Linear Shrinkage of the Sample Covariance}
 \usage{
-shrinkcovmat(data, centered = FALSE, target = "spherical")
+shrinkcovmat(data, centered = FALSE, target = "sphericity")
 }
 \arguments{
 \item{data}{a numeric matrix containing the data.}
@@ -12,7 +12,7 @@ shrinkcovmat(data, centered = FALSE, target = "spherical")
 \item{centered}{a logical indicating if the mean vector is the zero vector.}
 
 \item{target}{a character indicating the target matrix. Options include 
-'spherical', 'identity' or 'diagonal'.}
+'sphericity', 'identity' or 'diagonality'.}
 }
 \value{
 Returns an object of the class 'shrinkcovmathat' that has
@@ -34,9 +34,11 @@ columns to subjects.
 data(colon)
 normal_group <- colon[, 1:40]
 tumor_group <- colon[, 41:62]
-sigma_hat_normal_group <- shrinkcovmat.identity(normal_group)
+targetselection(normal_group)
+sigma_hat_normal_group <- shrinkcovmat(normal_group)
 sigma_hat_normal_group
-sigma_hat_tumor_group <- shrinkcovmat.identity(tumor_group)
+targetselection(normal_group)
+sigma_hat_tumor_group <- shrinkcovmat(tumor_group)
 sigma_hat_tumor_group
 }
 \references{
@@ -45,8 +47,7 @@ Covariance Matrix Estimators in High-Dimensional Settings.
 \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 }
 \seealso{
-\code{\link{shrinkcovmat.equal}}, \code{\link{shrinkcovmat.identity}}
-and \code{\link{shrinkcovmat.unequal}}.
+\code{\link{targetselection}}.
 }
 \author{
 Anestis Touloumis
