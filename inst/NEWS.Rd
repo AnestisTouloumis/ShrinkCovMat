@@ -4,9 +4,10 @@
 
 \section{Changes in Version 1.4.5 (2022-09-15)}{
   \subsection{NEW FEATURES}{
-    \item{Added function \code{shrinkcovmat} to obtain the shrinkage estimates.}
-    }
-    }
+    \itemize{
+      \item{Added function \code{shrinkcovmat} to obtain the shrinkage estimates.}
+      }
+      }
   \subsection{MINOR CHANGES}{
     \itemize{
       \item{Created NEWS.Rd.}
