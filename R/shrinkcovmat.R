@@ -32,17 +32,24 @@
 #' sigma_hat_tumor_group <- shrinkcovmat(tumor_group)
 #' sigma_hat_tumor_group
 #' @export
-shrinkcovmat <- function(data, centered = FALSE, target = "sphericity") { # nolint
+shrinkcovmat <- function(data, target = "sphericity", centered = FALSE) { # nolint
+  if (!is.matrix(data)) data <- as.matrix(data)
+  p <- nrow(data)
+  n <- ncol(data)
   targets <- c("sphericity", "identity", "diagonality")
   if (!is.element(target, targets)) {
     stop("'target' must be 'sphericity', 'identity' or 'diagonality'")
-    }
+  }
+  centered <- as.logical(centered)
+  if (centered != TRUE && centered != FALSE) {
+    stop("'centered' must be either 'TRUE' or 'FALSE'")
+  }
   if (target == "sphericity") {
-    ans <- shrinkcovmat.equal(data, centered)
+    ans <- shrinkcovmat_equal(data, centered, p, n)
     } else if (target == "diagonality") {
-      ans <- shrinkcovmat.unequal(data, centered)
+      ans <- shrinkcovmat_unequal(data, centered, p, n)
       } else {
-        ans <- shrinkcovmat.identity(data, centered)
+        ans <- shrinkcovmat_identity(data, centered, p, n)
         }
   ans
 }

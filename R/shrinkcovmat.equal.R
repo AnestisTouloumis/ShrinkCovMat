@@ -22,16 +22,19 @@
 #' @references Touloumis, A. (2015) nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
-#' @examples
-#' data(colon)
-#' normal_group <- colon[, 1:40]
-#' tumor_group <- colon[, 41:62]
-#' sigma_hat_normal_group <- shrinkcovmat.equal(normal_group)
-#' sigma_hat_normal_group
-#' sigma_hat_tumor_group <- shrinkcovmat.equal(tumor_group)
-#' sigma_hat_tumor_group
+#'
+#' @name shrinkcovmat.equal-deprecated
+#' @usage shrinkcovmat.equal(data, centered)
+#' @seealso \code{\link{ShrinkCovMat-deprecated}}
+#' @keywords internal
+NULL
+#' @rdname ShrinkCovMat-deprecated
+#' @section \code{shrinkcovmat.equal}:
+#' For \code{shrinkcovmat.equal}, use \code{\link{shrinkcovmat}}.
+#'
 #' @export
 shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
+  .Deprecated(msg = "Use instead function 'shrinkcovmat' with argument 'target' equal to 'sphericity'")
   if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)

@@ -16,21 +16,22 @@
 #' \item{Target}{The target covariance matrix.} \item{centered}{If the data are
 #' centered around their mean vector.}
 #' @author Anestis Touloumis
-#' @seealso \code{\link{shrinkcovmat.equal}} and
-#' \code{\link{shrinkcovmat.unequal}}.
 #' @references Touloumis, A. (2015) nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
-#' @examples
-#' data(colon)
-#' normal_group <- colon[, 1:40]
-#' tumor_group <- colon[, 41:62]
-#' sigma_hat_normal_group <- shrinkcovmat.identity(normal_group)
-#' sigma_hat_normal_group
-#' sigma_hat_tumor_group <- shrinkcovmat.identity(tumor_group)
-#' sigma_hat_tumor_group
+#' 
+#' @name shrinkcovmat.unequal-deprecated
+#' @usage shrinkcovmat.identity(data, centered)
+#' @seealso \code{\link{ShrinkCovMat-deprecated}}
+#' @keywords internal
+NULL
+#' @rdname ShrinkCovMat-deprecated
+#' @section \code{shrinkcovmat.identity}:
+#' For \code{shrinkcovmat.identity}, use \code{\link{shrinkcovmat}}.
+#'
 #' @export
 shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint
+  .Deprecated(msg = "Use instead function 'shrinkcovmat' with argument 'target' equal to 'identity'")
   if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)

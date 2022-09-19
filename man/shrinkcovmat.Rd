@@ -4,15 +4,15 @@
 \alias{shrinkcovmat}
 \title{Linear Shrinkage of the Sample Covariance}
 \usage{
-shrinkcovmat(data, centered = FALSE, target = "sphericity")
+shrinkcovmat(data, target = "sphericity", centered = FALSE)
 }
 \arguments{
 \item{data}{a numeric matrix containing the data.}
 
-\item{centered}{a logical indicating if the mean vector is the zero vector.}
-
 \item{target}{a character indicating the target matrix. Options include 
 'sphericity', 'identity' or 'diagonality'.}
+
+\item{centered}{a logical indicating if the mean vector is the zero vector.}
 }
 \value{
 Returns an object of the class 'shrinkcovmathat' that has
