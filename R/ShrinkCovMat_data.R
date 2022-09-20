@@ -9,7 +9,7 @@
 #' columns to 62 tissues. The first 40 columns belong to the normal tissue
 #' group while the last 22 columns to the tumor colon tissue group.
 #'
-#'@references Alon, U., Barkai, N., Notterman, D.A., Gish, K., Ybarra, S.,
+#' @references Alon, U., Barkai, N., Notterman, D.A., Gish, K., Ybarra, S.,
 #' Mack, D. and Levine, A.J. (1999) Broad patterns of gene expression revealed
 #' by clustering analysis of tumor and normal colon tissues probed by
 #' oligonucleotide arrays. \emph{Proceedings of the National Academy of
@@ -22,6 +22,6 @@
 #' @keywords datasets
 #'
 #' @examples
-#' data(colon)
+#' data("colon")
 #' summary(colon)
 "colon"
