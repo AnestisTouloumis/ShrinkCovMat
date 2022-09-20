@@ -22,7 +22,7 @@
 #' @references Touloumis, A. (2015) nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
-#' 
+#'
 #' @name shrinkcovmat.unequal-deprecated
 #' @usage shrinkcovmat.unequal(data, centered)
 #' @seealso \code{\link{ShrinkCovMat-deprecated}}
