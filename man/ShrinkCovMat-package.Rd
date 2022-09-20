@@ -17,9 +17,9 @@ Each of the implemented shrinkage covariance matrix estimators is a convex
 linear combination of the sample covariance matrix and of a target matrix. 
 
 The function \code{\link{shrinkcovmat}} implements three options for the
-target matrix: (a) spherical sample covariance matrix, i.e. a diagonal matrix
-with diagonal elements the average of the sample variances, (b) diagonal 
-matrix sample covariance matrix, i.e. a diagonal matrix with diagonal 
+target matrix: (a) spherical sample covariance matrix, i.e. the diagonal 
+matrix with diagonal elements the average of the sample variances, (b) 
+diagonal sample covariance matrix, i.e. the diagonal matrix with diagonal 
 elements the corresponding sample variances, and (c) the identity matrix
 (\code{identity}). The optimal shrinkage intensity determines how much the
 sample covariance matrix will be shrunk towards the selected target matrix.

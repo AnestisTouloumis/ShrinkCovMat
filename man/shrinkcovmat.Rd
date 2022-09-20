@@ -4,34 +4,44 @@
 \alias{shrinkcovmat}
 \title{Linear Shrinkage of the Sample Covariance}
 \usage{
-shrinkcovmat(data, target = "sphericity", centered = FALSE)
+shrinkcovmat(data, target = "spherical", centered = FALSE)
 }
 \arguments{
 \item{data}{a numeric matrix containing the data.}
 
-\item{target}{a character indicating the target matrix. Options include 
-'sphericity', 'identity' or 'diagonality'.}
+\item{target}{a character indicating the target matrix. Options include
+'spherical', 'identity' or 'diagonal'.}
 
 \item{centered}{a logical indicating if the mean vector is the zero vector.}
 }
 \value{
 Returns an object of the class 'shrinkcovmathat' that has
-components: \item{Sigmahat}{The Stein-type shrinkage estimator of the
-covariance matrix.} \item{lambdahat}{The estimated optimal shrinkage
-intensity.} \item{Sigmasample}{The sample covariance matrix.}
-\item{Target}{The target covariance matrix.} \item{centered}{If the data are
-centered around their mean vector.}
+components: 
+\item{Sigmahat}{The Stein-type shrinkage estimator of the
+covariance matrix.} 
+\item{lambdahat}{The estimated optimal shrinkage
+intensity.} 
+\item{Sigmasample}{The sample covariance matrix.}
+\item{Target}{The target covariance matrix.} 
+\item{centered}{If the data are centered around their mean vector.}
 }
 \description{
 Provides a nonparametric Stein-type shrinkage estimator of the covariance
-matrix.
+matrix that is a linear combination of the sample covariance matrix and of a
+target matrix.
 }
 \details{
+Options for the target matrix include the \code{spherical} sample covariance
+matrix (the diagonal matrix with diagonal elements the average of the sample
+variances), the \code{diagonal} sample covariance matrix (the diagonal matrix
+with diagonal elements the corresponding sample variances), and (c) the 
+\code{identity} matrix.
+
 The rows of the data matrix \code{data} correspond to variables and the
 columns to subjects.
 }
 \examples{
-data(colon)
+data("colon")
 normal_group <- colon[, 1:40]
 tumor_group <- colon[, 41:62]
 targetselection(normal_group)
