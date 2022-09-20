@@ -23,7 +23,7 @@ tumor colon tissues. Note that a logarithmic (base 10) transformation has
 been applied to the gene expression levels.
 }
 \examples{
-data(colon)
+data("colon")
 summary(colon)
 }
 \references{
