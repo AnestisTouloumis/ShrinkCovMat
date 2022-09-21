@@ -1,12 +1,12 @@
-p <- 20
-n <- 10
+p <- sample(5:50, 1)
+n <- sample(4:p, 1)
 datamat <- matrix(rnorm(p * n), p, n)
 
 
 test_that("checking output with uncentered data", {
-  optimal_hat_sphericity <- shrinkcovmat.equal(datamat)$lambdahat
-  optimal_hat_identity <- shrinkcovmat.identity(datamat)$lambdahat
-  optimal_hat_diagonal <- shrinkcovmat.unequal(datamat)$lambdahat
+  optimal_hat_sphericity <- shrinkcovmat(datamat, target = "spherical", centered = FALSE)$lambdahat
+  optimal_hat_identity <- shrinkcovmat(datamat, target = "identity", centered = FALSE)$lambdahat
+  optimal_hat_diagonal <- shrinkcovmat(datamat, target = "diagonal", centered = FALSE)$lambdahat
   sample_variances <- apply(datamat, 1, var)
   range_variances <- diff(range(sample_variances))
   average_variances <- mean(sample_variances)
@@ -20,9 +20,9 @@ test_that("checking output with uncentered data", {
 
 
 test_that("checking output with centered data", {
-  optimal_hat_sphericity <- shrinkcovmat.equal(datamat, TRUE)$lambdahat
-  optimal_hat_identity <- shrinkcovmat.identity(datamat, TRUE)$lambdahat
-  optimal_hat_diagonal <- shrinkcovmat.unequal(datamat, TRUE)$lambdahat
+  optimal_hat_sphericity <- shrinkcovmat(datamat, target = "spherical", centered = TRUE)$lambdahat
+  optimal_hat_identity <- shrinkcovmat(datamat, target = "identity", centered = TRUE)$lambdahat
+  optimal_hat_diagonal <- shrinkcovmat(datamat, target = "diagonal", centered = TRUE)$lambdahat
   sample_variances <- apply(datamat, 1, function(x) mean(x^2))
   range_variances <- diff(range(sample_variances))
   average_variances <- mean(sample_variances)

@@ -59,7 +59,7 @@ shrinkcovmat <- function(data, target = "spherical", centered = FALSE) { # nolin
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
   }
-  if (target == "sphericity") {
+  if (target == "spherical") {
     ans <- shrinkcovmat_equal(data, centered, p, n)
   } else if (target == "diagonal") {
     ans <- shrinkcovmat_unequal(data, centered, p, n)

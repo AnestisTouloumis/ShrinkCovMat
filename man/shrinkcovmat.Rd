@@ -16,13 +16,13 @@ shrinkcovmat(data, target = "spherical", centered = FALSE)
 }
 \value{
 Returns an object of the class 'shrinkcovmathat' that has
-components: 
+components:
 \item{Sigmahat}{The Stein-type shrinkage estimator of the
-covariance matrix.} 
+covariance matrix.}
 \item{lambdahat}{The estimated optimal shrinkage
-intensity.} 
+intensity.}
 \item{Sigmasample}{The sample covariance matrix.}
-\item{Target}{The target covariance matrix.} 
+\item{Target}{The target covariance matrix.}
 \item{centered}{If the data are centered around their mean vector.}
 }
 \description{
@@ -34,7 +34,7 @@ target matrix.
 Options for the target matrix include the \code{spherical} sample covariance
 matrix (the diagonal matrix with diagonal elements the average of the sample
 variances), the \code{diagonal} sample covariance matrix (the diagonal matrix
-with diagonal elements the corresponding sample variances), and (c) the 
+with diagonal elements the corresponding sample variances), and (c) the
 \code{identity} matrix.
 
 The rows of the data matrix \code{data} correspond to variables and the

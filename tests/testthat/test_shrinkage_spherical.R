@@ -1,5 +1,5 @@
-p <- 20
-n <- 6
+p <- sample(5:50, 1)
+n <- sample(4:p, 1)
 datamat <- matrix(rnorm(p * n), p, n)
 
 test_that("checking output with uncentered data", {
@@ -14,7 +14,7 @@ test_that("checking output with uncentered data", {
     (n * trace_sigma_squared_hat + (p - n + 1) / p * trace_sigma_hat^2)
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(mean(diag(sample_covariance_matrix)), p)
-  ans <- shrinkcovmat.equal(datamat)
+  ans <- shrinkcovmat(datamat, target = "spherical")
   expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
     lambda_hat * target)
   expect_equal(ans$lambdahat, lambda_hat)
@@ -39,7 +39,7 @@ test_that("checking output with centered data", {
   lambda_hat <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
     ((n + 1) * trace_sigma_squared_hat + (p - n) / p * trace_sigma_hat^2)
   lambda_hat <- max(0, min(lambda_hat, 1))
-  ans <- shrinkcovmat.equal(datamat, TRUE)
+  ans <- shrinkcovmat(datamat, target = "spherical", centered = TRUE)
   target <- diag(nu_hat, p)
   expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
     lambda_hat * target)
@@ -51,32 +51,32 @@ test_that("checking output with centered data", {
 
 test_that("checking centered argument", {
   expect_equal(
-    shrinkcovmat.equal(datamat, "TRUE"),
-    shrinkcovmat.equal(datamat, TRUE)
+    shrinkcovmat(datamat, target = "spherical", centered = "TRUE"),
+    shrinkcovmat(datamat, target = "spherical", centered = TRUE)
   )
   expect_equal(
-    shrinkcovmat.equal(datamat, "FALSE"),
-    shrinkcovmat.equal(datamat, FALSE)
+    shrinkcovmat(datamat, target = "spherical", centered = "FALSE"),
+    shrinkcovmat(datamat, target = "spherical", centered = FALSE)
   )
-  expect_error(shrinkcovmat.equal(datamat, "iraklis"))
+  expect_error(shrinkcovmat(datamat, target = "spherical", centered = "iraklis"))
 })
 
 
 test_that("checking sample size requirements", {
   expect_error(
-    shrinkcovmat.equal(datamat[, 1:3], FALSE),
+    shrinkcovmat(datamat[, 1:3], target = "spherical", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.equal(datamat[, 1:2], FALSE),
+    shrinkcovmat(datamat[, 1:2], target = "spherical", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.equal(datamat[, 1], FALSE),
+    shrinkcovmat(datamat[, 1], target = "spherical", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.equal(datamat[, 1], TRUE),
+    shrinkcovmat(datamat[, 1], target = "spherical", centered = TRUE),
     "The number of columns should be greater than 1"
   )
 })

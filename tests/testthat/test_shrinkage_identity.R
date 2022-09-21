@@ -1,5 +1,5 @@
-p <- 20
-n <- 5
+p <- sample(5:50, 1)
+n <- sample(4:p, 1)
 datamat <- matrix(rnorm(p * n), p, n)
 
 test_that("checking output with uncentered data", {
@@ -15,7 +15,7 @@ test_that("checking output with uncentered data", {
       2 * trace_sigma_hat * (n - 1) + p * (n - 1))
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(p)
-  ans <- shrinkcovmat.identity(datamat)
+  ans <- shrinkcovmat(datamat, target = "identity", centered = FALSE)
   expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
     lambda_hat * target)
   expect_equal(ans$lambdahat, lambda_hat)
@@ -41,7 +41,7 @@ test_that("checking output with centered data", {
       2 * trace_sigma_hat * n + p * n)
   lambda_hat <- max(0, min(lambda_hat, 1))
   target <- diag(p)
-  ans <- shrinkcovmat.identity(datamat, centered = TRUE)
+  ans <- shrinkcovmat(datamat, target = "identity", centered = TRUE)
   expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
     lambda_hat * target)
   expect_equal(ans$lambdahat, lambda_hat)
@@ -52,32 +52,32 @@ test_that("checking output with centered data", {
 
 test_that("checking centered argument", {
   expect_equal(
-    shrinkcovmat.identity(datamat, centered = "TRUE"),
-    shrinkcovmat.identity(datamat, centered = TRUE)
+    shrinkcovmat(datamat, target = "identity", centered = "TRUE"),
+    shrinkcovmat(datamat, target = "identity", centered = TRUE)
   )
   expect_equal(
-    shrinkcovmat.identity(datamat, centered = "FALSE"),
-    shrinkcovmat.identity(datamat, centered = FALSE)
+    shrinkcovmat(datamat, target = "identity", centered = "FALSE"),
+    shrinkcovmat(datamat, target = "identity", centered = FALSE)
   )
-  expect_error(shrinkcovmat.identity(datamat, centered = "iraklis"))
+  expect_error(shrinkcovmat(datamat, target = "identity", centered = "iraklis"))
 })
 
 
 test_that("checking sample size requirements", {
   expect_error(
-    shrinkcovmat.identity(datamat[, 1:3], FALSE),
+    shrinkcovmat(datamat[, 1:3], target = "identity", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.identity(datamat[, 1:2], FALSE),
+    shrinkcovmat(datamat[, 1:2], target = "identity", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.identity(datamat[, 1], FALSE),
+    shrinkcovmat(datamat[, 1], target = "identity", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.identity(datamat[, 1], TRUE),
+    shrinkcovmat(datamat[, 1], target = "identity", centered = TRUE),
     "The number of columns should be greater than 1"
   )
 })

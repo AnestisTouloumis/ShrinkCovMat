@@ -1,5 +1,5 @@
-p <- 10
-n <- 5
+p <- sample(5:20, 1)
+n <- sample(4:p, 1)
 datamat <- matrix(rnorm(p * n), p, n)
 
 # nolint start
@@ -39,7 +39,7 @@ test_that("checking output with uncentered data", {
     (n * trace_sigma_squared_hat + trace_sigma_hat^2 -
       (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
   lambda_hat <- max(0, min(lambda_hat, 1))
-  ans <- shrinkcovmat.unequal(datamat)
+  ans <- shrinkcovmat(datamat, target = "diagonal", centered = FALSE)
   target <- diag(sigma_sample_variances, p)
   expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
     lambda_hat * target)
@@ -71,7 +71,7 @@ test_that("checking output with centered data", {
     ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat^2 -
       (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat)
   lambda_hat <- max(0, min(lambda_hat, 1))
-  ans <- shrinkcovmat.unequal(datamat, centered = TRUE)
+  ans <- shrinkcovmat(datamat, target = "diagonal", centered = TRUE)
   target <- diag(sigma_sample_variances, p)
   expect_equal(ans$Sigmahat, (1 - lambda_hat) * sample_covariance_matrix +
     lambda_hat * target)
@@ -83,32 +83,32 @@ test_that("checking output with centered data", {
 
 test_that("checking centered argument", {
   expect_equal(
-    shrinkcovmat.unequal(datamat, "TRUE"),
-    shrinkcovmat.unequal(datamat, TRUE)
+    shrinkcovmat(datamat, target = "diagonal", centered = "TRUE"),
+    shrinkcovmat(datamat, target = "diagonal", centered = TRUE)
   )
   expect_equal(
-    shrinkcovmat.unequal(datamat, "FALSE"),
-    shrinkcovmat.unequal(datamat, FALSE)
+    shrinkcovmat(datamat, target = "diagonal", centered = "FALSE"),
+    shrinkcovmat(datamat, target = "diagonal", centered = FALSE)
   )
-  expect_error(shrinkcovmat.unequal(datamat, "iraklis"))
+  expect_error(shrinkcovmat(datamat, target = "diagonal", centered = "iraklis"))
 })
 
 
 test_that("testing sample size requirements", {
   expect_error(
-    shrinkcovmat.unequal(datamat[, 1:3], FALSE),
+    shrinkcovmat(datamat[, 1:3], target = "diagonal", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.unequal(datamat[, 1:2], FALSE),
+    shrinkcovmat(datamat[, 1:2], target = "diagonal", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.unequal(datamat[, 1], FALSE),
+    shrinkcovmat(datamat[, 1], target = "diagonal", centered = FALSE),
     "The number of columns should be greater than 3"
   )
   expect_error(
-    shrinkcovmat.unequal(datamat[, 1], TRUE),
+    shrinkcovmat(datamat[, 1], target = "diagonal", centered = TRUE),
     "The number of columns should be greater than 1"
   )
 })
