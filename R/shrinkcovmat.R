@@ -59,12 +59,18 @@ shrinkcovmat <- function(data, target = "spherical", centered = FALSE) { # nolin
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
   }
-  if (target == "spherical") {
-    ans <- shrinkcovmat_equal(data, centered, p, n)
-  } else if (target == "diagonal") {
-    ans <- shrinkcovmat_unequal(data, centered, p, n)
-  } else {
-    ans <- shrinkcovmat_identity(data, centered, p, n)
-  }
+  sample_covariance_matrix <- calculate_sample_covariance_matrix(data, centered, n)
+  trace_statistics <- calculate_trace_statistic(data, centered)
+  sample_size <- ifelse(centered, n + 1, n)
+  lambda_hat <- calculate_lambda_hat(trace_statistics, sample_size, p, target)
+  target_matrix <- calculate_target_matrix(data, centered, p, target)
+  sigma_hat <- calculate_sigma_matrix(sample_covariance_matrix, lambda_hat, diag(target_matrix))
+  ans <- list(
+    Sigmahat = sigma_hat, lambdahat = lambda_hat,
+    Sigmasample = sample_covariance_matrix, Target = target_matrix,
+    centered = centered
+  )
+  class(ans) <- "shrinkcovmathat"
+  ans
   ans
 }
