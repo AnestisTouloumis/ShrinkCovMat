@@ -27,6 +27,7 @@ calculate_sample_variances <- function(data, centered) {
   ans
 }
 
+
 calculate_lambda_hat <- function(trace_statistics, sample_size, p, target) {
   trace_sigma_hat <- trace_statistics[1]
   trace_sigma_squared_hat <- trace_statistics[2]

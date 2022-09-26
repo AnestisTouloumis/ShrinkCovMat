@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions)
 [![Github version](`r paste0("https://img.shields.io/badge/GitHub%20-", as.vector(read.dcf('DESCRIPTION')[, 'Version']),"-green.svg")`)]("commits/master")
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
-[![Codecov test coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg?token=qBztxEiCLU)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat)
 
 [![CRAN Version](https://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/ShrinkCovMat)
@@ -72,11 +72,11 @@ library("ShrinkCovMat")
 
 This package provides the nonparametric Stein-type shrinkage covariance matrix estimators proposed by @Touloumis2015. These estimators are suitable and statistically efficient regardless of the dimensionality.
 
-Each of the implemented shrinkage covariance matrix estimators is a convex linear combination of the sample covariance matrix and of a target matrix. Three options are considered for the target matrix: 
+Each of the three implemented shrinkage covariance matrix estimators is a convex linear combination of the sample covariance matrix and of a target matrix. The core function is `shrinkcovmat` and the argument `target` defines one of the following three options: 
 
-- the identity matrix (`shrinkcovmat.identity`),
-- the scaled identity matrix (`shrinkcovmat.equal`),
-- the diagonal matrix with diagonal elements the corresponding sample variances (`shrinkcovmat.unequal`).
+- the identity matrix (`target = "identity"`),
+- the scaled identity matrix (`target = "spherical"`),
+- the diagonal matrix with diagonal elements the corresponding sample variances (`target = "diagonal"`).
 
 Estimation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015.
 
@@ -95,7 +95,7 @@ targetselection(normal_group)
 ```
 The estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two, and the sample variances appear to be of similar magnitude. Thus, the scaled identity matrix seems to be the most appropriate target for the covariance estimated. The resulting covariance matrix estimator is:
 ```{r}
-estimated_covariance_normal <- shrinkcovmat.equal(normal_group)
+estimated_covariance_normal <- shrinkcovmat(normal_group, target = "diagonal")
 estimated_covariance_normal
 ```
 We follow a similar procedure for the tumor group: 
@@ -104,7 +104,7 @@ targetselection(tumor_group)
 ```
 As before, we may conclude that the scaled identity matrix seems to be the most suitable target matrix. The resulting covariance matrix estimate for the tumor group is:
 ```{r}
-estimated_covariance_tumor <- shrinkcovmat.equal(tumor_group)
+estimated_covariance_tumor <- shrinkcovmat(tumor_group, target = "spherical")
 estimated_covariance_tumor
 ```
 

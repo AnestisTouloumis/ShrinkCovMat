@@ -5,12 +5,12 @@
 
 [![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions)
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.4.4-green.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.4.5-green.svg)](%22commits/master%22)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Codecov test
-coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat?branch=master)
+coverage](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat/branch/master/graph/badge.svg?token=qBztxEiCLU)](https://codecov.io/gh/AnestisTouloumis/ShrinkCovMat)
 
 [![CRAN
 Version](https://www.r-pkg.org/badges/version/ShrinkCovMat?color=blue)](https://CRAN.R-project.org/package=ShrinkCovMat)
@@ -56,14 +56,15 @@ This package provides the nonparametric Stein-type shrinkage covariance
 matrix estimators proposed by Touloumis (2015). These estimators are
 suitable and statistically efficient regardless of the dimensionality.
 
-Each of the implemented shrinkage covariance matrix estimators is a
-convex linear combination of the sample covariance matrix and of a
-target matrix. Three options are considered for the target matrix:
+Each of the three implemented shrinkage covariance matrix estimators is
+a convex linear combination of the sample covariance matrix and of a
+target matrix. The core function is `shrinkcovmat` and the argument
+`target` defines one of the following three options:
 
--   the identity matrix (`shrinkcovmat.identity`),
--   the scaled identity matrix (`shrinkcovmat.equal`),
+-   the identity matrix (`target = "identity"`),
+-   the scaled identity matrix (`target = "spherical"`),
 -   the diagonal matrix with diagonal elements the corresponding sample
-    variances (`shrinkcovmat.unequal`).
+    variances (`target = "diagonal"`).
 
 Estimation of the corresponding optimal shrinkage intensities is
 discussed in Touloumis (2015).
@@ -105,27 +106,27 @@ the most appropriate target for the covariance estimated. The resulting
 covariance matrix estimator is:
 
 ``` r
-estimated_covariance_normal <- shrinkcovmat.equal(normal_group)
+estimated_covariance_normal <- shrinkcovmat(normal_group, target = "diagonal")
 estimated_covariance_normal
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
-#> Estimated Optimal Shrinkage Intensity = 0.1401 
+#> Estimated Optimal Shrinkage Intensity = 0.14 
 #> 
 #> Estimated Covariance Matrix [1:5,1:5] =
 #>        [,1]   [,2]   [,3]   [,4]   [,5]
-#> [1,] 0.0396 0.0107 0.0101 0.0214 0.0175
-#> [2,] 0.0107 0.0499 0.0368 0.0171 0.0040
-#> [3,] 0.0101 0.0368 0.0499 0.0147 0.0045
-#> [4,] 0.0214 0.0171 0.0147 0.0523 0.0091
-#> [5,] 0.0175 0.0040 0.0045 0.0091 0.0483
+#> [1,] 0.0317 0.0107 0.0101 0.0214 0.0175
+#> [2,] 0.0107 0.0437 0.0368 0.0171 0.0040
+#> [3,] 0.0101 0.0368 0.0436 0.0147 0.0045
+#> [4,] 0.0214 0.0171 0.0147 0.0465 0.0091
+#> [5,] 0.0175 0.0040 0.0045 0.0091 0.0418
 #> 
 #> Target Matrix [1:5,1:5] =
 #>        [,1]   [,2]   [,3]   [,4]   [,5]
-#> [1,] 0.0882 0.0000 0.0000 0.0000 0.0000
-#> [2,] 0.0000 0.0882 0.0000 0.0000 0.0000
-#> [3,] 0.0000 0.0000 0.0882 0.0000 0.0000
-#> [4,] 0.0000 0.0000 0.0000 0.0882 0.0000
-#> [5,] 0.0000 0.0000 0.0000 0.0000 0.0882
+#> [1,] 0.0317 0.0000 0.0000 0.0000 0.0000
+#> [2,] 0.0000 0.0437 0.0000 0.0000 0.0000
+#> [3,] 0.0000 0.0000 0.0436 0.0000 0.0000
+#> [4,] 0.0000 0.0000 0.0000 0.0465 0.0000
+#> [5,] 0.0000 0.0000 0.0000 0.0000 0.0418
 ```
 
 We follow a similar procedure for the tumor group:
@@ -147,7 +148,7 @@ the most suitable target matrix. The resulting covariance matrix
 estimate for the tumor group is:
 
 ``` r
-estimated_covariance_tumor <- shrinkcovmat.equal(tumor_group)
+estimated_covariance_tumor <- shrinkcovmat(tumor_group, target = "spherical")
 estimated_covariance_tumor
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
