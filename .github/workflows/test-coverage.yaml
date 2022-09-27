@@ -27,6 +27,5 @@ jobs:
           needs: coverage
 
       - name: Test coverage
-        run: covr::codecov(quiet = FALSE, 
-        function_exclusions = c("shrinkcovmat.identity", "shrinkcovmat.equal", "shrinkcovmat.unequal"))
+        run: covr::codecov(quiet = FALSE, function_exclusions = c("shrinkcovmat.identity", "shrinkcovmat.equal", "shrinkcovmat.unequal"))
         shell: Rscript {0}
