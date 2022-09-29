@@ -42,45 +42,30 @@ targetselection <- function(data, centered = FALSE) {
   if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)
+  centered <- as.logical(centered)
+  if (centered != TRUE && centered != FALSE) {
+    stop("'centered' must be either 'TRUE' or 'FALSE'")
+  }
   if (!centered) {
     if (n < 4) stop("The number of columns should be greater than 3")
-    sample_variances <- apply(data, 1, var)
-    trace_statistics <- trace_stats_uncentered(data) # nolintr
-    trace_sigma_hat <- trace_statistics[1]
-    trace_sigma_squared_hat <- trace_statistics[2]
-    lambda_hat_sphericity <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
-      (n * trace_sigma_squared_hat + (p - n + 1) / p * trace_sigma_hat^2)
-    lambda_hat_sphericity <- min(lambda_hat_sphericity, 1)
-    lambda_hat_identity <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
-      (n * trace_sigma_squared_hat + trace_sigma_hat^2 -
-        2 * trace_sigma_hat * (n - 1) + p * (n - 1))
-    lambda_hat_identity <- max(0, min(lambda_hat_identity, 1))
-    trace_diagonal_sigma_sq_hat <- trace_statistics[3]
-    lambda_hat_diagonal <- (trace_sigma_hat^2 + trace_sigma_squared_hat -
-      (2 - 2 / n) * trace_diagonal_sigma_sq_hat) /
-      (n * trace_sigma_squared_hat + trace_sigma_hat^2 -
-        (n + 1 - 2 / n) * trace_diagonal_sigma_sq_hat)
-    lambda_hat_diagonal <- max(0, min(lambda_hat_diagonal, 1))
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
-    sample_variances <- apply(data, 1, function(x) mean(x^2))
-    trace_statistics <- trace_stats_centered(data) # nolintr
-    trace_sigma_hat <- trace_statistics[1]
-    trace_sigma_squared_hat <- trace_statistics[2]
-    trace_diagonal_sigma_sq_hat <- trace_statistics[3]
-    lambda_hat_sphericity <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
-      ((n + 1) * trace_sigma_squared_hat + (p - n) / p * trace_sigma_hat^2)
-    lambda_hat_sphericity <- min(lambda_hat_sphericity, 1)
-    lambda_hat_identity <- (trace_sigma_hat^2 + trace_sigma_squared_hat) /
-      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat^2 -
-        2 * trace_sigma_hat * n + p * n)
-    lambda_hat_identity <- max(0, min(lambda_hat_identity, 1))
-    lambda_hat_diagonal <- (trace_sigma_hat^2 + trace_sigma_squared_hat -
-      (2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat) /
-      ((n + 1) * trace_sigma_squared_hat + trace_sigma_hat^2 -
-        (n + 2 - 2 / (n + 1)) * trace_diagonal_sigma_sq_hat)
-    lambda_hat_diagonal <- max(0, min(lambda_hat_diagonal, 1))
   }
+  sample_variances <- calculate_sample_variances(data, centered)
+  trace_statistics <- calculate_trace_statistics(data, centered)
+  sample_size <- ifelse(centered, n + 1, n)
+  lambda_hat_sphericity <- 
+    calculate_lambda_hat(
+      trace_statistics, sample_size, p, "spherical"
+      )
+  lambda_hat_identity <-
+    calculate_lambda_hat(
+      trace_statistics, sample_size, p, "identity"
+      )
+  lambda_hat_diagonal <-
+    calculate_lambda_hat(
+      trace_statistics, sample_size, p, "diagonal"
+    ) 
   ans <- list(
     optimal_sphericity = lambda_hat_sphericity,
     optimal_identity = lambda_hat_identity,
