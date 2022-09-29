@@ -42,7 +42,7 @@
 #' sigma_hat_tumor_group <- shrinkcovmat(tumor_group)
 #' sigma_hat_tumor_group
 #' @export
-shrinkcovmat <- function(data, target = "spherical", centered = FALSE) { # nolint
+shrinkcovmat <- function(data, target = "spherical", centered = FALSE) {
   if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)
@@ -59,14 +59,19 @@ shrinkcovmat <- function(data, target = "spherical", centered = FALSE) { # nolin
   } else {
     if (n < 2) stop("The number of columns should be greater than 1")
   }
-  sample_covariance_matrix <- calculate_sample_covariance_matrix(data, centered, n)
-  trace_statistics <- calculate_trace_statistic(data, centered)
+  sample_covariance_matrix <- calculate_sample_covariance_matrix(
+    data, centered, n
+  )
+  trace_statistics <- calculate_trace_statistics(data, centered)
   sample_size <- ifelse(centered, n + 1, n)
   lambda_hat <- calculate_lambda_hat(trace_statistics, sample_size, p, target)
   target_matrix <- calculate_target_matrix(data, centered, p, target)
-  sigma_hat <- calculate_sigma_matrix(sample_covariance_matrix, lambda_hat, diag(target_matrix))
+  shrinkage_covariance_matrix <-
+    calculate_shrinkage_covariance_matrix(
+      sample_covariance_matrix, lambda_hat, diag(target_matrix)
+    )
   ans <- list(
-    Sigmahat = sigma_hat, lambdahat = lambda_hat,
+    Sigmahat = shrinkage_covariance_matrix, lambdahat = lambda_hat,
     Sigmasample = sample_covariance_matrix, Target = target_matrix,
     centered = centered
   )

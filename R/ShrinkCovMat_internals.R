@@ -8,7 +8,7 @@ calculate_sample_covariance_matrix <- function(data, centered, n) {
 }
 
 
-calculate_trace_statistic <- function(data, centered) {
+calculate_trace_statistics <- function(data, centered) {
   if (!centered) {
     ans <- trace_stats_uncentered(data)
   } else {
@@ -64,7 +64,8 @@ calculate_target_matrix <- function(data, centered, p, target) {
 }
 
 
-calculate_sigma_matrix <- function(sample_covariance_matrix, lambda_hat, target_diagonal) {
+calculate_shrinkage_covariance_matrix <- function(sample_covariance_matrix,
+                                                  lambda_hat, target_diagonal) {
   if (lambda_hat < 1) {
     ans <- (1 - lambda_hat) * sample_covariance_matrix
     diag(ans) <- diag(ans) + lambda_hat * target_diagonal
