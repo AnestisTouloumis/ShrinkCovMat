@@ -5,7 +5,7 @@
 
 [![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions)
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.4.5-green.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.4.6-green.svg)](%22commits/master%22)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -52,25 +52,30 @@ library("ShrinkCovMat")
 
 ## Usage
 
-This package provides the nonparametric Stein-type shrinkage covariance
-matrix estimators proposed by Touloumis (2015). These estimators are
-suitable and statistically efficient regardless of the dimensionality.
+This package provides estimates of the covariance matrix and in
+particular, it implements the nonparametric Stein-type shrinkage
+covariance matrix estimators proposed in Touloumis (2015). These
+estimators are suitable and statistically efficient regardless of the
+dimensionality.
 
-Each of the three implemented shrinkage covariance matrix estimators is
-a convex linear combination of the sample covariance matrix and of a
-target matrix. The core function is `shrinkcovmat` and the argument
-`target` defines one of the following three options:
+Each of the three implemented shrinkage covariance matrix estimates is a
+convex linear combination of the sample covariance matrix and of a
+target matrix. The core function is called `shrinkcovmat` and the
+argument `target` defines one of the following three options for the
+target matrix:
 
 -   the identity matrix (`target = "identity"`),
 -   the scaled identity matrix (`target = "spherical"`),
 -   the diagonal matrix with diagonal elements the corresponding sample
     variances (`target = "diagonal"`).
 
-Estimation of the corresponding optimal shrinkage intensities is
+Calculation of the corresponding optimal shrinkage intensities is
 discussed in Touloumis (2015).
 
 The utility function `targetselection` is designed to ease the selection
-of the target matrix.
+of the target matrix. This is based on empirical observation by
+inspecting the estimated optimal intensities and the range and average
+of the sample variances.
 
 ## Example
 
@@ -85,67 +90,66 @@ tumor_group <- colon[, 41:62]
 ```
 
 To decide the target matrix for covariance matrix of the normal group,
-inspect the output of the function `targetselection`:
+inspect the following output:
 
 ``` r
 targetselection(normal_group)
-#> OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH 
-#> Equal variances   : 0.1401 
-#> Unit variances    : 0.1125 
-#> Unequal variances : 0.14 
+#> ESTIMATED SHRINKAGE INTENSITIES WITH TARGET MATRIX THE 
+#> Spherical matrix : 0.1401 
+#> Identity  matrix : 0.1125 
+#> Diagonal  matrix : 0.14 
 #> 
 #> SAMPLE VARIANCES 
 #> Range   : 0.4714 
 #> Average : 0.0882
 ```
 
-The estimated optimal shrinkage intensity for the scaled identity matrix
-is slightly larger than the other two, and the sample variances appear
-to be of similar magnitude. Thus, the scaled identity matrix seems to be
-the most appropriate target for the covariance estimated. The resulting
-covariance matrix estimator is:
+The estimated optimal shrinkage intensity for the spherical matrix is
+slightly larger than the other two. In addition the sample variances
+appear to be of similar magnitude and their average is smaller than 1.
+Thus, the spherical matrix seems to be the most appropriate target for
+the covariance matrix. The resulting covariance matrix estimate is:
 
 ``` r
-estimated_covariance_normal <- shrinkcovmat(normal_group, target = "diagonal")
+estimated_covariance_normal <- shrinkcovmat(normal_group, target = "spherical")
 estimated_covariance_normal
 #> SHRINKAGE ESTIMATION OF THE COVARIANCE MATRIX 
 #> 
-#> Estimated Optimal Shrinkage Intensity = 0.14 
+#> Estimated Optimal Shrinkage Intensity = 0.1401 
 #> 
 #> Estimated Covariance Matrix [1:5,1:5] =
 #>        [,1]   [,2]   [,3]   [,4]   [,5]
-#> [1,] 0.0317 0.0107 0.0101 0.0214 0.0175
-#> [2,] 0.0107 0.0437 0.0368 0.0171 0.0040
-#> [3,] 0.0101 0.0368 0.0436 0.0147 0.0045
-#> [4,] 0.0214 0.0171 0.0147 0.0465 0.0091
-#> [5,] 0.0175 0.0040 0.0045 0.0091 0.0418
+#> [1,] 0.0396 0.0107 0.0101 0.0214 0.0175
+#> [2,] 0.0107 0.0499 0.0368 0.0171 0.0040
+#> [3,] 0.0101 0.0368 0.0499 0.0147 0.0045
+#> [4,] 0.0214 0.0171 0.0147 0.0523 0.0091
+#> [5,] 0.0175 0.0040 0.0045 0.0091 0.0483
 #> 
 #> Target Matrix [1:5,1:5] =
 #>        [,1]   [,2]   [,3]   [,4]   [,5]
-#> [1,] 0.0317 0.0000 0.0000 0.0000 0.0000
-#> [2,] 0.0000 0.0437 0.0000 0.0000 0.0000
-#> [3,] 0.0000 0.0000 0.0436 0.0000 0.0000
-#> [4,] 0.0000 0.0000 0.0000 0.0465 0.0000
-#> [5,] 0.0000 0.0000 0.0000 0.0000 0.0418
+#> [1,] 0.0882 0.0000 0.0000 0.0000 0.0000
+#> [2,] 0.0000 0.0882 0.0000 0.0000 0.0000
+#> [3,] 0.0000 0.0000 0.0882 0.0000 0.0000
+#> [4,] 0.0000 0.0000 0.0000 0.0882 0.0000
+#> [5,] 0.0000 0.0000 0.0000 0.0000 0.0882
 ```
 
 We follow a similar procedure for the tumor group:
 
 ``` r
 targetselection(tumor_group)
-#> OPTIMAL SHRINKAGE INTENSITIES FOR THE TARGET MATRIX WITH 
-#> Equal variances   : 0.1956 
-#> Unit variances    : 0.1705 
-#> Unequal variances : 0.1955 
+#> ESTIMATED SHRINKAGE INTENSITIES WITH TARGET MATRIX THE 
+#> Spherical matrix : 0.1956 
+#> Identity  matrix : 0.1705 
+#> Diagonal  matrix : 0.1955 
 #> 
 #> SAMPLE VARIANCES 
 #> Range   : 0.4226 
 #> Average : 0.0958
 ```
 
-As before, we may conclude that the scaled identity matrix seems to be
-the most suitable target matrix. The resulting covariance matrix
-estimate for the tumor group is:
+As before, we may choose the spherical matrix as the target matrix. The
+resulting covariance matrix estimate for the tumor group is:
 
 ``` r
 estimated_covariance_tumor <- shrinkcovmat(tumor_group, target = "spherical")

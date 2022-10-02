@@ -14,11 +14,13 @@ targetselection(data, centered = FALSE)
 \value{
 Prints the estimated optimal shrinkage intensities, the range and
 average of the sample variances and returns an object of the class
-'targetsel' that has components: \item{optimal_sphericity}{The estimated
-optimal intensity for a target matrix with equal variances.}
-\item{optimal_identity}{The estimated optimal shrinkage
-intensity for the identity target matrix.} \item{optimal_diagonal}{The
-estimated optimal intensity for a target matrix with unequal variances.}
+'targetsel' that has components: 
+\item{lambda_hat_spherical}{The estimated
+optimal shrinkage intensity for the spherical target matrix.}
+\item{lambda_hat_identity}{The estimated optimal shrinkage
+intensity for the identity target matrix.} 
+\item{lambda_hat_diagonal}{The
+estimated optimal intensity for the diagonal target matrix.}
 \item{range}{The range of the sample variances.} \item{average}{The average
 of the sample variances.}
 }
@@ -38,13 +40,13 @@ data(colon)
 normal_group <- colon[, 1:40]
 targetselection(normal_group)
 ## Similar intensities, the range of the sample variances is small and the
-## average is not close to one. The scaled identity matrix seems to be the
+## average is not close to one. The spherical matrix seems to be the
 ## most suitable target matrix for the normal group.
 
 tumor_group <- colon[, 41:62]
 targetselection(tumor_group)
 ## Similar intensities, the range of the sample variances is small and the
-## average is not close to one. The scaled identity matrix seems to be the
+## average is not close to one. The spherical matrix seems to be the
 ## most suitable target matrix for the colon group.
 }
 \references{

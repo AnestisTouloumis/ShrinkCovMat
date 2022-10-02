@@ -70,17 +70,17 @@ library("ShrinkCovMat")
 
 ## Usage
 
-This package provides the nonparametric Stein-type shrinkage covariance matrix estimators proposed by @Touloumis2015. These estimators are suitable and statistically efficient regardless of the dimensionality.
+This package provides estimates of the covariance matrix and in particular, it implements the nonparametric Stein-type shrinkage covariance matrix estimators proposed in @Touloumis2015. These estimators are suitable and statistically efficient regardless of the dimensionality.
 
-Each of the three implemented shrinkage covariance matrix estimators is a convex linear combination of the sample covariance matrix and of a target matrix. The core function is `shrinkcovmat` and the argument `target` defines one of the following three options: 
+Each of the three implemented shrinkage covariance matrix estimates is a convex linear combination of the sample covariance matrix and of a target matrix. The core function is called `shrinkcovmat` and the argument `target` defines one of the following three options for the target matrix: 
 
 - the identity matrix (`target = "identity"`),
 - the scaled identity matrix (`target = "spherical"`),
 - the diagonal matrix with diagonal elements the corresponding sample variances (`target = "diagonal"`).
 
-Estimation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015.
+Calculation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015.
 
-The utility function `targetselection` is designed to ease the selection of the target matrix.
+The utility function `targetselection` is designed to ease the selection of the target matrix. This is based on empirical observation by inspecting the estimated optimal intensities and the range and average of the sample variances.
 
 ## Example
 Consider the colon cancer data example analyzed in @Touloumis2015. The data consists of two tissue groups: the normal tissue group and the tumor tissue group.
@@ -89,20 +89,20 @@ data(colon)
 normal_group <- colon[, 1:40]
 tumor_group <- colon[, 41:62]
 ```
-To decide the target matrix for covariance matrix of the normal group, inspect the output of the function `targetselection`:
+To decide the target matrix for covariance matrix of the normal group, inspect the following output:
 ```{r}
 targetselection(normal_group)
 ```
-The estimated optimal shrinkage intensity for the scaled identity matrix is slightly larger than the other two, and the sample variances appear to be of similar magnitude. Thus, the scaled identity matrix seems to be the most appropriate target for the covariance estimated. The resulting covariance matrix estimator is:
+The estimated optimal shrinkage intensity for the spherical matrix is slightly larger than the other two. In addition the sample variances appear to be of similar magnitude and their average is smaller than 1. Thus, the spherical matrix seems to be the most appropriate target for the covariance matrix. The resulting covariance matrix estimate is:
 ```{r}
-estimated_covariance_normal <- shrinkcovmat(normal_group, target = "diagonal")
+estimated_covariance_normal <- shrinkcovmat(normal_group, target = "spherical")
 estimated_covariance_normal
 ```
 We follow a similar procedure for the tumor group: 
 ```{r}
 targetselection(tumor_group)
 ```
-As before, we may conclude that the scaled identity matrix seems to be the most suitable target matrix. The resulting covariance matrix estimate for the tumor group is:
+As before, we may choose the spherical matrix as the target matrix. The resulting covariance matrix estimate for the tumor group is:
 ```{r}
 estimated_covariance_tumor <- shrinkcovmat(tumor_group, target = "spherical")
 estimated_covariance_tumor

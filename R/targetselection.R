@@ -13,11 +13,13 @@
 #' @param centered a logical indicating if the mean vector is the zero vector.
 #' @return Prints the estimated optimal shrinkage intensities, the range and
 #' average of the sample variances and returns an object of the class
-#' 'targetsel' that has components: \item{optimal_sphericity}{The estimated
-#' optimal intensity for a target matrix with equal variances.}
-#' \item{optimal_identity}{The estimated optimal shrinkage
-#' intensity for the identity target matrix.} \item{optimal_diagonal}{The
-#' estimated optimal intensity for a target matrix with unequal variances.}
+#' 'targetsel' that has components: 
+#' \item{lambda_hat_spherical}{The estimated
+#' optimal shrinkage intensity for the spherical target matrix.}
+#' \item{lambda_hat_identity}{The estimated optimal shrinkage
+#' intensity for the identity target matrix.} 
+#' \item{lambda_hat_diagonal}{The
+#' estimated optimal intensity for the diagonal target matrix.}
 #' \item{range}{The range of the sample variances.} \item{average}{The average
 #' of the sample variances.}
 #' @author Anestis Touloumis
@@ -29,13 +31,13 @@
 #' normal_group <- colon[, 1:40]
 #' targetselection(normal_group)
 #' ## Similar intensities, the range of the sample variances is small and the
-#' ## average is not close to one. The scaled identity matrix seems to be the
+#' ## average is not close to one. The spherical matrix seems to be the
 #' ## most suitable target matrix for the normal group.
 #'
 #' tumor_group <- colon[, 41:62]
 #' targetselection(tumor_group)
 #' ## Similar intensities, the range of the sample variances is small and the
-#' ## average is not close to one. The scaled identity matrix seems to be the
+#' ## average is not close to one. The spherical matrix seems to be the
 #' ## most suitable target matrix for the colon group.
 #' @export
 targetselection <- function(data, centered = FALSE) {
@@ -54,7 +56,7 @@ targetselection <- function(data, centered = FALSE) {
   sample_variances <- calculate_sample_variances(data, centered)
   trace_statistics <- calculate_trace_statistics(data, centered)
   sample_size <- ifelse(centered, n + 1, n)
-  lambda_hat_sphericity <- 
+  lambda_hat_spherical <- 
     calculate_lambda_hat(
       trace_statistics, sample_size, p, "spherical"
       )
@@ -67,9 +69,9 @@ targetselection <- function(data, centered = FALSE) {
       trace_statistics, sample_size, p, "diagonal"
     ) 
   ans <- list(
-    optimal_sphericity = lambda_hat_sphericity,
-    optimal_identity = lambda_hat_identity,
-    optimal_diagonal = lambda_hat_diagonal,
+    lambda_hat_spherical = lambda_hat_spherical,
+    lambda_hat_identity = lambda_hat_identity,
+    lambda_hat_diagonal = lambda_hat_diagonal,
     range = abs(diff(range(sample_variances))),
     average = mean(sample_variances)
   )

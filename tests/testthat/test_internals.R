@@ -65,9 +65,9 @@ test_that("calculate_lambda_hat - centered", {
   lambda_identity <-
     calculate_lambda_hat(trace_stats, sample_size, p, "identity")
   lambdas <- targetselection(datamat, TRUE)
-  expect_equal(lambda_identity, lambdas$optimal_identity)
-  expect_equal(lambda_diagonal, lambdas$optimal_diagonal)
-  expect_equal(lambda_spherical, lambdas$optimal_sphericity)
+  expect_equal(lambda_identity, lambdas$lambda_hat_identity)
+  expect_equal(lambda_diagonal, lambdas$lambda_hat_diagonal)
+  expect_equal(lambda_spherical, lambdas$lambda_hat_spherical)
 })
 
 
@@ -81,9 +81,9 @@ test_that("calculate_lambda_hat - uncentered", {
   lambda_identity <-
     calculate_lambda_hat(trace_stats, sample_size, p, "identity")
   lambdas <- targetselection(datamat, FALSE)
-  expect_equal(lambda_identity, lambdas$optimal_identity)
-  expect_equal(lambda_diagonal, lambdas$optimal_diagonal)
-  expect_equal(lambda_spherical, lambdas$optimal_sphericity)
+  expect_equal(lambda_identity, lambdas$lambda_hat_identity)
+  expect_equal(lambda_diagonal, lambdas$lambda_hat_diagonal)
+  expect_equal(lambda_spherical, lambdas$lambda_hat_spherical)
 })
 
 
@@ -99,8 +99,8 @@ test_that("calculate_sigma_hat - centered", {
       sample_covariance, lambda_hat, diag(target_matrix)
     )
   expect_equal(sigma_hat, sigma_matrix)
-  target_matrix <- calculate_target_matrix(datamat, TRUE, p, "sphericity")
-  lambda_hat <- calculate_lambda_hat(trace_stats, sample_size, p, "sphericity")
+  target_matrix <- calculate_target_matrix(datamat, TRUE, p, "spherical")
+  lambda_hat <- calculate_lambda_hat(trace_stats, sample_size, p, "spherical")
   sigma_hat <- (1 - lambda_hat) * sample_covariance + lambda_hat * target_matrix
   sigma_matrix <-
     calculate_shrinkage_covariance_matrix(
@@ -130,8 +130,8 @@ test_that("calculate_sigma_hat - uncentered", {
       sample_covariance, lambda_hat, diag(target_matrix)
     )
   expect_equal(sigma_hat, sigma_matrix)
-  target_matrix <- calculate_target_matrix(datamat, FALSE, p, "sphericity")
-  lambda_hat <- calculate_lambda_hat(trace_stats, sample_size, p, "sphericity")
+  target_matrix <- calculate_target_matrix(datamat, FALSE, p, "spherical")
+  lambda_hat <- calculate_lambda_hat(trace_stats, sample_size, p, "spherical")
   sigma_hat <- (1 - lambda_hat) * sample_covariance + lambda_hat * target_matrix
   sigma_matrix <-
     calculate_shrinkage_covariance_matrix(
