@@ -19,8 +19,11 @@ BugReports: http://github.com/AnestisTouloumis/ShrinkCovMat/issues
 RoxygenNote: 7.2.1
 Suggests: 
     covr,
+    knitr,
+    rmarkdown,
     testthat (>= 2.1.0)
 Imports: Rcpp (>= 1.0.1)
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
+VignetteBuilder: knitr

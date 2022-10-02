@@ -1,0 +1,62 @@
+---
+title: "Linear Shrinkage of Covariance Matrices"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Linear Shrinkage of Covariance Matrices}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library("ShrinkCovMat")
+```
+
+## Target Covariance Matrix
+
+The identity target matrix is the $p \times p$ identity matrix 
+
+\[
+\mathbf I_{p}
+=
+    \begin{bmatrix}
+        1      & 0      & \ldots  & 0       \\
+        0      & 1      & \ddots  & \vdots  \\
+        \vdots & \ddots & \ddots  & 0       \\
+        0      & \ldots & 0       & 1       \\
+    \end{bmatrix}.
+\]
+
+
+Denote by $s^{2}_{11}, s^{2}_{22}, \ldots, s^{2}_{pp}$ the sample variances of the $p$ features which are the diagonal elements of the sample covariance matrix $\mathbf S$. Let $s^{2}$ be the average of the sample variances. The spherical target matrix is the diagonal matrix 
+
+\[
+s^{2} 
+\mathbf I_{p}
+=
+    \begin{bmatrix}
+        s^{2}  & 0      & \ldots  & 0  \\
+        0      & s^{2}  & \ddots  & \vdots  \\
+        \vdots & \ddots & \ddots  & 0 \\
+        0      & \ldots & 0       & s^{2}\\
+    \end{bmatrix}.
+\]
+
+
+The diagonal target matrix is a diagonal matrix where each of the diagonal elements equals the corresponding sample variance  
+
+\[
+    \begin{bmatrix}
+        s_{11}^{2} & 0          & \ldots  & 0         \\
+        0          & s_{22}^{2} & \ddots  & \vdots    \\
+        \vdots     & \ddots     & \ddots  & 0         \\
+        0          & \ldots     & 0       & s_{pp}^{2} \\
+    \end{bmatrix}.
+\]
+
