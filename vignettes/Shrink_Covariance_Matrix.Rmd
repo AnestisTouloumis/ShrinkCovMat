@@ -18,12 +18,50 @@ knitr::opts_chunk$set(
 library("ShrinkCovMat")
 ```
 
-## Target Covariance Matrix
+# Target Covariance Matrix
 
-The identity target matrix is the $p \times p$ identity matrix 
+Let $s^{2}_{11}, s^{2}_{22}, \ldots, s^{2}_{pp}$ be the corresponding diagonal elements of the sample covariance matrix $\mathbf S$, that is the sample variances of the $p$ features. 
+
+The diagonal target covariance matrix $\mathbf T_{D}$ is a diagonal matrix whose diagonal elements are equal to the sample variance  
 
 \[
-\mathbf I_{p}
+\mathbf T_{D}
+=
+    \begin{bmatrix}
+        s_{11}^{2} & 0          & \ldots  & 0         \\
+        0          & s_{22}^{2} & \ddots  & \vdots    \\
+        \vdots     & \ddots     & \ddots  & 0         \\
+        0          & \ldots     & 0       & s_{pp}^{2} \\
+    \end{bmatrix}.
+\]
+
+
+The spherical target covariance matrix $\mathbf T_{S}$ is the diagonal matrix 
+
+\[
+\mathbf T_{S}
+=
+    \begin{bmatrix}
+        s^{2}  & 0      & \ldots  & 0  \\
+        0      & s^{2}  & \ddots  & \vdots  \\
+        \vdots & \ddots & \ddots  & 0 \\
+        0      & \ldots & 0       & s^{2}\\
+    \end{bmatrix}.
+\]
+
+where $s^{2}$ be the average of the sample variances 
+
+\[
+s^2 = \frac{1}{p} \sum_{k=1}^{p} s_{kk}^{2}.
+\]
+
+
+The identity target covariance matrix $\mathbf T_{I}$ is the $p \times p$ identity matrix 
+
+\[
+\mathbf T_{I}
+=
+    \mathbf I_{p}
 =
     \begin{bmatrix}
         1      & 0      & \ldots  & 0       \\
@@ -34,29 +72,33 @@ The identity target matrix is the $p \times p$ identity matrix
 \]
 
 
-Denote by $s^{2}_{11}, s^{2}_{22}, \ldots, s^{2}_{pp}$ the sample variances of the $p$ features which are the diagonal elements of the sample covariance matrix $\mathbf S$. Let $s^{2}$ be the average of the sample variances. The spherical target matrix is the diagonal matrix 
+## Well-Defined Shrinkage Covariance Estimates
 
+The shrinkage covariance estimate is well-defined if the selected target matrix is positive-definite. 
+
+1. The identity covariance target matrix $\mathbf T_{I}$ is always positive-definite. 
+1. The spherical covariance target matrix is $\mathbf T_{S}$ is positive-definite provided that at least one of the $p$ sample variances is not $0$.
+1. The diagonal covariance target matrix $\mathbf T_{D}$ is positive-definite provided that none of the $p$ sample variances is equal to $0$.
+
+An error message will be returned when $\mathbf T_{D}$ or $\mathbf T_{S}$ will not be positive-definite.
+
+
+
+## Selection of Target Matrix
+
+
+To select the most suitable target covariance matrix, one should inspect the $p$ sample variances.
+
+The identity target matrix $\mathbf T_{I}$ should be chosen when all the values of the $p$ sample variances are close to $1$
 \[
-s^{2} 
-\mathbf I_{p}
-=
-    \begin{bmatrix}
-        s^{2}  & 0      & \ldots  & 0  \\
-        0      & s^{2}  & \ddots  & \vdots  \\
-        \vdots & \ddots & \ddots  & 0 \\
-        0      & \ldots & 0       & s^{2}\\
-    \end{bmatrix}.
+s^{2}_{11} \approx s^{2}_{11} \approx \ldots \approx s^{2}_{pp} \approx 1.
 \]
 
-
-The diagonal target matrix is a diagonal matrix where each of the diagonal elements equals the corresponding sample variance  
-
+The spherical target covariance matrix $\mathbf T_{S}$ should be chosen when the range of the $p$ sample variances is small
 \[
-    \begin{bmatrix}
-        s_{11}^{2} & 0          & \ldots  & 0         \\
-        0          & s_{22}^{2} & \ddots  & \vdots    \\
-        \vdots     & \ddots     & \ddots  & 0         \\
-        0          & \ldots     & 0       & s_{pp}^{2} \\
-    \end{bmatrix}.
+s^{2}_{11} \approx s^{2}_{22} \approx \ldots \approx s^{2}_{pp}.
 \]
+
+The diagonal target covariance matrix $\mathbf T_{D}$ is suitable when the values of the $p$ sample variances vary significantly. 
+
 
