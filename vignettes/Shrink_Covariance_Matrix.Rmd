@@ -18,11 +18,36 @@ knitr::opts_chunk$set(
 library("ShrinkCovMat")
 ```
 
+# Sample Covariance Matrix
+
+Suppose that the goal is to estimate the covariance matrix $\boldsymbol \Sigma$ based on a sample of $N$ independent and identically distributed $p$ random vectors $\mathbf X_1, \mathbf X_2, \ldots, \mathbf X_N$. The sample covariance matrix is defined by
+\[
+\mathbf S = \frac{1}{N - 1} \sum_{i=1}^{N} (\mathbf X_i - \bar {\mathbf X})(\mathbf X_i - \bar {\mathbf X})^{T}
+\]
+
+where $\bar {\mathbf X} = \sum_{i=1}^{N} \mathbf X_{i}/N$ is the sample mean vector.
+
+Although $\mathbf S$ is a natural estimator of the covariance matrix $\boldsymbol \Sigma$, it is known that $\mathbf S$ is problematic in high-dimensional settings, i.e. when the number of features $p$ (i.e. the dimension of the $N$ vectors) is a lot larger than the sample size $N$. For example, $\mathbf S$ is singular in high-dimensional settings while $\boldsymbol \Sigma$ is a positive-definite matrix.
+
+
+## Steinian Estimators
+
+A simple solution is to consider covariance estimators of the form
+\[
+\mathbf S^{\ast}_{\mathbf T} = \left( 1 - \lambda_{\mathbf T} \right) \mathbf S + \lambda_{\mathbf T} \mathbf T
+\]
+
+where $\mathbf T$ is a known positive-definite covariance matrix and $0 < \lambda_{\mathbf T} < 1$ is the known optimal intensity. The advantages of $\mathbf S^{\ast}_{\mathbf T}$ include that it is: (i) non-singular (ii) well-conditioned, (iii) invariant to permutations of the order of the $p$ variables, (iv) consistent to departures from a multivariate normal model, (v) not necessarily sparse, (vi) expressed in closed form, and (vii) computationally cheap regardless of $p$.
+
+
+In practice, the optimal shrinkage intensity $\lambda_{\mathbf T}$ is unknown and needs to be estimated by minimizing a risk function, such as the expectation of the Frobenius norm of the difference between $\mathbf S^{\ast}_{\mathbf T}$ and $\boldsymbol \Sigma$. This package implements the estimation procedures for $\lambda_{\mathbf T}$ described in Touloumis (2015).
+
+
 # Target Covariance Matrix
 
 Let $s^{2}_{11}, s^{2}_{22}, \ldots, s^{2}_{pp}$ be the corresponding diagonal elements of the sample covariance matrix $\mathbf S$, that is the sample variances of the $p$ features. 
 
-The diagonal target covariance matrix $\mathbf T_{D}$ is a diagonal matrix whose diagonal elements are equal to the sample variance  
+The diagonal target covariance matrix $\mathbf T_{D}$ is a diagonal matrix whose diagonal elements are equal to the sample variances  
 
 \[
 \mathbf T_{D}
@@ -49,7 +74,7 @@ The spherical target covariance matrix $\mathbf T_{S}$ is the diagonal matrix
     \end{bmatrix}.
 \]
 
-where $s^{2}$ be the average of the sample variances 
+where $s^{2}$ is the average of the sample variances 
 
 \[
 s^2 = \frac{1}{p} \sum_{k=1}^{p} s_{kk}^{2}.
@@ -72,9 +97,7 @@ The identity target covariance matrix $\mathbf T_{I}$ is the $p \times p$ identi
 \]
 
 
-## Well-Defined Shrinkage Covariance Estimates
-
-The shrinkage covariance estimate is well-defined if the selected target matrix is positive-definite. 
+## Positive-definiteness of the Target Matrices
 
 1. The identity covariance target matrix $\mathbf T_{I}$ is always positive-definite. 
 1. The spherical covariance target matrix is $\mathbf T_{S}$ is positive-definite provided that at least one of the $p$ sample variances is not $0$.
@@ -87,7 +110,7 @@ An error message will be returned when $\mathbf T_{D}$ or $\mathbf T_{S}$ will n
 ## Selection of Target Matrix
 
 
-To select the most suitable target covariance matrix, one should inspect the $p$ sample variances.
+To select the most suitable target covariance matrix, one should inspect the optimal shrinkage intensity of the three possible target matrices. If these differ significantly then one can choose as $\mathbf T$ the one with the largest $\lambda$ value. Otherwise, the choice of $\mathbf T$ should be based on examining the $p$ sample variances.
 
 The identity target matrix $\mathbf T_{I}$ should be chosen when all the values of the $p$ sample variances are close to $1$
 \[
@@ -100,5 +123,3 @@ s^{2}_{11} \approx s^{2}_{22} \approx \ldots \approx s^{2}_{pp}.
 \]
 
 The diagonal target covariance matrix $\mathbf T_{D}$ is suitable when the values of the $p$ sample variances vary significantly. 
-
-
