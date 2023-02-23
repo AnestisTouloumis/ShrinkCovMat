@@ -14,9 +14,9 @@ Depends: R (>= 2.10)
 LazyData: true
 NeedsCompilation: no
 Encoding: UTF-8
-URL: http://github.com/AnestisTouloumis/ShrinkCovMat
-BugReports: http://github.com/AnestisTouloumis/ShrinkCovMat/issues
-RoxygenNote: 7.2.1
+URL: https://github.com/AnestisTouloumis/ShrinkCovMat
+BugReports: https://github.com/AnestisTouloumis/ShrinkCovMat/issues
+RoxygenNote: 7.2.3
 Suggests: 
     covr,
     knitr,

@@ -16,7 +16,7 @@
 #' Sciences of the United States of America} \bold{96}, 6745--6750.
 #'
 #' @source
-#' \href{http://genomics-pubs.princeton.edu/oncology/affydata}{http://genomics-pubs.princeton.edu/oncology/affydata} # nolint
+#' \href{http://genomics-pubs.princeton.edu/oncology/affydata/}{http://genomics-pubs.princeton.edu/oncology/affydata/} # nolint
 #' [Last Assessed: 2016-05-21]
 #'
 #' @keywords datasets

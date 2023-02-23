@@ -3,7 +3,7 @@
 
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
-[![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions)
+[![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions/workflows/R-CMD-check.yaml)
 [![Github
 version](https://img.shields.io/badge/GitHub%20-1.4.6-green.svg)](%22commits/master%22)
 [![Project Status: Active The project has reached a stable, usable state
@@ -30,7 +30,7 @@ install.packages("ShrinkCovMat")
 The source code for the release version of `ShrinkCovMat` is available
 on CRAN at:
 
--   <https://CRAN.R-project.org/package=ShrinkCovMat>
+- <https://CRAN.R-project.org/package=ShrinkCovMat>
 
 Or you can install the development version of `ShrinkCovMat`:
 
@@ -42,7 +42,7 @@ devtools::install_github("AnestisTouloumis/ShrinkCovMat")
 The source code for the development version of `ShrinkCovMat` is
 available on github at:
 
--   <https://github.com/AnestisTouloumis/ShrinkCovMat>
+- <https://github.com/AnestisTouloumis/ShrinkCovMat>
 
 To use `ShrinkCovMat`, you should first load the package as follows:
 
@@ -64,10 +64,10 @@ target matrix. The core function is called `shrinkcovmat` and the
 argument `target` defines one of the following three options for the
 target matrix:
 
--   the identity matrix (`target = "identity"`),
--   the scaled identity matrix (`target = "spherical"`),
--   the diagonal matrix with diagonal elements the corresponding sample
-    variances (`target = "diagonal"`).
+- the identity matrix (`target = "identity"`),
+- the scaled identity matrix (`target = "spherical"`),
+- the diagonal matrix with diagonal elements the corresponding sample
+  variances (`target = "diagonal"`).
 
 Calculation of the corresponding optimal shrinkage intensities is
 discussed in Touloumis (2015).
