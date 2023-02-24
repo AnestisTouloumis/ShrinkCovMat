@@ -3,9 +3,9 @@
 
 # ShrinkCovMat: Shrinkage Covariance Matrix Estimators
 
-[![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions/workflows/R-CMD-check.yaml)
 [![Github
 version](https://img.shields.io/badge/GitHub%20-1.4.6-green.svg)](%22commits/master%22)
+[![R-CMD-check](https://github.com/AnestisTouloumis/ShrinkCovMat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/ShrinkCovMat/actions/workflows/R-CMD-check.yaml)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
