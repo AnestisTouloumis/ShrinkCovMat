@@ -2,7 +2,7 @@
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
 
-\section{Changes in Version 1.4.6 (2022-09-15)}{
+\section{Changes in Version 1.4.7 (2023-07-10)}{
   \subsection{NEW FEATURES}{
     \itemize{
       \item{Added function \code{shrinkcovmat} to obtain the shrinkage estimates.}
@@ -15,6 +15,7 @@
       \item{Fixed ORCID in DESCRIPTION.}
       \item{Improved package code coverage.}
       \item{Mitigating from Travis CI to GitHub Actions.}
+      \item{Updated CITATION.}
       \item{Updated documentation.}
     }
     }

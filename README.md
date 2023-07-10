@@ -177,22 +177,22 @@ estimated_covariance_tumor
 
 ## How to cite
 
+    To cite 'ShrinkCovMat' in publications, please use:
 
-    To cite the R package 'ShrinkCovMat' in publications, please use:
-
-      Touloumis, A. (2015) Nonparametric Stein-type Shrinkage Covariance
-      Matrix Estimators in High-Dimensional Settings, Computational
-      Statistics & Data Analysis 83, 251-261.
+      Touloumis A (2015). "Nonparametric Stein-type Shrinkage Covariance
+      Matrix Estimators in High-Dimensional Settings." _Computational
+      Statistics & Data Analysis_, -10. R package version 1.4.6.
 
     A BibTeX entry for LaTeX users is
 
       @Article{,
         title = {Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings},
-        author = {{Anestis Touloumis}},
+        author = {Anestis Touloumis},
         year = {2015},
         journal = {Computational Statistics & Data Analysis},
-        volume = {83},
-        pages = {251--261},
+        number = {2},
+        note = {R package version 1.4.6},
+        pages = {-10},
       }
 
 # References

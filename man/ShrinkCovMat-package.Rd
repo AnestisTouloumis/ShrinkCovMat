@@ -36,8 +36,8 @@ Covariance Matrix Estimators in High-Dimensional Settings.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/AnestisTouloumis/ShrinkCovMat}
-  \item Report bugs at \url{http://github.com/AnestisTouloumis/ShrinkCovMat/issues}
+  \item \url{https://github.com/AnestisTouloumis/ShrinkCovMat}
+  \item Report bugs at \url{https://github.com/AnestisTouloumis/ShrinkCovMat/issues}
 }
 
 }
