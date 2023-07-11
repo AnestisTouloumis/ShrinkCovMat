@@ -22,17 +22,17 @@ The functions listed below are deprecated and will be defunct in
 }
 \section{\code{shrinkcovmat.equal}}{
 
-For \code{shrinkcovmat.equal}, use \code{\link{shrinkcovmat}}.
+For \code{shrinkcovmat.equal}, use \code{\link{shrinkcovmat}} and set \code{target = "spherical"}.
 }
 
 \section{\code{shrinkcovmat.identity}}{
 
-For \code{shrinkcovmat.identity}, use \code{\link{shrinkcovmat}}.
+For \code{shrinkcovmat.identity}, use \code{\link{shrinkcovmat}} and set \code{target = "identity"}.
 }
 
 \section{\code{shrinkcovmat.unequal}}{
 
-For \code{shrinkcovmat.unequal}, use \code{\link{shrinkcovmat}}.
+For \code{shrinkcovmat.unequal}, use \code{\link{shrinkcovmat}} and set \code{target = "diagonal"}.
 }
 
 \keyword{internal}

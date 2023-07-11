@@ -30,12 +30,12 @@
 NULL
 #' @rdname ShrinkCovMat-deprecated
 #' @section \code{shrinkcovmat.unequal}:
-#' For \code{shrinkcovmat.unequal}, use \code{\link{shrinkcovmat}}.
+#' For \code{shrinkcovmat.unequal}, use \code{\link{shrinkcovmat}} and set \code{target = "diagonal"}.
 #'
 #' @export
 
 shrinkcovmat.unequal <- function(data, centered = FALSE) { # nolint
-  .Deprecated(msg = "Use instead function 'shrinkcovmat' with argument 'target' equal to 'diagonality'")
+  .Deprecated(msg = "Use instead function 'shrinkcovmat' with argument 'target' equal to 'diagonal'")
   if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)

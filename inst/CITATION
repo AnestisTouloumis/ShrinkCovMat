@@ -1,12 +1,10 @@
-note <- sprintf("R package version %s", meta$Version)
-
 bibentry(bibtype = "Article",
          header = "To cite 'ShrinkCovMat' in publications, please use:",
          title = "Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings",
          author = as.person("Anestis Touloumis"),
-         year = 2015,
+         year = "2015",
          journal= "Computational Statistics & Data Analysis",
-         volume= 83,
-         note = note,
-         pages= {251-261}
+         volume= "83",
+         pages= "251-261",
+         url = "https://www.sciencedirect.com/science/article/pii/S0167947314003107"
          )

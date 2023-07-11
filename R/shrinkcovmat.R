@@ -10,8 +10,10 @@
 #' with diagonal elements the corresponding sample variances), and (c) the
 #' \code{identity} matrix.
 #'
-#' The rows of the data matrix \code{data} correspond to variables and the
-#' columns to subjects.
+#' The rows of the data matrix \code{data} correspond to variables/features and 
+#' the columns to subjects.
+#' 
+#' To select the target covariance matrix see \code{\link{targetselection}}.
 #'
 #' @param data a numeric matrix containing the data.
 #' @param centered a logical indicating if the mean vector is the zero vector.

@@ -37,8 +37,10 @@ variances), the \code{diagonal} sample covariance matrix (the diagonal matrix
 with diagonal elements the corresponding sample variances), and (c) the
 \code{identity} matrix.
 
-The rows of the data matrix \code{data} correspond to variables and the
-columns to subjects.
+The rows of the data matrix \code{data} correspond to variables/features and 
+the columns to subjects.
+
+To select the target covariance matrix see \code{\link{targetselection}}.
 }
 \examples{
 data("colon")

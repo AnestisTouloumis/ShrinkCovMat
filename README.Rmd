@@ -8,7 +8,7 @@ references:
     given: Anestis
   container-title: Computational Statistics \& Data Analysis
   volume: 83
-  URL: 'https://doi.org/10.1016/j.csda.2014.10.018'
+  URL: 'https://www.sciencedirect.com/science/article/pii/S0167947314003107'
   page: 251-261
   type: article-journal
   issued:
@@ -81,6 +81,7 @@ Each of the three implemented shrinkage covariance matrix estimates is a convex 
 Calculation of the corresponding optimal shrinkage intensities is discussed in @Touloumis2015.
 
 The utility function `targetselection` is designed to ease the selection of the target matrix. This is based on empirical observation by inspecting the estimated optimal intensities and the range and average of the sample variances.
+
 
 ## Example
 Consider the colon cancer data example analyzed in @Touloumis2015. The data consists of two tissue groups: the normal tissue group and the tumor tissue group.

@@ -27,7 +27,7 @@
 NULL
 #' @rdname ShrinkCovMat-deprecated
 #' @section \code{shrinkcovmat.identity}:
-#' For \code{shrinkcovmat.identity}, use \code{\link{shrinkcovmat}}.
+#' For \code{shrinkcovmat.identity}, use \code{\link{shrinkcovmat}} and set \code{target = "identity"}.
 #'
 #' @export
 shrinkcovmat.identity <- function(data, centered = FALSE) { # nolint

@@ -14,9 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library("ShrinkCovMat")
-```
 
 # Sample Covariance Matrix
 
@@ -39,7 +36,6 @@ A simple solution is to consider covariance estimators of the form
 
 where $\mathbf T$ is a known positive-definite covariance matrix and $0 < \lambda_{\mathbf T} < 1$ is the known optimal intensity. The advantages of $\mathbf S^{\ast}_{\mathbf T}$ include that it is: (i) non-singular (ii) well-conditioned, (iii) invariant to permutations of the order of the $p$ variables, (iv) consistent to departures from a multivariate normal model, (v) not necessarily sparse, (vi) expressed in closed form, and (vii) computationally cheap regardless of $p$.
 
-
 In practice, the optimal shrinkage intensity $\lambda_{\mathbf T}$ is unknown and needs to be estimated by minimizing a risk function, such as the expectation of the Frobenius norm of the difference between $\mathbf S^{\ast}_{\mathbf T}$ and $\boldsymbol \Sigma$. This package implements the estimation procedures for $\lambda_{\mathbf T}$ described in Touloumis (2015).
 
 
@@ -47,7 +43,7 @@ In practice, the optimal shrinkage intensity $\lambda_{\mathbf T}$ is unknown an
 
 Let $s^{2}_{11}, s^{2}_{22}, \ldots, s^{2}_{pp}$ be the corresponding diagonal elements of the sample covariance matrix $\mathbf S$, that is the sample variances of the $p$ features. 
 
-The diagonal target covariance matrix $\mathbf T_{D}$ is a diagonal matrix whose diagonal elements are equal to the sample variances  
+The `diagonal` target covariance matrix $\mathbf T_{D}$ is a diagonal matrix whose diagonal elements are equal to the sample variances  
 
 \[
 \mathbf T_{D}
@@ -61,7 +57,7 @@ The diagonal target covariance matrix $\mathbf T_{D}$ is a diagonal matrix whose
 \]
 
 
-The spherical target covariance matrix $\mathbf T_{S}$ is the diagonal matrix 
+The `spherical` target covariance matrix $\mathbf T_{S}$ is the diagonal matrix 
 
 \[
 \mathbf T_{S}
@@ -81,7 +77,7 @@ s^2 = \frac{1}{p} \sum_{k=1}^{p} s_{kk}^{2}.
 \]
 
 
-The identity target covariance matrix $\mathbf T_{I}$ is the $p \times p$ identity matrix 
+The `identity` target covariance matrix $\mathbf T_{I}$ is the $p \times p$ identity matrix 
 
 \[
 \mathbf T_{I}
@@ -97,29 +93,89 @@ The identity target covariance matrix $\mathbf T_{I}$ is the $p \times p$ identi
 \]
 
 
+
 ## Positive-definiteness of the Target Matrices
 
-1. The identity covariance target matrix $\mathbf T_{I}$ is always positive-definite. 
-1. The spherical covariance target matrix is $\mathbf T_{S}$ is positive-definite provided that at least one of the $p$ sample variances is not $0$.
-1. The diagonal covariance target matrix $\mathbf T_{D}$ is positive-definite provided that none of the $p$ sample variances is equal to $0$.
+1. The `identity` covariance target matrix $\mathbf T_{I}$ is always positive-definite. 
+1. The `spherical` covariance target matrix is $\mathbf T_{S}$ is positive-definite provided that at least one of the $p$ sample variances is not $0$.
+1. The `diagonal` covariance target matrix $\mathbf T_{D}$ is positive-definite provided that none of the $p$ sample variances is equal to $0$.
 
-An error message will be returned when $\mathbf T_{D}$ or $\mathbf T_{S}$ will not be positive-definite.
+An error message will be returned when $\mathbf T_{D}$ or $\mathbf T_{S}$ will not be positive-definite. In this case, the user should either remove all the features (rows) whose sample variance is $0$ or use a different target matrix (e.g. $\mathbf T_{I}$). 
 
 
 
 ## Selection of Target Matrix
 
+In practice, to select a suitable target covariance matrix, one can inspect the optimal shrinkage intensity of the three possible target matrices. If these differ significantly, then one can choose as target matrix the one with the largest $\lambda$ value. Otherwise, the choice of the target matrix can be based on examining the $p$ sample variances.
 
-To select the most suitable target covariance matrix, one should inspect the optimal shrinkage intensity of the three possible target matrices. If these differ significantly then one can choose as $\mathbf T$ the one with the largest $\lambda$ value. Otherwise, the choice of $\mathbf T$ should be based on examining the $p$ sample variances.
-
-The identity target matrix $\mathbf T_{I}$ should be chosen when all the values of the $p$ sample variances are close to $1$
+The `identity` target matrix $\mathbf T_{I}$ is sensible when all the values of the $p$ sample variances are close to $1$
 \[
 s^{2}_{11} \approx s^{2}_{11} \approx \ldots \approx s^{2}_{pp} \approx 1.
 \]
 
-The spherical target covariance matrix $\mathbf T_{S}$ should be chosen when the range of the $p$ sample variances is small
+The `spherical` target covariance matrix $\mathbf T_{S}$ is sensible when the range of the $p$ sample variances is small
 \[
 s^{2}_{11} \approx s^{2}_{22} \approx \ldots \approx s^{2}_{pp}.
 \]
 
-The diagonal target covariance matrix $\mathbf T_{D}$ is suitable when the values of the $p$ sample variances vary significantly. 
+The `diagonal` target covariance matrix $\mathbf T_{D}$ is sensible when the values of the $p$ sample variances vary significantly. 
+
+Hence, the target matrix selection should be based on inspecting the optimal shrinkage intensities and the range and average of the $p$ sample variances.
+
+
+# Example
+The colon cancer data, analyzed in Touloumis (2015), consists of two tissue groups: the normal tissue group and the tumor tissue group.
+
+```{r}
+library("ShrinkCovMat")
+data("colon")
+normal_group <- colon[, 1:40]
+dim(normal_group)
+tumor_group <- colon[, 41:62]
+dim(tumor_group)
+```
+
+For each of the $`r ncol(normal_group)`$ subjects in the normal group, their gene expression levels were measured for $`r nrow(normal_group)`$ genes. To select the target matrix for covariance matrix of the normal group, we use the function `targetselection`:
+
+```{r}
+targetselection(normal_group)
+```
+
+The estimated optimal shrinkage intensity for the `spherical` matrix is slightly larger than the other two. In addition the sample variances appear to be of similar magnitude and their average is smaller than $1$. Thus, the `spherical` matrix seems to be the most appropriate target for the covariance matrix. The resulting covariance matrix estimate is:
+
+```{r}
+estimated_covariance_normal <- shrinkcovmat(normal_group, target = "spherical")
+estimated_covariance_normal
+```
+
+We follow a similar procedure to estimate the covariance matrix of the tumor group: 
+```{r}
+targetselection(tumor_group)
+estimated_covariance_tumor <- shrinkcovmat(tumor_group, target = "spherical")
+estimated_covariance_tumor
+```
+
+# Compatibility
+
+Version 2.0.0 introduces the function `shrinkcovmat` which in the next release of `ShrinkCovMat` will replace the deprecated functions `shinkcovmat.identity`, `shrinkcovmat.equal` and `shrinkcovmat.unequal`. The table below illustrates the changes:
+
+
+```{r echo = FALSE}
+package_before <- c("`shrinkcovmat.identity(data)`",
+                    "`shrinkcovmat.identity(data)`", 
+                    "`shrinkcovmat.unequal(data)`")
+package_after <- c("`shrinkcovmat(data, target = 'identity')`", 
+                   "`shrinkcovmat(data, target = 'spherical')`", 
+                   "`shrinkcovmat(data, target = 'diagonal')`")
+df <- cbind(package_before, package_after)
+colnames(df) <- c("Deprecated", "Replacement")
+df |> 
+  knitr::kable(caption = "Deprecated functions since v2.0.0 and their replacements in newer versions.") 
+```
+
+
+# How To Cite
+```{r}
+citation("ShrinkCovMat")
+```
+

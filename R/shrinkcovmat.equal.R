@@ -30,11 +30,11 @@
 NULL
 #' @rdname ShrinkCovMat-deprecated
 #' @section \code{shrinkcovmat.equal}:
-#' For \code{shrinkcovmat.equal}, use \code{\link{shrinkcovmat}}.
+#' For \code{shrinkcovmat.equal}, use \code{\link{shrinkcovmat}} and set \code{target = "spherical"}.
 #'
 #' @export
 shrinkcovmat.equal <- function(data, centered = FALSE) { # nolint
-  .Deprecated(msg = "Use instead function 'shrinkcovmat' with argument 'target' equal to 'sphericity'")
+  .Deprecated(msg = "Use instead function 'shrinkcovmat' with argument 'target' equal to 'spherical'")
   if (!is.matrix(data)) data <- as.matrix(data)
   p <- nrow(data)
   n <- ncol(data)

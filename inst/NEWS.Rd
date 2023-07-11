@@ -2,10 +2,11 @@
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
 
-\section{Changes in Version 1.4.7 (2023-07-10)}{
+\section{Changes in Version 2.0.0 (2023-07-11)}{
   \subsection{NEW FEATURES}{
     \itemize{
       \item{Added function \code{shrinkcovmat} to obtain the shrinkage estimates.}
+      \item{Added vignette.}
       }
       }
   \subsection{MINOR CHANGES}{
