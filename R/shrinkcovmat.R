@@ -34,15 +34,10 @@
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
 #' @examples
-#' data("colon")
+#' data(colon)
 #' normal_group <- colon[, 1:40]
-#' tumor_group <- colon[, 41:62]
-#' targetselection(normal_group)
-#' sigma_hat_normal_group <- shrinkcovmat(normal_group)
+#' sigma_hat_normal_group <- shrinkcovmat(normal_group, target = "spherical")
 #' sigma_hat_normal_group
-#' targetselection(normal_group)
-#' sigma_hat_tumor_group <- shrinkcovmat(tumor_group)
-#' sigma_hat_tumor_group
 #' @export
 shrinkcovmat <- function(data, target = "spherical", centered = FALSE) {
   if (!is.matrix(data)) data <- as.matrix(data)

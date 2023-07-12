@@ -43,15 +43,10 @@ the columns to subjects.
 To select the target covariance matrix see \code{\link{targetselection}}.
 }
 \examples{
-data("colon")
+data(colon)
 normal_group <- colon[, 1:40]
-tumor_group <- colon[, 41:62]
-targetselection(normal_group)
-sigma_hat_normal_group <- shrinkcovmat(normal_group)
+sigma_hat_normal_group <- shrinkcovmat(normal_group, target = "spherical")
 sigma_hat_normal_group
-targetselection(normal_group)
-sigma_hat_tumor_group <- shrinkcovmat(tumor_group)
-sigma_hat_tumor_group
 }
 \references{
 Touloumis, A. (2015) nonparametric Stein-type Shrinkage

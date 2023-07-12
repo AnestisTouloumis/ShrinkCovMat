@@ -1,7 +1,7 @@
 bibentry(bibtype = "Article",
          header = "To cite 'ShrinkCovMat' in publications, please use:",
          title = "Nonparametric Stein-type Shrinkage Covariance Matrix Estimators in High-Dimensional Settings",
-         author = as.person("Anestis Touloumis"),
+         author = person(c("Touloumis", "A.")),
          year = "2015",
          journal= "Computational Statistics & Data Analysis",
          volume= "83",
