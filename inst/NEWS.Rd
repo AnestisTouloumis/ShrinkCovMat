@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
+\section{Changes in Version 2.1.0 (2023-07-21)}{
+  \subsection{MINOR CHANGES}{
+    \itemize{
+      \item{Simplified examples.}
+    }
+    }
+    }
 
 \section{Changes in Version 2.0.0 (2023-07-14)}{
   \subsection{NEW FEATURES}{
