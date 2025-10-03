@@ -6,5 +6,5 @@ bibentry(bibtype = "Article",
          journal= "Computational Statistics & Data Analysis",
          volume= "83",
          pages= "251-261",
-         url = "https://www.sciencedirect.com/science/article/pii/S0167947314003107"
+         url = "https://doi.org/10.1016/j.csda.2014.10.018"
          )

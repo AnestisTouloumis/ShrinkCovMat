@@ -182,7 +182,7 @@ estimated_covariance_tumor
       Touloumis A. (2015). "Nonparametric Stein-type Shrinkage Covariance
       Matrix Estimators in High-Dimensional Settings." _Computational
       Statistics & Data Analysis_, *83*, 251-261.
-      <https://www.sciencedirect.com/science/article/pii/S0167947314003107>.
+      <https://doi.org/10.1016/j.csda.2014.10.018>.
 
     A BibTeX entry for LaTeX users is
 
@@ -193,7 +193,7 @@ estimated_covariance_tumor
         journal = {Computational Statistics & Data Analysis},
         volume = {83},
         pages = {251-261},
-        url = {https://www.sciencedirect.com/science/article/pii/S0167947314003107},
+        url = {https://doi.org/10.1016/j.csda.2014.10.018},
       }
 
 # References

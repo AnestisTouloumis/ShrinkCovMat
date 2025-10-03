@@ -1,7 +1,7 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{ShrinkCovMat} package}
 
-\section{Changes in Version 2.1.0 (2023-07-21)}{
+\section{Changes in Version 2.1.0 (2025-10-03)}{
   \subsection{MINOR CHANGES}{
     \itemize{
       \item{Simplified examples.}

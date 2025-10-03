@@ -3,7 +3,6 @@
 \docType{package}
 \name{ShrinkCovMat-package}
 \alias{ShrinkCovMat-package}
-\alias{_PACKAGE}
 \alias{ShrinkCovMat}
 \title{Shrinkage Covariance Matrix Estimators}
 \description{
