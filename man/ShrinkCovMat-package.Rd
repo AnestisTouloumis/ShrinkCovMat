@@ -41,8 +41,7 @@ Useful links:
 
 }
 \author{
-Anestis Touloumis
-
-Maintainer: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
+Anestis Touloumis Maintainer: Anestis Touloumis
+<A.Touloumis@brighton.ac.uk>
 }
 \keyword{package}

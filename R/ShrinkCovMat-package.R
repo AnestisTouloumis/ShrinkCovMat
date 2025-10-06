@@ -23,9 +23,9 @@
 #' @name ShrinkCovMat-package
 #' @aliases ShrinkCovMat-package ShrinkCovMat
 #' @docType package
-#' @author Anestis Touloumis
-#'
-#' Maintainer: Anestis Touloumis <A.Touloumis@@brighton.ac.uk>
+#' @author Anestis Touloumis Maintainer: Anestis Touloumis
+#' <A.Touloumis@@brighton.ac.uk>
+#' 
 #' @references Touloumis, A. (2015) Nonparametric Stein-type Shrinkage
 #' Covariance Matrix Estimators in High-Dimensional Settings.
 #' \emph{Computational Statistics & Data Analysis} \bold{83}, 251--261.
